@@ -141,7 +141,16 @@ typedef enum {
     IBOutlet UILabel *facesLabel;
     __unsafe_unretained UISlider *_filterSettingsSlider;
     BOOL faceThinking;
+    
+    
+    GPUImagePicture *staticPicture;
+    NSMutableArray *arrayTemp;
+
+
 }
+
+@property(nonatomic,retain) NSMutableArray *checkedArray,*checkedIndexArray,*arrayTemp,*allCellArray;
+
 
 @property(readwrite, unsafe_unretained, nonatomic) IBOutlet UISlider *filterSettingsSlider;
 @property(nonatomic,retain) CIDetector*faceDetector;

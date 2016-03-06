@@ -70,6 +70,22 @@
 
 - (void)setupFilter;
 {
+    
+    
+    
+    
+    UIImage *inputImage = [UIImage imageNamed:@"sample1.jpg"];
+    staticPicture = [[GPUImagePicture alloc] initWithImage:inputImage smoothlyScaleOutput:YES];
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     videoCamera = [[GPUImageVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPreset640x480 cameraPosition:AVCaptureDevicePositionBack];
 //    videoCamera = [[GPUImageVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPreset1280x720 cameraPosition:AVCaptureDevicePositionBack];
 //    videoCamera = [[GPUImageVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPreset1920x1080 cameraPosition:AVCaptureDevicePositionBack];
@@ -1305,14 +1321,25 @@
         default: filter = [[GPUImageSepiaFilter alloc] init]; break;
     }
     
+    
+    
+    arrayTemp = [[NSMutableArray alloc]init];
+    [arrayTemp addObject:filter];
+    
+    
+    pipeline = [[GPUImageFilterPipeline alloc]initWithOrderedFilters:arrayTemp input:staticPicture output:(GPUImageView*)self.view];
+    
+    
+    
     if (filterType == GPUIMAGE_FILECONFIG)
     {
         self.title = @"File Configuration";
+        
         pipeline = [[GPUImageFilterPipeline alloc] initWithConfigurationFile:[[NSBundle mainBundle] URLForResource:@"SampleConfiguration" withExtension:@"plist"]
                                                                                                input:videoCamera output:(GPUImageView*)self.view];
-        
-//        [pipeline addFilter:rotationFilter atIndex:0];
-    } 
+
+
+    }
     else 
     {
     
@@ -1555,7 +1582,8 @@
         }
     } 
 
-    [videoCamera startCameraCapture];
+//    [videoCamera startCameraCapture];
+    [staticPicture processImage];
 }
 
 #pragma mark -
@@ -1668,6 +1696,8 @@
         }; break;
         default: break;
     }
+    
+    [staticPicture processImage];
 }
 
 #pragma mark - Face Detection Delegate Callback
