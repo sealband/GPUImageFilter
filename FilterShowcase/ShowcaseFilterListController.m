@@ -21,6 +21,20 @@
     [super viewDidLoad];
 
     self.title = @"Filter List";
+    
+    UIButton *choosePhotoBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [choosePhotoBtn setTitle:@"选择照片" forState:UIControlStateNormal];
+    [choosePhotoBtn addTarget:self action:@selector(choosePhoto) forControlEvents:UIControlEventTouchUpInside];
+    choosePhotoBtn.frame = CGRectMake(0, 0, 70, 36);
+    UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:choosePhotoBtn];
+    self.navigationItem.leftBarButtonItem = leftButtonItem;
+    
+    imagePicker = [[UIImagePickerController alloc] init];
+    UIImagePickerControllerSourceType sourceType;
+    sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    imagePicker.delegate = self;
+    imagePicker.allowsEditing = NO;
+    imagePicker.sourceType = sourceType;
 }
 
 - (void)viewDidUnload
@@ -28,6 +42,11 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+}
+
+- (void)choosePhoto
+{
+    [self presentModalViewController:imagePicker animated:YES];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -192,6 +211,47 @@
     return cell;
 }
 
+
+#pragma mark UIImagePickerControllerDelegate
+
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    UIDevice *device  = [UIDevice currentDevice];
+    NSLog(@"device.model %@",device.model);
+    if([device.model isEqualToString:@"iPad"])
+    {
+        [accountBookPopSelectViewController dismissPopoverAnimated:YES];
+    }
+    else
+    {
+        [self dismissModalViewControllerAnimated:YES];
+    }
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
+{
+
+}
+
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    UIDevice *device  = [UIDevice currentDevice];
+    NSLog(@"device.model %@",device.model);
+    if([device.model isEqualToString:@"iPad"])
+    {
+        [accountBookPopSelectViewController dismissPopoverAnimated:YES];
+    }
+    else
+    {
+        [self dismissModalViewControllerAnimated:YES];
+    }
+    
+    UIImage *imageselect= [info valueForKey:UIImagePickerControllerOriginalImage];
+    
+    stillImage = imageselect ;
+}
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -236,6 +296,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ShowcaseFilterViewController *filterViewController = [[ShowcaseFilterViewController alloc] initWithFilterType:(GPUImageShowcaseFilterType)indexPath.row];
+    filterViewController.isStatic = YES;
+    filterViewController.stillImage = stillImage;
     [self.navigationController pushViewController:filterViewController animated:YES];
 }
 
