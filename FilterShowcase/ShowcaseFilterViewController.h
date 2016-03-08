@@ -144,12 +144,15 @@ typedef enum {
     
     
     GPUImagePicture *staticPicture;
+    BOOL isStatic;
     NSMutableArray *arrayTemp;
 
 
 }
 
 @property(nonatomic,retain) NSMutableArray *checkedArray,*checkedIndexArray,*arrayTemp,*allCellArray;
+@property(nonatomic,retain)UIImage * stillImage;
+@property(nonatomic,assign) BOOL isStatic;
 
 
 @property(readwrite, unsafe_unretained, nonatomic) IBOutlet UISlider *filterSettingsSlider;

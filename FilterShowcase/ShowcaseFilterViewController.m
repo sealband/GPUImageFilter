@@ -2,7 +2,10 @@
 #import <CoreImage/CoreImage.h>
 
 @implementation ShowcaseFilterViewController
-@synthesize faceDetector;
+@synthesize faceDetector,stillImage;
+@synthesize isStatic;
+;
+
 #pragma mark -
 #pragma mark Initialization and teardown
 
@@ -23,6 +26,7 @@
 
 - (void)dealloc;
 {
+    stillImage = nil;
 }
 
 #pragma mark - View lifecycle
@@ -70,12 +74,23 @@
 
 - (void)setupFilter;
 {
+    if (isStatic) {
+        if (stillImage) {
+            staticPicture = [[GPUImagePicture alloc] initWithImage:stillImage smoothlyScaleOutput:YES];
+        } else
+        {
+            UIImage *inputImage = [UIImage imageNamed:@"sample1.jpg"];
+            staticPicture = [[GPUImagePicture alloc] initWithImage:inputImage smoothlyScaleOutput:YES];
+        }
+    } else
+    {
+        videoCamera = [[GPUImageVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPreset640x480 cameraPosition:AVCaptureDevicePositionBack];
+        videoCamera.outputImageOrientation = UIInterfaceOrientationPortrait;
+    }
     
     
     
     
-    UIImage *inputImage = [UIImage imageNamed:@"sample1.jpg"];
-    staticPicture = [[GPUImagePicture alloc] initWithImage:inputImage smoothlyScaleOutput:YES];
     
     
     
@@ -84,13 +99,9 @@
     
     
     
-    
-    
-    videoCamera = [[GPUImageVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPreset640x480 cameraPosition:AVCaptureDevicePositionBack];
 //    videoCamera = [[GPUImageVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPreset1280x720 cameraPosition:AVCaptureDevicePositionBack];
 //    videoCamera = [[GPUImageVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPreset1920x1080 cameraPosition:AVCaptureDevicePositionBack];
 //    videoCamera = [[GPUImageVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPreset640x480 cameraPosition:AVCaptureDevicePositionFront];
-    videoCamera.outputImageOrientation = UIInterfaceOrientationPortrait;
     facesSwitch.hidden = YES;
     facesLabel.hidden = YES;
     BOOL needsSecondImage = NO;
