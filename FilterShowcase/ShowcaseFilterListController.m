@@ -31,7 +31,7 @@
     
     imagePicker = [[UIImagePickerController alloc] init];
     UIImagePickerControllerSourceType sourceType;
-    sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
     imagePicker.delegate = self;
     imagePicker.allowsEditing = NO;
     imagePicker.sourceType = sourceType;
@@ -211,21 +211,21 @@
     return cell;
 }
 
+#pragma mark - Table view delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ShowcaseFilterViewController *filterViewController = [[ShowcaseFilterViewController alloc] initWithFilterType:(GPUImageShowcaseFilterType)indexPath.row];
+    filterViewController.isStatic = YES;
+    filterViewController.stillImage = stillImage;
+    [self.navigationController pushViewController:filterViewController animated:YES];
+}
+
 
 #pragma mark UIImagePickerControllerDelegate
 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
-    UIDevice *device  = [UIDevice currentDevice];
-    NSLog(@"device.model %@",device.model);
-    if([device.model isEqualToString:@"iPad"])
-    {
-        [accountBookPopSelectViewController dismissPopoverAnimated:YES];
-    }
-    else
-    {
-        [self dismissModalViewControllerAnimated:YES];
-    }
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
@@ -233,72 +233,11 @@
 
 }
 
-
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    UIDevice *device  = [UIDevice currentDevice];
-    NSLog(@"device.model %@",device.model);
-    if([device.model isEqualToString:@"iPad"])
-    {
-        [accountBookPopSelectViewController dismissPopoverAnimated:YES];
-    }
-    else
-    {
-        [self dismissModalViewControllerAnimated:YES];
-    }
-    
+    [self dismissModalViewControllerAnimated:YES];
     UIImage *imageselect= [info valueForKey:UIImagePickerControllerOriginalImage];
-    
     stillImage = imageselect ;
-}
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    ShowcaseFilterViewController *filterViewController = [[ShowcaseFilterViewController alloc] initWithFilterType:(GPUImageShowcaseFilterType)indexPath.row];
-    filterViewController.isStatic = YES;
-    filterViewController.stillImage = stillImage;
-    [self.navigationController pushViewController:filterViewController animated:YES];
 }
 
 @end
