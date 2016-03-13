@@ -246,6 +246,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     filterType = (GPUImageShowcaseFilterType)indexPath.row;
+    stillImage = [pipeline currentFilteredFrame];
     [self setupFilter];
 }
 
@@ -1515,8 +1516,9 @@
     }
     
     
-    
-    arrayTemp = [[NSMutableArray alloc]init];
+    if (arrayTemp == nil) {
+        arrayTemp = [[NSMutableArray alloc]init];
+    }
     [arrayTemp addObject:filter];
     
     
