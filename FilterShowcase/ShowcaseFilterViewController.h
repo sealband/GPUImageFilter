@@ -124,7 +124,7 @@ typedef enum {
 } GPUImageShowcaseFilterType; 
 
 
-@interface ShowcaseFilterViewController : UIViewController <GPUImageVideoCameraDelegate>
+@interface ShowcaseFilterViewController : UIViewController <GPUImageVideoCameraDelegate,UITableViewDelegate,UITableViewDataSource>
 {
     GPUImageVideoCamera *videoCamera;
     GPUImageOutput<GPUImageInput> *filter;
@@ -146,8 +146,8 @@ typedef enum {
     GPUImagePicture *staticPicture;
     BOOL isStatic;
     NSMutableArray *arrayTemp;
-
-
+    
+    UITableView *horizontalTableView;
 }
 
 @property(nonatomic,retain) NSMutableArray *checkedArray,*checkedIndexArray,*arrayTemp,*allCellArray;
