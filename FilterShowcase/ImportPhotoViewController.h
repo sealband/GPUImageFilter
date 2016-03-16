@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ImportPhotoViewController : UIViewController
+@interface ImportPhotoViewController : UIViewController<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+{
+    UIImagePickerController * imagePicker;
+    UIPopoverController *accountBookPopSelectViewController;
+    UIImage * stillImage;
+}
 
 @end

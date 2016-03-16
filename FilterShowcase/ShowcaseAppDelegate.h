@@ -1,12 +1,12 @@
 #import <UIKit/UIKit.h>
 
-@class ShowcaseFilterListController;
+//@class ShowcaseFilterListController;
+@class ImportPhotoViewController;
 
 @interface ShowcaseAppDelegate : UIResponder <UIApplicationDelegate>
 {
-    UINavigationController *filterNavigationController;
-
-    ShowcaseFilterListController *filterListController;
+    UINavigationController *importPhotofilterNavigationController;
+    ImportPhotoViewController *importPhotoVC;
 }
 
 @property (strong, nonatomic) UIWindow *window;

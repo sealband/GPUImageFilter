@@ -146,8 +146,11 @@ typedef enum {
     GPUImagePicture *staticPicture;
     BOOL isStatic;
     NSMutableArray *arrayTemp;
+    NSMutableArray *filterArr;
     
     UITableView *horizontalTableView;
+    UILabel *valueLabel;
+    NSString *currentValue;
 }
 
 @property(nonatomic,retain) NSMutableArray *checkedArray,*checkedIndexArray,*arrayTemp,*allCellArray;

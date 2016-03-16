@@ -1,5 +1,6 @@
 #import "ShowcaseAppDelegate.h"
 #import "ShowcaseFilterListController.h"
+#import "ImportPhotoViewController.h"
 
 @implementation ShowcaseAppDelegate
 
@@ -8,14 +9,16 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     
-    filterNavigationController = [[UINavigationController alloc] init];
-    filterListController = [[ShowcaseFilterListController alloc] initWithNibName:nil bundle:nil];
-    [filterNavigationController pushViewController:filterListController animated:NO];
+    importPhotofilterNavigationController = [[UINavigationController alloc] init];
+    [[UINavigationBar appearance] setBackgroundColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setTranslucent:YES];
 
-    [self.window setRootViewController:filterNavigationController];
+    importPhotoVC = [[ImportPhotoViewController alloc] initWithNibName:nil bundle:nil];
+    [importPhotofilterNavigationController pushViewController:importPhotoVC animated:NO];
+    [self.window setRootViewController:importPhotofilterNavigationController];
+    
     [self.window makeKeyAndVisible];
     
     return YES;

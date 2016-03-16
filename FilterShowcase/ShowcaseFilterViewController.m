@@ -1,5 +1,6 @@
 #import "ShowcaseFilterViewController.h"
 #import <CoreImage/CoreImage.h>
+#import "OutputTableViewController.h"
 
 
 #define kCellWidth                                  140
@@ -59,6 +60,21 @@
     horizontalTableView.dataSource = self;
     [self.view addSubview:horizontalTableView];
     
+
+    valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width-50, frame.size.height-125, 50, 25)];
+    valueLabel.backgroundColor = [UIColor clearColor];
+    valueLabel.font = [UIFont systemFontOfSize:10];
+    valueLabel.textColor = [UIColor whiteColor];
+    [valueLabel setTextAlignment:NSTextAlignmentCenter];
+    [self.view addSubview:valueLabel];
+    
+    UIButton *outPutBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [outPutBtn setTitle:@"pamaters" forState:UIControlStateNormal];
+    [outPutBtn addTarget:self action:@selector(outputFilterParemeters) forControlEvents:UIControlEventTouchUpInside];
+    outPutBtn.frame = CGRectMake(0, 0, 70, 36);
+    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:outPutBtn];
+    self.navigationItem.rightBarButtonItem = rightButtonItem;
+    
     [self setupFilter];
 }
 
@@ -84,6 +100,25 @@
     
 }
 
+- (void)outputFilterParemeters
+{
+    
+    
+    NSString *filterParameterStr;
+    if (currentValue) {
+        filterParameterStr = [NSString stringWithFormat:@"%@:%@",self.title,currentValue];
+    } else
+    {
+        currentValue = [NSString stringWithFormat:@"%.2f",self.filterSettingsSlider.value];
+        filterParameterStr = [NSString stringWithFormat:@"%@:%@",self.title,currentValue];
+    }
+    [filterArr addObject:filterParameterStr];
+    
+    
+    
+    OutputTableViewController *outputTableVC = [[OutputTableViewController alloc] initWithFilterArr:filterArr];
+    [self.navigationController pushViewController:outputTableVC animated:YES];
+}
 
 
 
@@ -246,6 +281,18 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     filterType = (GPUImageShowcaseFilterType)indexPath.row;
+    
+    NSString *filterParameterStr;
+    if (currentValue) {
+        filterParameterStr = [NSString stringWithFormat:@"%@:%@",self.title,currentValue];
+    } else
+    {
+        currentValue = [NSString stringWithFormat:@"%.2f",self.filterSettingsSlider.value];
+        filterParameterStr = [NSString stringWithFormat:@"%@:%@",self.title,currentValue];
+    }
+    [filterArr addObject:filterParameterStr];
+    
+    
     [self setupFilter];
 }
 
@@ -1515,11 +1562,20 @@
     }
     
     
+    valueLabel.text = [NSString stringWithFormat:@"%.2f",self.filterSettingsSlider.value];
     if (arrayTemp == nil) {
         arrayTemp = [[NSMutableArray alloc]init];
     }
     [arrayTemp addObject:filter];
     
+    if (filterArr == nil) {
+        filterArr = [[NSMutableArray alloc] init];
+    }
+    
+    
+//    currentValue = [NSString stringWithFormat:@"%.2f",self.filterSettingsSlider.value];
+//    NSString *filterParameterStr = [NSString stringWithFormat:@"%@:%@",self.title,currentValue];
+//    [filterArr addObject:filterParameterStr];
     
     pipeline = [[GPUImageFilterPipeline alloc]initWithOrderedFilters:arrayTemp input:staticPicture output:(GPUImageView*)self.view];
     
@@ -1786,6 +1842,9 @@
 - (IBAction)updateFilterFromSlider:(id)sender;
 {
     [videoCamera resetBenchmarkAverage];
+    currentValue = [NSString stringWithFormat:@"%.2f",[(UISlider*)sender value]];
+    valueLabel.text = currentValue;
+
     switch(filterType)
     {
         case GPUIMAGE_SEPIA: [(GPUImageSepiaFilter *)filter setIntensity:[(UISlider *)sender value]]; break;

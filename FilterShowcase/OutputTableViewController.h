@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OutputTableViewController : UITableViewController
+@interface OutputTableViewController : UITableViewController<UITableViewDelegate,UITableViewDataSource>
+{
+    NSMutableArray *parametersArr;
+}
+- (id)initWithFilterArr:(NSMutableArray*)arr;
+
+
 
 @end

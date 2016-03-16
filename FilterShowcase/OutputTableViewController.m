@@ -12,7 +12,16 @@
 
 @end
 
+
+
 @implementation OutputTableViewController
+
+- (id)initWithFilterArr:(NSMutableArray*)arr;
+{
+    parametersArr = arr;
+    return self;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -22,6 +31,7 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.tableView.separatorStyle = NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -32,24 +42,27 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    return [parametersArr count];
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    NSInteger index = [indexPath row];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ParemetersCell"];
+    if (cell == nil)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ParemetersCell"];
+        cell.textLabel.textColor = [UIColor blackColor];
+    }
     
-    // Configure the cell...
-    
+    cell.textLabel.text = parametersArr[index];
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.
