@@ -37,7 +37,6 @@
 		BC982B2614F048230001FF6F /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC982B2514F048230001FF6F /* OpenGLES.framework */; };
 		BC982B3614F04B3A0001FF6F /* ShowcaseFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC982B3414F04B3A0001FF6F /* ShowcaseFilterViewController.m */; };
 		BC982B3714F04B3A0001FF6F /* ShowcaseFilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC982B3514F04B3A0001FF6F /* ShowcaseFilterViewController.xib */; };
-		BC982B3F14F05DC20001FF6F /* ShowcaseFilterListController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC982B3E14F05DC10001FF6F /* ShowcaseFilterListController.m */; };
 		BC982C4114F1F6C80001FF6F /* CustomFilter.fsh in Resources */ = {isa = PBXBuildFile; fileRef = BC982C4014F1F6C80001FF6F /* CustomFilter.fsh */; };
 		E5530A36180FD1D500597F98 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5530A35180FD1D500597F98 /* Default-568h@2x.png */; };
 		F2F3361E156585C400B0FBB8 /* voroni_points2.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F3361D156585C400B0FBB8 /* voroni_points2.png */; };
@@ -102,8 +101,6 @@
 		BC982B3314F04B3A0001FF6F /* ShowcaseFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowcaseFilterViewController.h; sourceTree = "<group>"; };
 		BC982B3414F04B3A0001FF6F /* ShowcaseFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowcaseFilterViewController.m; sourceTree = "<group>"; };
 		BC982B3514F04B3A0001FF6F /* ShowcaseFilterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowcaseFilterViewController.xib; sourceTree = "<group>"; };
-		BC982B3D14F05DC10001FF6F /* ShowcaseFilterListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowcaseFilterListController.h; sourceTree = "<group>"; };
-		BC982B3E14F05DC10001FF6F /* ShowcaseFilterListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowcaseFilterListController.m; sourceTree = "<group>"; };
 		BC982C4014F1F6C80001FF6F /* CustomFilter.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = CustomFilter.fsh; sourceTree = "<group>"; };
 		E5530A35180FD1D500597F98 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		F2F3361D156585C400B0FBB8 /* voroni_points2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = voroni_points2.png; sourceTree = "<group>"; };
@@ -184,14 +181,12 @@
 				BC982B1614F046AC0001FF6F /* ShowcaseAppDelegate.m */,
 				171C34E01C96701A00799CCA /* ImportPhotoViewController.h */,
 				171C34E11C96701A00799CCA /* ImportPhotoViewController.m */,
-				BC982B3D14F05DC10001FF6F /* ShowcaseFilterListController.h */,
-				BC982B3E14F05DC10001FF6F /* ShowcaseFilterListController.m */,
 				BC982B3514F04B3A0001FF6F /* ShowcaseFilterViewController.xib */,
 				BC982B3314F04B3A0001FF6F /* ShowcaseFilterViewController.h */,
 				BC982B3414F04B3A0001FF6F /* ShowcaseFilterViewController.m */,
-				1748043A1C9908EE00F7552E /* FilterTypeDefination.h */,
 				171C34E61C9675F800799CCA /* OutputTableViewController.h */,
 				171C34E71C9675F800799CCA /* OutputTableViewController.m */,
+				1748043A1C9908EE00F7552E /* FilterTypeDefination.h */,
 				BC982C4014F1F6C80001FF6F /* CustomFilter.fsh */,
 				BC982B0D14F046AC0001FF6F /* Supporting Files */,
 			);
@@ -340,7 +335,6 @@
 				BC982B1314F046AC0001FF6F /* main.m in Sources */,
 				BC982B1714F046AC0001FF6F /* ShowcaseAppDelegate.m in Sources */,
 				BC982B3614F04B3A0001FF6F /* ShowcaseFilterViewController.m in Sources */,
-				BC982B3F14F05DC20001FF6F /* ShowcaseFilterListController.m in Sources */,
 				171C34E81C9675F800799CCA /* OutputTableViewController.m in Sources */,
 				171C34E21C96701A00799CCA /* ImportPhotoViewController.m in Sources */,
 			);
