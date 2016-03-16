@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0D69488E1501F71900206FF8 /* SampleConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D69488D1501F71900206FF8 /* SampleConfiguration.plist */; };
+		171C34E21C96701A00799CCA /* ImportPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 171C34E11C96701A00799CCA /* ImportPhotoViewController.m */; };
+		171C34E81C9675F800799CCA /* OutputTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 171C34E71C9675F800799CCA /* OutputTableViewController.m */; };
 		174345041C896939006978D7 /* sample1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 174345031C896939006978D7 /* sample1.jpg */; };
 		17D1C6BA1C8C7823007E7956 /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17D1C6B61C8C758C007E7956 /* libGPUImage.a */; };
 		17D1C6BC1C8C78AE007E7956 /* WID-small.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 17D1C6BB1C8C78AE007E7956 /* WID-small.jpg */; };
@@ -63,6 +65,10 @@
 
 /* Begin PBXFileReference section */
 		0D69488D1501F71900206FF8 /* SampleConfiguration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SampleConfiguration.plist; sourceTree = "<group>"; };
+		171C34E01C96701A00799CCA /* ImportPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportPhotoViewController.h; sourceTree = "<group>"; };
+		171C34E11C96701A00799CCA /* ImportPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportPhotoViewController.m; sourceTree = "<group>"; };
+		171C34E61C9675F800799CCA /* OutputTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutputTableViewController.h; sourceTree = "<group>"; };
+		171C34E71C9675F800799CCA /* OutputTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutputTableViewController.m; sourceTree = "<group>"; };
 		174345031C896939006978D7 /* sample1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sample1.jpg; sourceTree = "<group>"; };
 		17D1C6AF1C8C758C007E7956 /* GPUImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GPUImage.xcodeproj; path = framework/GPUImage.xcodeproj; sourceTree = "<group>"; };
 		17D1C6BB1C8C78AE007E7956 /* WID-small.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "WID-small.jpg"; sourceTree = "<group>"; };
@@ -175,11 +181,15 @@
 			children = (
 				BC982B1514F046AC0001FF6F /* ShowcaseAppDelegate.h */,
 				BC982B1614F046AC0001FF6F /* ShowcaseAppDelegate.m */,
+				171C34E01C96701A00799CCA /* ImportPhotoViewController.h */,
+				171C34E11C96701A00799CCA /* ImportPhotoViewController.m */,
 				BC982B3D14F05DC10001FF6F /* ShowcaseFilterListController.h */,
 				BC982B3E14F05DC10001FF6F /* ShowcaseFilterListController.m */,
 				BC982B3514F04B3A0001FF6F /* ShowcaseFilterViewController.xib */,
 				BC982B3314F04B3A0001FF6F /* ShowcaseFilterViewController.h */,
 				BC982B3414F04B3A0001FF6F /* ShowcaseFilterViewController.m */,
+				171C34E61C9675F800799CCA /* OutputTableViewController.h */,
+				171C34E71C9675F800799CCA /* OutputTableViewController.m */,
 				BC982C4014F1F6C80001FF6F /* CustomFilter.fsh */,
 				BC982B0D14F046AC0001FF6F /* Supporting Files */,
 			);
@@ -329,6 +339,8 @@
 				BC982B1714F046AC0001FF6F /* ShowcaseAppDelegate.m in Sources */,
 				BC982B3614F04B3A0001FF6F /* ShowcaseFilterViewController.m in Sources */,
 				BC982B3F14F05DC20001FF6F /* ShowcaseFilterListController.m in Sources */,
+				171C34E81C9675F800799CCA /* OutputTableViewController.m in Sources */,
+				171C34E21C96701A00799CCA /* ImportPhotoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
