@@ -70,6 +70,7 @@
 		171C34E61C9675F800799CCA /* OutputTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutputTableViewController.h; sourceTree = "<group>"; };
 		171C34E71C9675F800799CCA /* OutputTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutputTableViewController.m; sourceTree = "<group>"; };
 		174345031C896939006978D7 /* sample1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sample1.jpg; sourceTree = "<group>"; };
+		1748043A1C9908EE00F7552E /* FilterTypeDefination.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterTypeDefination.h; sourceTree = "<group>"; };
 		17D1C6AF1C8C758C007E7956 /* GPUImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GPUImage.xcodeproj; path = framework/GPUImage.xcodeproj; sourceTree = "<group>"; };
 		17D1C6BB1C8C78AE007E7956 /* WID-small.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "WID-small.jpg"; sourceTree = "<group>"; };
 		17D1C6BD1C8C78FB007E7956 /* lookup_soft_elegance_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lookup_soft_elegance_1.png; sourceTree = "<group>"; };
@@ -188,6 +189,7 @@
 				BC982B3514F04B3A0001FF6F /* ShowcaseFilterViewController.xib */,
 				BC982B3314F04B3A0001FF6F /* ShowcaseFilterViewController.h */,
 				BC982B3414F04B3A0001FF6F /* ShowcaseFilterViewController.m */,
+				1748043A1C9908EE00F7552E /* FilterTypeDefination.h */,
 				171C34E61C9675F800799CCA /* OutputTableViewController.h */,
 				171C34E71C9675F800799CCA /* OutputTableViewController.m */,
 				BC982C4014F1F6C80001FF6F /* CustomFilter.fsh */,
