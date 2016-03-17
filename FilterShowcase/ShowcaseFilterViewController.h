@@ -29,6 +29,11 @@
     UITableView *horizontalTableView;
     UILabel *valueLabel;
     NSString *currentValue;
+    
+    
+    
+    NSMutableArray *arrFilterSource;
+
 }
 
 @property(nonatomic,retain) NSMutableArray *checkedArray,*checkedIndexArray,*arrayTemp,*allCellArray;
