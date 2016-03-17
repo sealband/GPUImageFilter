@@ -12,6 +12,7 @@
 #define kRowHorizontalPadding                       0
 
 @implementation ShowcaseFilterViewController
+@synthesize filterSettingsSlider = _filterSettingsSlider;
 @synthesize faceDetector,stillImage;
 @synthesize isStatic;
 ;
@@ -91,19 +92,11 @@
     [super viewDidAppear:animated];
     
     // Note: I needed to start camera capture after the view went on the screen, when a partially transition of navigation view controller stopped capturing via viewWilDisappear.
-    [videoCamera startCameraCapture];
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    
+//    [videoCamera startCameraCapture];
 }
 
 - (void)outputFilterParemeters
 {
-    
-    
     NSString *filterParameterStr;
     if (currentValue) {
         filterParameterStr = [NSString stringWithFormat:@"%@:%@",self.title,currentValue];
@@ -119,9 +112,6 @@
     OutputTableViewController *outputTableVC = [[OutputTableViewController alloc] initWithFilterArr:filterArr];
     [self.navigationController pushViewController:outputTableVC animated:YES];
 }
-
-
-
 
 #pragma mark - Table View Data Source
 
@@ -281,7 +271,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     filterType = (GPUImageShowcaseFilterType)indexPath.row;
-    
     NSString *filterParameterStr;
     if (currentValue) {
         filterParameterStr = [NSString stringWithFormat:@"%@:%@",self.title,currentValue];
@@ -291,7 +280,6 @@
         filterParameterStr = [NSString stringWithFormat:@"%@:%@",self.title,currentValue];
     }
     [filterArr addObject:filterParameterStr];
-    
     
     [self setupFilter];
 }
@@ -317,20 +305,6 @@
         videoCamera.outputImageOrientation = UIInterfaceOrientationPortrait;
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-//    videoCamera = [[GPUImageVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPreset1280x720 cameraPosition:AVCaptureDevicePositionBack];
-//    videoCamera = [[GPUImageVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPreset1920x1080 cameraPosition:AVCaptureDevicePositionBack];
-//    videoCamera = [[GPUImageVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPreset640x480 cameraPosition:AVCaptureDevicePositionFront];
     facesSwitch.hidden = YES;
     facesLabel.hidden = YES;
     BOOL needsSecondImage = NO;
@@ -1572,12 +1546,10 @@
         filterArr = [[NSMutableArray alloc] init];
     }
     
-    
-//    currentValue = [NSString stringWithFormat:@"%.2f",self.filterSettingsSlider.value];
-//    NSString *filterParameterStr = [NSString stringWithFormat:@"%@:%@",self.title,currentValue];
-//    [filterArr addObject:filterParameterStr];
-    
     pipeline = [[GPUImageFilterPipeline alloc]initWithOrderedFilters:arrayTemp input:staticPicture output:(GPUImageView*)self.view];
+    
+
+    
     
     
     
@@ -1587,12 +1559,9 @@
         
         pipeline = [[GPUImageFilterPipeline alloc] initWithConfigurationFile:[[NSBundle mainBundle] URLForResource:@"SampleConfiguration" withExtension:@"plist"]
                                                                                                input:videoCamera output:(GPUImageView*)self.view];
-
-
     }
     else 
     {
-    
         if (filterType != GPUIMAGE_VORONOI)
         {
             [videoCamera addTarget:filter];
@@ -1831,8 +1800,6 @@
             [filter addTarget:filterView];
         }
     } 
-
-//    [videoCamera startCameraCapture];
     [staticPicture processImage];
 }
 
@@ -2028,8 +1995,7 @@
 
     NSLog(@"Face Detector %@", [self.faceDetector description]);
     NSLog(@"converted Image %@", [convertedImage description]);
-    NSArray *features = [self.faceDetector featuresInImage:convertedImage options:imageOptions];
-    
+    NSArray *features = [self.faceDetector featuresInImage:convertedImage options:imageOptions];    
     
     // get the clean aperture
     // the clean aperture is a rectangle that defines the portion of the encoded pixel dimensions
@@ -2037,7 +2003,6 @@
     CMFormatDescriptionRef fdesc = CMSampleBufferGetFormatDescription(sampleBuffer);
     CGRect clap = CMVideoFormatDescriptionGetCleanAperture(fdesc, false /*originIsTopLeft == false*/);
     
-
     [self GPUVCWillOutputFeatures:features forClap:clap andOrientation:curDeviceOrientation];
     faceThinking = FALSE;
     
@@ -2055,7 +2020,6 @@
             [faceView removeFromSuperview];
             faceView = nil;
         }
-        
     
         for ( CIFaceFeature *faceFeature in featureArray) {
             
@@ -2117,9 +2081,5 @@
     }
 }
 
-#pragma mark -
-#pragma mark Accessors
-
-@synthesize filterSettingsSlider = _filterSettingsSlider;
 
 @end

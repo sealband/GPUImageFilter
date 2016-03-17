@@ -1,5 +1,4 @@
 #import "ShowcaseAppDelegate.h"
-#import "ShowcaseFilterListController.h"
 #import "ImportPhotoViewController.h"
 
 @implementation ShowcaseAppDelegate
