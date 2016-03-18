@@ -37,7 +37,7 @@
 - (void)initUI
 {
     
-    frame =  [[UIScreen mainScreen] bounds];
+    mainFrame =  [[UIScreen mainScreen] bounds];
 
     
     self.backgroundColor = [UIColor whiteColor];
@@ -63,6 +63,14 @@
         [btn addTarget:self action:@selector(nextDidClick:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:btn];
     }
+    
+    valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width/2-25, self.frame.size.height-40, 50, 25)];
+    valueLabel.backgroundColor = [UIColor clearColor];
+    valueLabel.font = [UIFont systemFontOfSize:15];
+    valueLabel.textColor = [UIColor blackColor];
+    [valueLabel setTextAlignment:NSTextAlignmentCenter];
+    [self addSubview:valueLabel];
+
     float offsety = totalheight-50;
 //    [self addSubview:[CHLine lineWithFrame:CGRectMake(0, 0, DEVICEW, 0.5) color:[UIColor colorWithRed:193/255.0 green:193/255.0 blue:193/255.0 alpha:1]]];
 //    [self addSubview:[CHLine lineWithFrame:CGRectMake(0, offsety, DEVICEW, 0.5) color:LINECOLOR]];
@@ -117,7 +125,7 @@
 //        blurView = nil;
 //    }
     [UIView animateWithDuration:0.1 animations:^{
-        self.frame = CGRectMake(0, frame.size.height, self.frame.size.width, self.frame.size.height);
+        self.frame = CGRectMake(0, mainFrame.size.height, self.frame.size.width, self.frame.size.height);
     } completion:^(BOOL finished) {
         
     }];
@@ -140,7 +148,10 @@
     filterSlider.maximumValue = [[dic getValueForKey:@"max"] intValue];
     filterSlider.minimumValue = [[dic getValueForKey:@"min"] intValue];
 //    filterSlider.defaultValue = [[dic getValueForKey:@"defaultvalue"] intValue];
-    filterSlider.value = [[dic getValueForKey:@"value"] intValue];
+    filterSlider.value = [[dic getValueForKey:@"defaultvalue"] intValue];
+    
+    valueLabel.text = [[dic getValueForKey:@"defaultvalue"] stringValue];
+    
     
 //    if ([[myDic getValueForKey:@"id"] intValue] == 5) {
 //        //模糊
@@ -172,6 +183,9 @@
 
 -(void)sliderValueChanged:(id)sender
 {
+    NSString *currentValue = [NSString stringWithFormat:@"%.2f",[(UISlider*)sender value]];
+    valueLabel.text = currentValue;
+    
     [self.delegate filterSlider:sender];
 }
 - (void)sliderValueDidChange:(id)sender

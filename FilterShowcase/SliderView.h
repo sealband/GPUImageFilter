@@ -21,7 +21,9 @@
 
     UISlider *filterSlider;
     
-    CGRect frame ;
+    UILabel *valueLabel;
+    
+    CGRect mainFrame ;
 
 }
 @property(readwrite, unsafe_unretained, nonatomic) UISlider *filterSlider;
