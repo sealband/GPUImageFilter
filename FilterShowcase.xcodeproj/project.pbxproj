@@ -10,8 +10,11 @@
 		0D69488E1501F71900206FF8 /* SampleConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D69488D1501F71900206FF8 /* SampleConfiguration.plist */; };
 		171C34E21C96701A00799CCA /* ImportPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 171C34E11C96701A00799CCA /* ImportPhotoViewController.m */; };
 		171C34E81C9675F800799CCA /* OutputTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 171C34E71C9675F800799CCA /* OutputTableViewController.m */; };
+		173EF3F31C9B2B9100EC5D33 /* SliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 173EF3F21C9B2B9100EC5D33 /* SliderView.m */; };
 		174345041C896939006978D7 /* sample1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 174345031C896939006978D7 /* sample1.jpg */; };
 		174804421C99486D00F7552E /* NSDictionary+GetValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 174804411C99486D00F7552E /* NSDictionary+GetValue.m */; };
+		177BE93D1C9BDCE100462611 /* btn_close.png in Resources */ = {isa = PBXBuildFile; fileRef = 177BE93B1C9BDCE100462611 /* btn_close.png */; };
+		177BE93E1C9BDCE100462611 /* btn_confirm.png in Resources */ = {isa = PBXBuildFile; fileRef = 177BE93C1C9BDCE100462611 /* btn_confirm.png */; };
 		17D1C6BA1C8C7823007E7956 /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17D1C6B61C8C758C007E7956 /* libGPUImage.a */; };
 		17D1C6BC1C8C78AE007E7956 /* WID-small.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 17D1C6BB1C8C78AE007E7956 /* WID-small.jpg */; };
 		17D1C6BF1C8C78FB007E7956 /* lookup_soft_elegance_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 17D1C6BD1C8C78FB007E7956 /* lookup_soft_elegance_1.png */; };
@@ -69,10 +72,14 @@
 		171C34E11C96701A00799CCA /* ImportPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportPhotoViewController.m; sourceTree = "<group>"; };
 		171C34E61C9675F800799CCA /* OutputTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutputTableViewController.h; sourceTree = "<group>"; };
 		171C34E71C9675F800799CCA /* OutputTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutputTableViewController.m; sourceTree = "<group>"; };
+		173EF3F11C9B2B9100EC5D33 /* SliderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderView.h; sourceTree = "<group>"; };
+		173EF3F21C9B2B9100EC5D33 /* SliderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderView.m; sourceTree = "<group>"; };
 		174345031C896939006978D7 /* sample1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sample1.jpg; sourceTree = "<group>"; };
 		1748043A1C9908EE00F7552E /* FilterTypeDefination.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterTypeDefination.h; sourceTree = "<group>"; };
 		174804401C99486D00F7552E /* NSDictionary+GetValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+GetValue.h"; sourceTree = "<group>"; };
 		174804411C99486D00F7552E /* NSDictionary+GetValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+GetValue.m"; sourceTree = "<group>"; };
+		177BE93B1C9BDCE100462611 /* btn_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_close.png; sourceTree = "<group>"; };
+		177BE93C1C9BDCE100462611 /* btn_confirm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_confirm.png; sourceTree = "<group>"; };
 		17D1C6AF1C8C758C007E7956 /* GPUImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GPUImage.xcodeproj; path = framework/GPUImage.xcodeproj; sourceTree = "<group>"; };
 		17D1C6BB1C8C78AE007E7956 /* WID-small.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "WID-small.jpg"; sourceTree = "<group>"; };
 		17D1C6BD1C8C78FB007E7956 /* lookup_soft_elegance_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lookup_soft_elegance_1.png; sourceTree = "<group>"; };
@@ -196,6 +203,8 @@
 				171C34E11C96701A00799CCA /* ImportPhotoViewController.m */,
 				BC982B3314F04B3A0001FF6F /* ShowcaseFilterViewController.h */,
 				BC982B3414F04B3A0001FF6F /* ShowcaseFilterViewController.m */,
+				173EF3F11C9B2B9100EC5D33 /* SliderView.h */,
+				173EF3F21C9B2B9100EC5D33 /* SliderView.m */,
 				BC982B3514F04B3A0001FF6F /* ShowcaseFilterViewController.xib */,
 				171C34E61C9675F800799CCA /* OutputTableViewController.h */,
 				171C34E71C9675F800799CCA /* OutputTableViewController.m */,
@@ -209,6 +218,8 @@
 		BC982B0D14F046AC0001FF6F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				177BE93B1C9BDCE100462611 /* btn_close.png */,
+				177BE93C1C9BDCE100462611 /* btn_confirm.png */,
 				F2F3362A156591DB00B0FBB8 /* squares.png */,
 				F2F33628156591CA00B0FBB8 /* curvies.png */,
 				F2F336261565906000B0FBB8 /* dotletterstiles.png */,
@@ -317,6 +328,8 @@
 				BC982C4114F1F6C80001FF6F /* CustomFilter.fsh in Resources */,
 				BC982B1114F046AC0001FF6F /* InfoPlist.strings in Resources */,
 				17D1C6CB1C8C7963007E7956 /* Icon-72@2x.png in Resources */,
+				177BE93D1C9BDCE100462611 /* btn_close.png in Resources */,
+				177BE93E1C9BDCE100462611 /* btn_confirm.png in Resources */,
 				17D1C6CE1C8C7963007E7956 /* iTunesArtwork.png in Resources */,
 				BC982B3714F04B3A0001FF6F /* ShowcaseFilterViewController.xib in Resources */,
 				0D69488E1501F71900206FF8 /* SampleConfiguration.plist in Resources */,
@@ -348,6 +361,7 @@
 				BC982B1314F046AC0001FF6F /* main.m in Sources */,
 				174804421C99486D00F7552E /* NSDictionary+GetValue.m in Sources */,
 				BC982B1714F046AC0001FF6F /* ShowcaseAppDelegate.m in Sources */,
+				173EF3F31C9B2B9100EC5D33 /* SliderView.m in Sources */,
 				BC982B3614F04B3A0001FF6F /* ShowcaseFilterViewController.m in Sources */,
 				171C34E81C9675F800799CCA /* OutputTableViewController.m in Sources */,
 				171C34E21C96701A00799CCA /* ImportPhotoViewController.m in Sources */,

@@ -1,0 +1,31 @@
+//
+//  SliderView.h
+//  FilterShowcase
+//
+//  Created by seal on 3/18/16.
+//  Copyright © 2016 Cell Phone. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "NSDictionary+GetValue.h"
+
+
+
+@protocol SRTEditorFilterSliderDelegate <NSObject>
+- (void)filterSlider:(id)sender;
+@end
+
+@interface SliderView : UIView
+{
+    NSDictionary *myDic;
+
+    UISlider *filterSlider;
+    
+    CGRect frame ;
+
+}
+@property(readwrite, unsafe_unretained, nonatomic) UISlider *filterSlider;
+- (void)setDic:(NSDictionary *)dic;
+@property (nonatomic) id <SRTEditorFilterSliderDelegate> delegate;
+
+@end

@@ -9,7 +9,6 @@
             <connections>
                 <outlet property="facesLabel" destination="9" id="12"/>
                 <outlet property="facesSwitch" destination="8" id="10"/>
-                <outlet property="filterSettingsSlider" destination="4" id="7"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -18,13 +17,6 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="4">
-                    <rect key="frame" x="18" y="300" width="285" height="29"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                    <connections>
-                        <action selector="updateFilterFromSlider:" destination="-1" eventType="valueChanged" id="6"/>
-                    </connections>
-                </slider>
                 <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="8">
                     <rect key="frame" x="234" y="8" width="51" height="31"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
