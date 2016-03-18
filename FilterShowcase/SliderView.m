@@ -49,8 +49,8 @@
     {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(0, totalheight-47, 60, 44);
+        btn.imageView.contentMode = UIViewContentModeScaleAspectFit;
         [btn setImage:[UIImage imageNamed:@"btn_close"] forState:UIControlStateNormal];
-        btn.contentMode = UIViewContentModeScaleAspectFit;
 
         [btn addTarget:self action:@selector(backDidClick:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:btn];
@@ -58,8 +58,8 @@
     {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(self.frame.size.width-60, totalheight-47, 60, 44);
+        btn.imageView.contentMode = UIViewContentModeScaleAspectFit;
         [btn setImage:[UIImage imageNamed:@"btn_confirm"] forState:UIControlStateNormal];
-        btn.contentMode = UIViewContentModeScaleAspectFit;
         [btn addTarget:self action:@selector(nextDidClick:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:btn];
     }
