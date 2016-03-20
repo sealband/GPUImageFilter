@@ -200,12 +200,6 @@
     valueLabel.textColor = [UIColor whiteColor];
     [valueLabel setTextAlignment:NSTextAlignmentCenter];
     [self.view addSubview:valueLabel];
-    
-//    cancleBtn = [[UIButton alloc] initWithFrame:CGRectMake(50, frame.size.height-125, 50, 25)];
-//    cancleBtn.backgroundColor = [UIColor blueColor];
-//    [cancleBtn addTarget:self action:@selector(cancleLastAction) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:cancleBtn];
-    
     sliderView = [[SliderView alloc] initWithFrame:CGRectMake(0, frame.size.height, frame.size.width, 100)];
     [self.view addSubview:sliderView];
     
