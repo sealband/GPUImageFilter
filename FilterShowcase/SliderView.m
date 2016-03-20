@@ -188,7 +188,7 @@
     NSString *currentValue = [NSString stringWithFormat:@"%.2f",[(UISlider*)sender value]];
     valueLabel.text = currentValue;
     
-    [self.delegate filterSlider:sender];
+//    [self.delegate filterSlider:sender];
 }
 - (void)sliderValueDidChange:(id)sender
 {

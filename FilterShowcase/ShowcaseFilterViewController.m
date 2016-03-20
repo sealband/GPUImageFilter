@@ -199,12 +199,22 @@
     [valueLabel setTextAlignment:NSTextAlignmentCenter];
     [self.view addSubview:valueLabel];
     
+//    cancleBtn = [[UIButton alloc] initWithFrame:CGRectMake(50, frame.size.height-125, 50, 25)];
+//    cancleBtn.backgroundColor = [UIColor blueColor];
+//    [cancleBtn addTarget:self action:@selector(cancleLastAction) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:cancleBtn];
+    
+    sliderView = [[SliderView alloc] initWithFrame:CGRectMake(0, frame.size.height, frame.size.width, 100)];
+    [self.view addSubview:sliderView];
+    
     UIButton *outPutBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [outPutBtn setTitle:@"pamaters" forState:UIControlStateNormal];
     [outPutBtn addTarget:self action:@selector(outputFilterParemeters) forControlEvents:UIControlEventTouchUpInside];
     outPutBtn.frame = CGRectMake(0, 0, 70, 36);
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:outPutBtn];
     self.navigationItem.rightBarButtonItem = rightButtonItem;
+    
+    sliderView.delegate = self;
     
     [self setupFilter];
 }
@@ -289,10 +299,22 @@
         filterParameterStr = [NSString stringWithFormat:@"%@:%@",self.title,currentValue];
     } else
     {
-        currentValue = [NSString stringWithFormat:@"%.2f",self.filterSettingsSlider.value];
+//        currentValue = [NSString stringWithFormat:@"%.2f",self.filterSettingsSlider.value];
         filterParameterStr = [NSString stringWithFormat:@"%@:%@",self.title,currentValue];
     }
     [filterArr addObject:filterParameterStr];
+    
+    
+    
+    
+    
+    [sliderView setDic:arrFilterSource[indexPath.row]];
+    [UIView animateWithDuration:0.1 animations:^{
+        sliderView.frame = CGRectMake(0, frame.size.height-100, frame.size.width, 100);
+    } completion:^(BOOL finished) {
+        
+    }];
+    
     
     [self setupFilter];
 }
@@ -1570,7 +1592,12 @@
         default: break;
     }
     
+    [staticPicture addTarget:filter];
+    [filter useNextFrameForImageCapture];
+
     [staticPicture processImage];
+    
+    sourceImageView.image = [filter imageFromCurrentFramebuffer];
 }
 
 #pragma mark - Face Detection Delegate Callback

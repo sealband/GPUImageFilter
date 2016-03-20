@@ -1,8 +1,9 @@
 #import <UIKit/UIKit.h>
 #import "GPUImage.h"
 #import "FilterTypeDefination.h"
+#import "SliderView.h"
 
-@interface ShowcaseFilterViewController : UIViewController <GPUImageVideoCameraDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface ShowcaseFilterViewController : UIViewController <GPUImageVideoCameraDelegate,UITableViewDelegate,UITableViewDataSource,SRTEditorFilterSliderDelegate>
 {
     GPUImageVideoCamera *videoCamera;
     GPUImageOutput<GPUImageInput> *filter;
@@ -17,7 +18,7 @@
     
     IBOutlet UISwitch *facesSwitch;
     IBOutlet UILabel *facesLabel;
-    __unsafe_unretained UISlider *_filterSettingsSlider;
+    SliderView *sliderView;
     BOOL faceThinking;
     
     
@@ -40,8 +41,6 @@
 @property(nonatomic,retain)UIImage * stillImage;
 @property(nonatomic,assign) BOOL isStatic;
 
-
-@property(readwrite, unsafe_unretained, nonatomic) IBOutlet UISlider *filterSettingsSlider;
 @property(nonatomic,retain) CIDetector*faceDetector;
 // Initialization and teardown
 - (id)initWithFilterType:(GPUImageShowcaseFilterType)newFilterType;
