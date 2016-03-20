@@ -35,6 +35,8 @@
     
     NSMutableArray *arrFilterSource;
 
+    CGRect frame ;
+    UIImageView *sourceImageView;
 }
 
 @property(nonatomic,retain) NSMutableArray *checkedArray,*checkedIndexArray,*arrayTemp,*allCellArray;

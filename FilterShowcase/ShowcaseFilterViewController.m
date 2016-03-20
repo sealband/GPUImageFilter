@@ -14,7 +14,6 @@
 #define kRowHorizontalPadding                       0
 
 @implementation ShowcaseFilterViewController
-@synthesize filterSettingsSlider = _filterSettingsSlider;
 @synthesize faceDetector,stillImage;
 @synthesize isStatic;
 ;
@@ -177,6 +176,9 @@
     
     [self resetFilterArray];
     
+    sourceImageView = [[UIImageView alloc] initWithFrame:self.view.frame];
+    [self.view addSubview:sourceImageView];
+    
     if ([GPUImageContext supportsFastTextureUpload])
     {
         NSDictionary *detectorOptions = [[NSDictionary alloc] initWithObjectsAndKeys:CIDetectorAccuracyLow, CIDetectorAccuracy, nil];
@@ -184,10 +186,10 @@
         faceThinking = NO;
     }
     
-    CGRect frame =  [[UIScreen mainScreen] bounds];
+    frame =  [[UIScreen mainScreen] bounds];
     horizontalTableView = [[UITableView alloc] init];
     horizontalTableView.transform = CGAffineTransformMakeRotation(-M_PI * 0.5);
-    horizontalTableView.frame = CGRectMake(0, frame.size.height-80, 320, 80);
+    horizontalTableView.frame = CGRectMake(0, frame.size.height-80, 320, 100);
     horizontalTableView.delegate = self;
     horizontalTableView.dataSource = self;
     [self.view addSubview:horizontalTableView];
@@ -251,6 +253,18 @@
     
     OutputTableViewController *outputTableVC = [[OutputTableViewController alloc] initWithFilterArr:filterArr];
     [self.navigationController pushViewController:outputTableVC animated:YES];
+}
+
+- (void)cancleLastAction
+{
+    [pipeline removeFilterAtIndex:[arrayTemp count]-1];
+    [arrayTemp removeObjectAtIndex:[arrayTemp count]-1];
+    [staticPicture processImage];
+}
+
+- (void)cancleCurrentFilter
+{
+    [self cancleLastAction];
 }
 
 #pragma mark - Table View Data Source
@@ -345,6 +359,7 @@
     BOOL needsSecondImage = NO;
     
     
+    sourceImageView.image = stillImage;
     
     NSInteger typeNumber = (NSInteger)filterType;
     
@@ -1481,6 +1496,10 @@
 #pragma mark -
 #pragma mark Filter adjustments
 
+- (void)filterSlider:(id)sender
+{
+    [self updateFilterFromSlider:sender];
+}
 - (IBAction)updateFilterFromSlider:(id)sender;
 {
     [videoCamera resetBenchmarkAverage];
