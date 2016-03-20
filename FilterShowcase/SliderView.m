@@ -101,6 +101,7 @@
     
     filterSlider = [[UISlider alloc] initWithFrame:CGRectMake(0, 10, self.frame.size.width, 30)];
     [filterSlider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
+    [filterSlider addTarget:self action:@selector(sliderDidCancel:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:filterSlider];
     
     
@@ -134,6 +135,7 @@
 - (void)backDidClick:(id)sender
 {
 //    [self.delegate filterSlider:self valueChange:[[myDic getValueForKey:@"value"] intValue]];
+//    [self.delegate cancleCurrentFilter];
     [self dismiss];
 }
 
@@ -204,6 +206,7 @@
 //    {
 //        [self.delegate filterSlider:self valueChange:sliderView.value];
 //    }
+    [self.delegate filterSlider:sender];
 }
 
 #pragma mark - circle delegate

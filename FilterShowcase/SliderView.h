@@ -13,6 +13,7 @@
 
 @protocol SRTEditorFilterSliderDelegate <NSObject>
 - (void)filterSlider:(id)sender;
+- (void)cancleCurrentFilter;
 @end
 
 @interface SliderView : UIView
