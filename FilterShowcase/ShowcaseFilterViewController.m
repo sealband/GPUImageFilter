@@ -177,6 +177,7 @@
     [self resetFilterArray];
     
     sourceImageView = [[UIImageView alloc] initWithFrame:self.view.frame];
+    sourceImageView.image = stillImage;
     [self.view addSubview:sourceImageView];
     
     if ([GPUImageContext supportsFastTextureUpload])
@@ -200,7 +201,9 @@
     valueLabel.textColor = [UIColor whiteColor];
     [valueLabel setTextAlignment:NSTextAlignmentCenter];
     [self.view addSubview:valueLabel];
+    
     sliderView = [[SliderView alloc] initWithFrame:CGRectMake(0, frame.size.height, frame.size.width, 100)];
+    sliderView.delegate = self;
     [self.view addSubview:sliderView];
     
     UIButton *outPutBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
