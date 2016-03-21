@@ -45,85 +45,85 @@
 {
     arrFilterSource =
     [@[
-         @{@"name":@"Saturation",@"filter":@"GPUImageSaturationFilter",@"value":@0,@"defaultvalue":@1.0,@"max":@2.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
-         @{@"name":@"Contrast",@"filter":@"GPUImageContrastFilter",@"value":@0,@"defaultvalue":@1.0,@"max":@4.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
-         @{@"name":@"Brightness",@"filter":@"GPUImageBrightnessFilter",@"value":@0,@"defaultvalue":@0.0,@"max":@1.0,@"min":@-1.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
-         @{@"name":@"Levels",@"filter":@"GPUImageLevelsFilter",@"value":@0,@"defaultvalue":@0.0,@"max":@1.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
-         @{@"name":@"Exposure",@"filter":@"GPUImageExposureFilter",@"value":@0,@"defaultvalue":@0.0,@"max":@4.0,@"min":@-4.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
-         @{@"name":@"RGB",@"filter":@"GPUImageRGBFilter",@"value":@0,@"defaultvalue":@1.0,@"max":@2.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
-         @{@"name":@"Hue",@"filter":@"GPUImageHueFilter",@"value":@0,@"defaultvalue":@90.0,@"max":@360.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
-         @{@"name":@"White balance",@"filter":@"GPUImageWhiteBalanceFilter",@"value":@0,@"defaultvalue":@5000.0,@"max":@7500.0,@"min":@2500.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
-         @{@"name":@"Monochrome",@"filter":@"GPUImageMonochromeFilter",@"value":@0,@"defaultvalue":@1.0,@"max":@1.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Saturation",@"filter":@"GPUImageSaturationFilter",@"value":@1.0,@"defaultvalue":@1.0,@"max":@2.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Contrast",@"filter":@"GPUImageContrastFilter",@"value":@1.0,@"defaultvalue":@1.0,@"max":@4.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Brightness",@"filter":@"GPUImageBrightnessFilter",@"value":@0.0,@"defaultvalue":@0.0,@"max":@1.0,@"min":@-1.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Levels",@"filter":@"GPUImageLevelsFilter",@"value":@0.0,@"defaultvalue":@0.0,@"max":@1.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Exposure",@"filter":@"GPUImageExposureFilter",@"value":@0.0,@"defaultvalue":@0.0,@"max":@4.0,@"min":@-4.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"RGB",@"filter":@"GPUImageRGBFilter",@"value":@1.0,@"defaultvalue":@1.0,@"max":@2.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Hue",@"filter":@"GPUImageHueFilter",@"value":@90.0,@"defaultvalue":@90.0,@"max":@360.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"White balance",@"filter":@"GPUImageWhiteBalanceFilter",@"value":@5000.0,@"defaultvalue":@5000.0,@"max":@7500.0,@"min":@2500.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Monochrome",@"filter":@"GPUImageMonochromeFilter",@"value":@1.0,@"defaultvalue":@1.0,@"max":@1.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
          @{@"name":@"False color",@"filter":@"GPUImageFalseColorFilter",@"value":@0,@"defaultvalue":@0,@"max":@1,@"min":@-1,@"sliderhidden":@"YES",@"hasValue":@"no"},//无value值
-         @{@"name":@"Sharpen",@"filter":@"GPUImageSharpenFilter",@"value":@0,@"defaultvalue":@0.0,@"max":@4.0,@"min":@-1.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
-         @{@"name":@"Unsharp mask",@"filter":@"GPUImageUnsharpMaskFilter",@"value":@0,@"defaultvalue":@1.0,@"max":@5.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
-         @{@"name":@"Gamma",@"filter":@"GPUImageGammaFilter",@"value":@0,@"defaultvalue":@1.0,@"max":@3.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
-         @{@"name":@"Tone curve",@"filter":@"GPUImageToneCurveFilter",@"value":@0,@"defaultvalue":@0.5,@"max":@1.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
-         @{@"name":@"Highlights and shadows",@"filter":@"GPUImageHighlightShadowFilter",@"value":@0,@"defaultvalue":@1.0,@"max":@1.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
-         @{@"name":@"Haze/UV",@"filter":@"GPUImageHazeFilter",@"value":@0,@"defaultvalue":@0.2,@"max":@0.2,@"min":@-0.2,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Sharpen",@"filter":@"GPUImageSharpenFilter",@"value":@0.0,@"defaultvalue":@0.0,@"max":@4.0,@"min":@-1.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Unsharp mask",@"filter":@"GPUImageUnsharpMaskFilter",@"value":@1.0,@"defaultvalue":@1.0,@"max":@5.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Gamma",@"filter":@"GPUImageGammaFilter",@"value":@1.0,@"defaultvalue":@1.0,@"max":@3.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Tone curve",@"filter":@"GPUImageToneCurveFilter",@"value":@0.5,@"defaultvalue":@0.5,@"max":@1.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Highlights and shadows",@"filter":@"GPUImageHighlightShadowFilter",@"value":@1.0,@"defaultvalue":@1.0,@"max":@1.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Haze/UV",@"filter":@"GPUImageHazeFilter",@"value":@0.2,@"defaultvalue":@0.2,@"max":@0.2,@"min":@-0.2,@"sliderhidden":@"NO",@"hasValue":@"yes"},
          @{@"name":@"Chroma key",@"filter":@"",@"value":@0,@"defaultvalue":@0,@"max":@1,@"min":@-1,@"sliderhidden":@"NO",@"hasValue":@"yes"},//notsure//filternotsure
-         @{@"name":@"Histogram",@"filter":@"GPUImageHistogramFilter",@"value":@0,@"defaultvalue":@16.0,@"max":@32.0,@"min":@4.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
-         @{@"name":@"Histogram Equalization",@"filter":@"GPUImageHistogramEqualizationFilter",@"value":@0,@"defaultvalue":@16.0,@"max":@32.0,@"min":@4.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Histogram",@"filter":@"GPUImageHistogramFilter",@"value":@16.0,@"defaultvalue":@16.0,@"max":@32.0,@"min":@4.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Histogram Equalization",@"filter":@"GPUImageHistogramEqualizationFilter",@"value":@16.0,@"defaultvalue":@16.0,@"max":@32.0,@"min":@4.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
          @{@"name":@"Average color",@"filter":@"GPUImageAverageColor",@"value":@0,@"defaultvalue":@0,@"max":@1,@"min":@-1,@"sliderhidden":@"YES",@"hasValue":@"no"},//无value值
          @{@"name":@"Luminosity",@"filter":@"GPUImageLuminosity",@"value":@0,@"defaultvalue":@0,@"max":@1,@"min":@-1,@"sliderhidden":@"YES",@"hasValue":@"no"},//无value值
          @{@"name":@"Threshold",@"filter":@"",@"value":@0,@"defaultvalue":@0,@"max":@1,@"min":@-1,@"sliderhidden":@"NO",@"hasValue":@"yes"},//notsure//filternotsure
-         @{@"name":@"Adaptive threshold",@"filter":@"GPUImageAdaptiveThresholdFilter",@"value":@0,@"defaultvalue":@1.0,@"max":@20.0,@"min":@1.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Adaptive threshold",@"filter":@"GPUImageAdaptiveThresholdFilter",@"value":@1.0,@"defaultvalue":@1.0,@"max":@20.0,@"min":@1.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
          @{@"name":@"Average luminance threshold",@"filter":@"GPUImageLuminanceThresholdFilter",@"value":@0,@"defaultvalue":@0,@"max":@1,@"min":@-1,@"sliderhidden":@"NO",@"hasValue":@"yes"},//notsure
-         @{@"name":@"Crop",@"filter":@"GPUImageCropFilter",@"filter":@"",@"value":@0,@"defaultvalue":@0.5,@"max":@1.0,@"min":@0.2,@"sliderhidden":@"NO",@"hasValue":@"yes"},
-         @{@"name":@"Transform (2-D)",@"filter":@"GPUImageTransformFilter",@"value":@0,@"defaultvalue":@2.0,@"max":@6.28,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
-         @{@"name":@"Transform (3-D)",@"filter":@"GPUImageTransformFilter",@"value":@0,@"defaultvalue":@0.75,@"max":@6.28,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Crop",@"filter":@"GPUImageCropFilter",@"filter":@"",@"value":@0.5,@"defaultvalue":@0.5,@"max":@1.0,@"min":@0.2,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Transform (2-D)",@"filter":@"GPUImageTransformFilter",@"value":@2.0,@"defaultvalue":@2.0,@"max":@6.28,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Transform (3-D)",@"filter":@"GPUImageTransformFilter",@"value":@0.75,@"defaultvalue":@0.75,@"max":@6.28,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
          @{@"name":@"Mask",@"filter":@"GPUImageMaskFilter",@"value":@0,@"defaultvalue":@0,@"max":@1,@"min":@-1,@"sliderhidden":@"YES",@"hasValue":@"no"},//无value
          @{@"name":@"Color invert",@"filter":@"GPUImageColorInvertFilter",@"value":@0,@"defaultvalue":@0,@"max":@1,@"min":@-1,@"sliderhidden":@"YES",@"hasValue":@"no"},//无value值
          @{@"name":@"Grayscale",@"filter":@"GPUImageGrayscaleFilter",@"value":@0,@"defaultvalue":@0,@"max":@1,@"min":@-1,@"sliderhidden":@"YES",@"hasValue":@"no"},//无value值
-         @{@"name":@"Sepia tone",@"filter":@"GPUImageSepiaFilter",@"value":@0,@"defaultvalue":@1.0,@"max":@1.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Sepia tone",@"filter":@"GPUImageSepiaFilter",@"value":@1.0,@"defaultvalue":@1.0,@"max":@1.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
          @{@"name":@"Miss Etikate (Lookup)",@"filter":@"GPUImageMissEtikateFilter",@"value":@0,@"defaultvalue":@0,@"max":@1,@"min":@-1,@"sliderhidden":@"YES",@"hasValue":@"no"},//无value值
          @{@"name":@"Soft elegance (Lookup)",@"filter":@"GPUImageSoftEleganceFilter",@"value":@0,@"defaultvalue":@0,@"max":@1,@"min":@-1,@"sliderhidden":@"YES",@"hasValue":@"no"},//无value值
          @{@"name":@"Amatorka (Lookup)",@"filter":@"GPUImageAmatorkaFilter",@"value":@0,@"defaultvalue":@0,@"max":@1,@"min":@-1,@"sliderhidden":@"YES",@"hasValue":@"no"},//无value值
-         @{@"name":@"Pixellate",@"filter":@"GPUImagePixellateFilter",@"value":@0,@"defaultvalue":@0.05,@"max":@0.3,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
-         @{@"name":@"Polar pixellate",@"filter":@"GPUImagePolarPixellateFilter",@"value":@0,@"defaultvalue":@0.05,@"max":@0.1,@"min":@-0.1,@"sliderhidden":@"NO",@"hasValue":@"yes"},
-         @{@"name":@"Pixellate (position)",@"filter":@"GPUImagePixellatePositionFilter",@"value":@0,@"defaultvalue":@0.25,@"max":@0.5,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
-         @{@"name":@"Polka dot",@"filter":@"GPUImagePolkaDotFilter",@"value":@0,@"defaultvalue":@0.05,@"max":@0.0,@"min":@0.3,@"sliderhidden":@"NO",@"hasValue":@"yes"},
-         @{@"name":@"Halftone",@"filter":@"GPUImageHalftoneFilter",@"value":@0,@"defaultvalue":@0.01,@"max":@0.05,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
-         @{@"name":@"Crosshatch",@"filter":@"GPUImageCrosshatchFilter",@"value":@0,@"defaultvalue":@0.03,@"max":@0.06,@"min":@0.01,@"sliderhidden":@"NO",@"hasValue":@"yes"},
-         @{@"name":@"Sobel edge detection",@"filter":@"GPUImageSobelEdgeDetectionFilter",@"value":@0,@"defaultvalue":@0.25,@"max":@1.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
-         @{@"name":@"Prewitt edge detection",@"filter":@"GPUImagePrewittEdgeDetectionFilter",@"value":@0,@"defaultvalue":@1.0,@"max":@1.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
-         @{@"name":@"Canny edge detection",@"filter":@"GPUImageCannyEdgeDetectionFilter",@"value":@0,@"defaultvalue":@1.0,@"max":@1.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
-         @{@"name":@"Threshold edge detection",@"filter":@"GPUImageThresholdEdgeDetectionFilter",@"value":@0,@"defaultvalue":@0.25,@"max":@1.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Pixellate",@"filter":@"GPUImagePixellateFilter",@"value":@0.05,@"defaultvalue":@0.05,@"max":@0.3,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Polar pixellate",@"filter":@"GPUImagePolarPixellateFilter",@"value":@0.05,@"defaultvalue":@0.05,@"max":@0.1,@"min":@-0.1,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Pixellate (position)",@"filter":@"GPUImagePixellatePositionFilter",@"value":@0.25,@"defaultvalue":@0.25,@"max":@0.5,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Polka dot",@"filter":@"GPUImagePolkaDotFilter",@"value":@0.05,@"defaultvalue":@0.05,@"max":@0.0,@"min":@0.3,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Halftone",@"filter":@"GPUImageHalftoneFilter",@"value":@0.01,@"defaultvalue":@0.01,@"max":@0.05,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Crosshatch",@"filter":@"GPUImageCrosshatchFilter",@"value":@0.03,@"defaultvalue":@0.03,@"max":@0.06,@"min":@0.01,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Sobel edge detection",@"filter":@"GPUImageSobelEdgeDetectionFilter",@"value":@0.25,@"defaultvalue":@0.25,@"max":@1.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Prewitt edge detection",@"filter":@"GPUImagePrewittEdgeDetectionFilter",@"value":@1.0,@"defaultvalue":@1.0,@"max":@1.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Canny edge detection",@"filter":@"GPUImageCannyEdgeDetectionFilter",@"value":@1.0,@"defaultvalue":@1.0,@"max":@1.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Threshold edge detection",@"filter":@"GPUImageThresholdEdgeDetectionFilter",@"value":@0.25,@"defaultvalue":@0.25,@"max":@1.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
          @{@"name":@"XY derivative",@"filter":@"GPUImageXYDerivativeFilter",@"value":@0,@"defaultvalue":@0,@"max":@1,@"min":@-1,@"sliderhidden":@"YES",@"hasValue":@"no"},//无value
-         @{@"name":@"Harris corner detection",@"filter":@"GPUImageHarrisCornerDetectionFilter",@"value":@0,@"defaultvalue":@0.20,@"max":@0.70,@"min":@0.01,@"sliderhidden":@"NO",@"hasValue":@"yes"},
-         @{@"name":@"Noble corner detection",@"filter":@"GPUImageNobleCornerDetectionFilter",@"value":@0,@"defaultvalue":@0.20,@"max":@0.70,@"min":@0.01,@"sliderhidden":@"NO",@"hasValue":@"yes"},
-         @{@"name":@"Shi-Tomasi feature detection",@"filter":@"GPUImageShiTomasiFeatureDetectionFilter",@"value":@0,@"defaultvalue":@0.20,@"max":@0.70,@"min":@0.01,@"sliderhidden":@"NO",@"hasValue":@"yes"},
-         @{@"name":@"Hough transform line detection",@"filter":@"GPUImageHoughTransformLineDetector",@"value":@0,@"defaultvalue":@0.6,@"max":@1.0,@"min":@0.2,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Harris corner detection",@"filter":@"GPUImageHarrisCornerDetectionFilter",@"value":@0.20,@"defaultvalue":@0.20,@"max":@0.70,@"min":@0.01,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Noble corner detection",@"filter":@"GPUImageNobleCornerDetectionFilter",@"value":@0.20,@"defaultvalue":@0.20,@"max":@0.70,@"min":@0.01,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Shi-Tomasi feature detection",@"filter":@"GPUImageShiTomasiFeatureDetectionFilter",@"value":@0.20,@"defaultvalue":@0.20,@"max":@0.70,@"min":@0.01,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Hough transform line detection",@"filter":@"GPUImageHoughTransformLineDetector",@"value":@0.6,@"defaultvalue":@0.6,@"max":@1.0,@"min":@0.2,@"sliderhidden":@"NO",@"hasValue":@"yes"},
          @{@"name":@"Image buffer",@"filter":@"GPUImageBuffer",@"value":@0,@"defaultvalue":@0,@"max":@1,@"min":@-1,@"sliderhidden":@"YES",@"hasValue":@"no"},//wuvaluezhi
-         @{@"name":@"Motion detector",@"filter":@"GPUImageMotionDetector",@"value":@0,@"defaultvalue":@0.5,@"max":@1.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
-         @{@"name":@"Low pass",@"filter":@"GPUImageLowPassFilter",@"value":@0,@"defaultvalue":@0.5,@"max":@1.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
-         @{@"name":@"High pass",@"filter":@"GPUImageHighPassFilter",@"value":@0,@"defaultvalue":@0.5,@"max":@1.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
-         @{@"name":@"Sketch",@"filter":@"GPUImageSketchFilter",@"value":@0,@"defaultvalue":@0.25,@"max":@1.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
-         @{@"name":@"Threshold Sketch",@"filter":@"GPUImageThresholdSketchFilter",@"value":@0,@"defaultvalue":@0.25,@"max":@1.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Motion detector",@"filter":@"GPUImageMotionDetector",@"value":@0.5,@"defaultvalue":@0.5,@"max":@1.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Low pass",@"filter":@"GPUImageLowPassFilter",@"value":@0.5,@"defaultvalue":@0.5,@"max":@1.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"High pass",@"filter":@"GPUImageHighPassFilter",@"value":@0.5,@"defaultvalue":@0.5,@"max":@1.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Sketch",@"filter":@"GPUImageSketchFilter",@"value":@0.25,@"defaultvalue":@0.25,@"max":@1.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Threshold Sketch",@"filter":@"GPUImageThresholdSketchFilter",@"value":@0.25,@"defaultvalue":@0.25,@"max":@1.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
          @{@"name":@"Toon",@"filter":@"GPUImageToonFilter",@"value":@0,@"defaultvalue":@0,@"max":@1,@"min":@-1,@"sliderhidden":@"YES",@"hasValue":@"no"},//wuvaluezhi
-         @{@"name":@"Smooth toon",@"filter":@"GPUImageSmoothToonFilter",@"value":@0,@"defaultvalue":@1.0,@"max":@6.0,@"min":@1.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
-         @{@"name":@"Tilt shift",@"filter":@"GPUImageTiltShiftFilter",@"value":@0,@"defaultvalue":@0.4,@"max":@0.6,@"min":@0.2,@"sliderhidden":@"NO",@"hasValue":@"yes"},//norsure
+         @{@"name":@"Smooth toon",@"filter":@"GPUImageSmoothToonFilter",@"value":@1.0,@"defaultvalue":@1.0,@"max":@6.0,@"min":@1.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Tilt shift",@"filter":@"GPUImageTiltShiftFilter",@"value":@0.4,@"defaultvalue":@0.4,@"max":@0.6,@"min":@0.2,@"sliderhidden":@"NO",@"hasValue":@"yes"},//norsure
          @{@"name":@"CGA colorspace",@"filter":@"GPUImageCGAColorspaceFilter",@"value":@0,@"defaultvalue":@0,@"max":@1,@"min":@-1,@"sliderhidden":@"YES",@"hasValue":@"no"},//wuvaluezhi
          @{@"name":@"3x3 convolution",@"filter":@"GPUImage3x3ConvolutionFilter",@"value":@0,@"defaultvalue":@0,@"max":@1,@"min":@-1,@"sliderhidden":@"YES",@"hasValue":@"no"},//wuvaluezhi
-         @{@"name":@"Emboss",@"filter":@"GPUImageEmbossFilter",@"value":@0,@"defaultvalue":@1.0,@"max":@5.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Emboss",@"filter":@"GPUImageEmbossFilter",@"value":@1.0,@"defaultvalue":@1.0,@"max":@5.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
          @{@"name":@"Laplacian",@"filter":@"GPUImageLaplacianFilter",@"value":@0,@"defaultvalue":@0,@"max":@1,@"min":@-1,@"sliderhidden":@"YES",@"hasValue":@"no"},//wuvaluezhi
-         @{@"name":@"Posterize",@"filter":@"GPUImagePosterizeFilter",@"value":@0,@"defaultvalue":@10.0,@"max":@20.0,@"min":@1.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
-         @{@"name":@"Swirl",@"filter":@"GPUImageSwirlFilter",@"value":@0,@"defaultvalue":@1.0,@"max":@2.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
-         @{@"name":@"Bulge",@"filter":@"GPUImageBulgeDistortionFilter",@"value":@0,@"defaultvalue":@0.5,@"max":@1.0,@"min":@-1.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
-         @{@"name":@"Sphere refraction",@"filter":@"GPUImageSphereRefractionFilter",@"value":@0,@"defaultvalue":@0.15,@"max":@1.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
-         @{@"name":@"Glass sphere",@"filter":@"GPUImageGlassSphereFilter",@"value":@0,@"defaultvalue":@0.15,@"max":@1.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
-         @{@"name":@"Pinch",@"filter":@"GPUImagePinchDistortionFilter",@"value":@0,@"defaultvalue":@0.5,@"max":@2.0,@"min":@-2.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Posterize",@"filter":@"GPUImagePosterizeFilter",@"value":@10.0,@"defaultvalue":@10.0,@"max":@20.0,@"min":@1.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Swirl",@"filter":@"GPUImageSwirlFilter",@"value":@1.0,@"defaultvalue":@1.0,@"max":@2.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Bulge",@"filter":@"GPUImageBulgeDistortionFilter",@"value":@0.5,@"defaultvalue":@0.5,@"max":@1.0,@"min":@-1.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Sphere refraction",@"filter":@"GPUImageSphereRefractionFilter",@"value":@0.15,@"defaultvalue":@0.15,@"max":@1.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Glass sphere",@"filter":@"GPUImageGlassSphereFilter",@"value":@0.15,@"defaultvalue":@0.15,@"max":@1.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Pinch",@"filter":@"GPUImagePinchDistortionFilter",@"value":@0.5,@"defaultvalue":@0.5,@"max":@2.0,@"min":@-2.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
          @{@"name":@"Stretch",@"filter":@"GPUImageStretchDistortionFilter",@"value":@0,@"defaultvalue":@0,@"max":@1,@"min":@-1,@"sliderhidden":@"YES",@"hasValue":@"no"},//wuvaluezhi
          @{@"name":@"Dilation",@"filter":@"GPUImageRGBDilationFilter",@"value":@0,@"defaultvalue":@0,@"max":@1,@"min":@-1,@"sliderhidden":@"YES",@"hasValue":@"no"},//wuvaluezhi
          @{@"name":@"Erosion",@"filter":@"GPUImageRGBErosionFilter",@"value":@0,@"defaultvalue":@0,@"max":@1,@"min":@-1,@"sliderhidden":@"YES",@"hasValue":@"no"},//wuvaluezhi
          @{@"name":@"Opening",@"filter":@"GPUImageRGBOpeningFilter",@"value":@0,@"defaultvalue":@0,@"max":@1,@"min":@-1,@"sliderhidden":@"YES",@"hasValue":@"no"},//wuvaluezhi
          @{@"name":@"Closing",@"filter":@"GPUImageRGBClosingFilter",@"value":@0,@"defaultvalue":@0,@"max":@1,@"min":@-1,@"sliderhidden":@"YES",@"hasValue":@"no"},//wuvaluezhi
-         @{@"name":@"Perlin noise",@"filter":@"GPUImagePerlinNoiseFilter",@"value":@0,@"defaultvalue":@8.0,@"max":@30.0,@"min":@1.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Perlin noise",@"filter":@"GPUImagePerlinNoiseFilter",@"value":@8.0,@"defaultvalue":@8.0,@"max":@30.0,@"min":@1.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
          @{@"name":@"Voronoi",@"filter":@"GPUImageVoronoiConsumerFilter",@"value":@0,@"defaultvalue":@0,@"max":@1,@"min":@-1,@"sliderhidden":@"YES",@"hasValue":@"no"},//wuvaluezhi special
-         @{@"name":@"Mosaic",@"filter":@"GPUImageMosaicFilter",@"value":@0,@"defaultvalue":@0.025,@"max":@0.05,@"min":@0.002,@"sliderhidden":@"NO",@"hasValue":@"yes"},//spcial
-         @{@"name":@"Local binary pattern",@"filter":@"GPUImageLocalBinaryPatternFilter",@"value":@0,@"defaultvalue":@1.0,@"max":@5.0,@"min":@1.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Mosaic",@"filter":@"GPUImageMosaicFilter",@"value":@0.025,@"defaultvalue":@0.025,@"max":@0.05,@"min":@0.002,@"sliderhidden":@"NO",@"hasValue":@"yes"},//spcial
+         @{@"name":@"Local binary pattern",@"filter":@"GPUImageLocalBinaryPatternFilter",@"value":@1.0,@"defaultvalue":@1.0,@"max":@5.0,@"min":@1.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
          @{@"name":@"Chroma key blend (green)",@"filter":@"",@"value":@0,@"defaultvalue":@0,@"max":@1,@"min":@-1,@"sliderhidden":@"NO",@"hasValue":@"yes"},//notsue//filternotsure
-         @{@"name":@"Dissolve blend",@"filter":@"GPUImageDissolveBlendFilter",@"value":@0,@"defaultvalue":@0.5,@"max":@1.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Dissolve blend",@"filter":@"GPUImageDissolveBlendFilter",@"value":@0.5,@"defaultvalue":@0.5,@"max":@1.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
          @{@"name":@"Screen blend",@"filter":@"GPUImageScreenBlendFilter",@"value":@0,@"defaultvalue":@0,@"max":@1,@"min":@-1,@"sliderhidden":@"YES",@"hasValue":@"no"},//wuvaluezhi
          @{@"name":@"Color burn blend",@"filter":@"GPUImageColorBurnBlendFilter",@"value":@0,@"defaultvalue":@0,@"max":@1,@"min":@-1,@"sliderhidden":@"YES",@"hasValue":@"no"},//wuvaluezhi
          @{@"name":@"Color dodge blend",@"filter":@"GPUImageColorDodgeBlendFilter",@"value":@0,@"defaultvalue":@0,@"max":@1,@"min":@-1,@"sliderhidden":@"YES",@"hasValue":@"no"},//wuvaluezhi
@@ -144,25 +144,25 @@
          @{@"name":@"Saturation blend",@"filter":@"GPUImageSaturationBlendFilter",@"value":@0,@"defaultvalue":@0,@"max":@1,@"min":@-1,@"sliderhidden":@"YES",@"hasValue":@"no"},//wuvaluezhi
          @{@"name":@"Luminosity blend",@"filter":@"GPUImageLuminosityBlendFilter",@"value":@0,@"defaultvalue":@0,@"max":@1,@"min":@-1,@"sliderhidden":@"YES",@"hasValue":@"no"},//wuvaluezhi
          @{@"name":@"Normal blend",@"filter":@"GPUImageNormalBlendFilter",@"value":@0,@"defaultvalue":@0,@"max":@1,@"min":@-1,@"sliderhidden":@"YES",@"hasValue":@"no"},//wuvaluezhi
-         @{@"name":@"Poisson blend",@"filter":@"GPUImagePoissonBlendFilter",@"value":@0,@"defaultvalue":@0.5,@"max":@1.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
-         @{@"name":@"Opacity adjustment",@"filter":@"GPUImageOpacityFilter",@"value":@0,@"defaultvalue":@1.0,@"max":@1.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
-        @{@"name":@"Kuwahara",@"filter":@"GPUImageKuwaharaFilter",@"value":@0,@"defaultvalue":@3.0,@"max":@8.0,@"min":@3.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Poisson blend",@"filter":@"GPUImagePoissonBlendFilter",@"value":@0.5,@"defaultvalue":@0.5,@"max":@1.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Opacity adjustment",@"filter":@"GPUImageOpacityFilter",@"value":@1.0,@"defaultvalue":@1.0,@"max":@1.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+        @{@"name":@"Kuwahara",@"filter":@"GPUImageKuwaharaFilter",@"value":@3.0,@"defaultvalue":@3.0,@"max":@8.0,@"min":@3.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
          @{@"name":@"Kuwahara (fixed radius)",@"filter":@"",@"value":@0,@"defaultvalue":@0,@"max":@1,@"min":@-1,@"sliderhidden":@"NO",@"hasValue":@"yes"},//notsure//filternotsure
-         @{@"name":@"Vignette",@"filter":@"GPUImageVignetteFilter",@"value":@0,@"defaultvalue":@0.75,@"max":@0.9,@"min":@0.5,@"sliderhidden":@"NO",@"hasValue":@"yes"},//notsure
-         @{@"name":@"Gaussian blur",@"filter":@"GPUImageGaussianBlurFilter",@"value":@0,@"defaultvalue":@2.0,@"max":@24.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Vignette",@"filter":@"GPUImageVignetteFilter",@"value":@0.75,@"defaultvalue":@0.75,@"max":@0.9,@"min":@0.5,@"sliderhidden":@"NO",@"hasValue":@"yes"},//notsure
+         @{@"name":@"Gaussian blur",@"filter":@"GPUImageGaussianBlurFilter",@"value":@2.0,@"defaultvalue":@2.0,@"max":@24.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
          @{@"name":@"Median (3x3)",@"filter":@"GPUImageMedianFilter",@"value":@0,@"defaultvalue":@0,@"max":@1,@"min":@-1,@"sliderhidden":@"YES",@"hasValue":@"no"},//wuvaluezhi
-         @{@"name":@"Bilateral blur",@"filter":@"GPUImageBilateralFilter",@"value":@0,@"defaultvalue":@1.0,@"max":@10.0,@"min":@0.0,@"sliderhidden":@"YES",@"hasValue":@"yes"},
-         @{@"name":@"Motion blur",@"filter":@"GPUImageMotionBlurFilter",@"value":@0,@"defaultvalue":@0.0,@"max":@180.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
-         @{@"name":@"Zoom blur",@"filter":@"GPUImageZoomBlurFilter",@"value":@0,@"defaultvalue":@1.0,@"max":@2.5,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
-         @{@"name":@"Box blur",@"filter":@"GPUImageBoxBlurFilter",@"value":@0,@"defaultvalue":@2.0,@"max":@24.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
-         @{@"name":@"Gaussian selective blur",@"filter":@"GPUImageGaussianSelectiveBlurFilter",@"value":@0,@"defaultvalue":@(40.0/320.0),@"max":@0.75,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Bilateral blur",@"filter":@"GPUImageBilateralFilter",@"value":@1.0,@"defaultvalue":@1.0,@"max":@10.0,@"min":@0.0,@"sliderhidden":@"YES",@"hasValue":@"yes"},
+         @{@"name":@"Motion blur",@"filter":@"GPUImageMotionBlurFilter",@"value":@0.0,@"defaultvalue":@0.0,@"max":@180.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Zoom blur",@"filter":@"GPUImageZoomBlurFilter",@"value":@1.0,@"defaultvalue":@1.0,@"max":@2.5,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Box blur",@"filter":@"GPUImageBoxBlurFilter",@"value":@2.0,@"defaultvalue":@2.0,@"max":@24.0,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
+         @{@"name":@"Gaussian selective blur",@"filter":@"GPUImageGaussianSelectiveBlurFilter",@"value":@(40.0/320.0),@"defaultvalue":@(40.0/320.0),@"max":@0.75,@"min":@0.0,@"sliderhidden":@"NO",@"hasValue":@"yes"},
          @{@"name":@"Gaussian (centered)",@"filter":@"",@"value":@0,@"defaultvalue":@0,@"max":@1,@"min":@-1,@"sliderhidden":@"NO",@"hasValue":@"yes"},//notsure//filternotsure
          @{@"name":@"iOS 7 blur",@"filter":@"GPUImageiOSBlurFilter",@"value":@0,@"defaultvalue":@0,@"max":@1,@"min":@-1,@"sliderhidden":@"YES",@"hasValue":@"no"},//wuvaluezhi
          @{@"name":@"UI element",@"filter":@"GPUImageSepiaFilter",@"value":@0,@"defaultvalue":@0,@"max":@1,@"min":@-1,@"sliderhidden":@"YES",@"hasValue":@"no"},//wuvaluezhi
          @{@"name":@"Custom",@"filter":@"GPUImageFilter",@"value":@0,@"defaultvalue":@0,@"max":@1,@"min":@-1,@"sliderhidden":@"YES",@"hasValue":@"no"},//wuvaluezhi
          @{@"name":@"Filter Chain",@"filter":@"",@"value":@0,@"defaultvalue":@0,@"max":@1,@"min":@-1,@"sliderhidden":@"NO",@"hasValue":@"yes"},//notsure//filternotsure
-         @{@"name":@"Filter Group",@"filter":@"",@"value":@0,@"defaultvalue":@0.05,@"max":@0.3,@"min":@0.0,@"sliderhidden":@"YES",@"hasValue":@"yes"},//filternotsure
-         @{@"name":@"Face Detection",@"filter":@"GPUImageSaturationFilter",@"value":@0,@"defaultvalue":@1.0,@"max":@2.0,@"min":@0.0,@"sliderhidden":@"YES",@"hasValue":@"yes"},//notsure
+         @{@"name":@"Filter Group",@"filter":@"",@"value":@0.05,@"defaultvalue":@0.05,@"max":@0.3,@"min":@0.0,@"sliderhidden":@"YES",@"hasValue":@"yes"},//filternotsure
+         @{@"name":@"Face Detection",@"filter":@"GPUImageSaturationFilter",@"value":@1.0,@"defaultvalue":@1.0,@"max":@2.0,@"min":@0.0,@"sliderhidden":@"YES",@"hasValue":@"yes"},//notsure
          ]mutableCopy
        ];
 }
@@ -212,10 +212,6 @@
     outPutBtn.frame = CGRectMake(0, 0, 70, 36);
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:outPutBtn];
     self.navigationItem.rightBarButtonItem = rightButtonItem;
-    
-    sliderView.delegate = self;
-    
-    [self setupFilter];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -1495,13 +1491,26 @@
 
 - (void)filterSlider:(id)sender
 {
+    
+    NSUInteger tag = [sender tag];
+    if (tag < [arrFilterSource count]) {
+        NSMutableArray *d = [[arrFilterSource objectAtIndex:tag] mutableCopy];
+        [d setValue:@([(UISlider *)sender value]) forKey:@"value"];
+        [arrFilterSource replaceObjectAtIndex:tag withObject:d];
+    }
+    
+    NSMutableArray *sourceFilter = [NSMutableArray new];
+    for (NSDictionary *d in arrFilterSource) {
+        if ([[d getValueForKey:@"value"] intValue] != [[d getValueForKey:@"defaultvalue"] intValue]) {
+            [sourceFilter addObject:d];
+        }
+    }
+
     [self updateFilterFromSlider:sender];
 }
 - (IBAction)updateFilterFromSlider:(id)sender;
 {
-    [videoCamera resetBenchmarkAverage];
-    currentValue = [NSString stringWithFormat:@"%.2f",[(UISlider*)sender value]];
-    valueLabel.text = currentValue;
+//    [videoCamera resetBenchmarkAverage];
 
     switch(filterType)
     {
