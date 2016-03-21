@@ -144,13 +144,14 @@
     [self dismiss];
 }
 
-- (void)setDic:(NSDictionary *)dic
+- (void)setDic:(NSDictionary *)dic tag:(NSInteger)tag
 {
     myDic = dic;
     filterSlider.maximumValue = [[dic getValueForKey:@"max"] intValue];
     filterSlider.minimumValue = [[dic getValueForKey:@"min"] intValue];
 //    filterSlider.defaultValue = [[dic getValueForKey:@"defaultvalue"] intValue];
     filterSlider.value = [[dic getValueForKey:@"defaultvalue"] intValue];
+    filterSlider.tag = tag;
     
     valueLabel.text = [[dic getValueForKey:@"defaultvalue"] stringValue];
     

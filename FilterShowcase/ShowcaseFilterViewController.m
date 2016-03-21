@@ -237,7 +237,7 @@
         filterParameterStr = [NSString stringWithFormat:@"%@:%@",self.title,currentValue];
     } else
     {
-        currentValue = [NSString stringWithFormat:@"%.2f",self.filterSettingsSlider.value];
+//        currentValue = [NSString stringWithFormat:@"%.2f",self.filterSettingsSlider.value];
         filterParameterStr = [NSString stringWithFormat:@"%@:%@",self.title,currentValue];
     }
     [filterArr addObject:filterParameterStr];
@@ -315,7 +315,7 @@
     
     
     
-    [sliderView setDic:arrFilterSource[indexPath.row]];
+    [sliderView setDic:arrFilterSource[indexPath.row] tag:[indexPath row]];
     [UIView animateWithDuration:0.1 animations:^{
         sliderView.frame = CGRectMake(0, frame.size.height-100, frame.size.width, 100);
     } completion:^(BOOL finished) {
@@ -1219,7 +1219,8 @@
 //    }
     
     
-    valueLabel.text = [NSString stringWithFormat:@"%.2f",self.filterSettingsSlider.value];
+//    valueLabel.text = [NSString stringWithFormat:@"%.2f",self.filterSettingsSlider.value];
+  
     if (arrayTemp == nil) {
         arrayTemp = [[NSMutableArray alloc]init];
     }
@@ -1229,7 +1230,7 @@
         filterArr = [[NSMutableArray alloc] init];
     }
     
-    pipeline = [[GPUImageFilterPipeline alloc]initWithOrderedFilters:arrayTemp input:staticPicture output:(GPUImageView*)self.view];
+//    pipeline = [[GPUImageFilterPipeline alloc]initWithOrderedFilters:arrayTemp input:staticPicture output:(GPUImageView*)self.view];
     
 
     
