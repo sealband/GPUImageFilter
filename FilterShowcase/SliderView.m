@@ -177,16 +177,14 @@
 
 - (void)updateLabValue
 {
-//    labValue.text = [NSString stringWithFormat:@"%ld",sliderView.value];
-//    [labValue sizeToFit];
-//    labValue.center = CGPointMake(SLIDEROFFSET+1.0*(sliderView.value-sliderView.minimumValue)/(sliderView.maximumValue-sliderView.minimumValue)*(sliderView.frame.size.width-SLIDEROFFSET*2)+sliderView.frame.origin.x, sliderView.frame.origin.y-5);
+    NSString *currentValue = [NSString stringWithFormat:@"%.2f",filterSlider.value];
+    valueLabel.text = currentValue;
 }
-
 
 -(void)sliderValueChanged:(id)sender
 {
-    NSString *currentValue = [NSString stringWithFormat:@"%.2f",[(UISlider*)sender value]];
-    valueLabel.text = currentValue;
+    
+    [self updateLabValue];
     
 //    [self.delegate filterSlider:sender];
 }
@@ -197,7 +195,7 @@
 
 - (void)sliderDidCancel:(id)sender
 {
-//    [self updateLabValue];
+    [self updateLabValue];
 //    if ([[myDic getValueForKey:@"id"] intValue] == 5) {
 //        //模糊
 //        [self blurCircleDidChange];
