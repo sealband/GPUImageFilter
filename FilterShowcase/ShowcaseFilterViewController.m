@@ -239,7 +239,6 @@
         filterParameterStr = [NSString stringWithFormat:@"%@:%@",self.title,currentValue];
     } else
     {
-//        currentValue = [NSString stringWithFormat:@"%.2f",self.filterSettingsSlider.value];
         filterParameterStr = [NSString stringWithFormat:@"%@:%@",self.title,currentValue];
     }
     [filterArr addObject:filterParameterStr];
