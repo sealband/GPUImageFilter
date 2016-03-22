@@ -361,8 +361,6 @@
     NSDictionary *filterDic = [arrFilterSource objectAtIndex:typeNumber];
     self.title = [filterDic getValueForKey:@"name"];
     
-    Class filterClass = NSClassFromString([filterDic getValueForKey:@"filter"]);
-    filter  = [[filterClass alloc] init];
     
 
 //    switch (filterType)
@@ -1216,7 +1214,6 @@
     if (arrayTemp == nil) {
         arrayTemp = [[NSMutableArray alloc]init];
     }
-    [arrayTemp addObject:filter];
     
     if (filterArr == nil) {
         filterArr = [[NSMutableArray alloc] init];
@@ -1240,7 +1237,7 @@
     {
         if (filterType != GPUIMAGE_VORONOI)
         {
-            [videoCamera addTarget:filter];
+//            [videoCamera addTarget:filter];
         }
         
         videoCamera.runBenchmark = YES;
@@ -1501,7 +1498,7 @@
 
     [self updateFilterFromSlider:sender];
 }
-- (IBAction)updateFilterFromSlider:(id)sender;
+- (IBAction)updateFilterFromSlider:(id)sender witFilter:(GPUImageOutput <GPUImageInput>*)filter;
 {
 //    [videoCamera resetBenchmarkAverage];
 
@@ -1609,13 +1606,6 @@
         }; break;
         default: break;
     }
-    
-    [staticPicture addTarget:filter];
-    [filter useNextFrameForImageCapture];
-
-    [staticPicture processImage];
-    
-    sourceImageView.image = [filter imageFromCurrentFramebuffer];
 }
 
 #pragma mark - Face Detection Delegate Callback

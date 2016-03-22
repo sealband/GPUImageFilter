@@ -6,7 +6,6 @@
 @interface ShowcaseFilterViewController : UIViewController <GPUImageVideoCameraDelegate,UITableViewDelegate,UITableViewDataSource,SRTEditorFilterSliderDelegate>
 {
     GPUImageVideoCamera *videoCamera;
-    GPUImageOutput<GPUImageInput> *filter;
     GPUImagePicture *sourcePicture;
     GPUImageShowcaseFilterType filterType;
     GPUImageUIElement *uiElementInput;
@@ -34,6 +33,7 @@
     
     
     NSMutableArray *arrFilterSource;
+    NSMutableDictionary *currFilterDic;
 
     CGRect frame ;
     UIImageView *sourceImageView;
@@ -49,7 +49,7 @@
 - (void)setupFilter;
 - (void)willOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer;
 // Filter adjustments
-- (IBAction)updateFilterFromSlider:(id)sender;
+- (IBAction)updateFilterFromSlider:(id)sender witFilter:(GPUImageOutput <GPUImageInput>*)filter;
 - (void)GPUVCWillOutputFeatures:(NSArray*)featureArray forClap:(CGRect)clap
                  andOrientation:(UIDeviceOrientation)curDeviceOrientation;
 -(IBAction)facesSwitched:(id)sender;
