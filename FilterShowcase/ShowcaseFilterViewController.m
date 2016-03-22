@@ -1494,12 +1494,15 @@
     for (NSDictionary *d in arrFilterSource) {
         if ([[d getValueForKey:@"value"] floatValue] != [[d getValueForKey:@"defaultvalue"] floatValue]) {
             [sourceFilter addObject:d];
+        } else {
+            sourceImageView.image = stillImage;
         }
     }
     
-
-    [currFilterDic setValue:sourceFilter forKey:@"filtertype"];
-    [self updateFilterBlend];
+    if ([sourceFilter count]!=0) {
+        [currFilterDic setValue:sourceFilter forKey:@"filtertype"];
+        [self updateFilterBlend];
+    }
 }
 
 - (void)updateFilterBlend
