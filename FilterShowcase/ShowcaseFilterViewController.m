@@ -250,18 +250,6 @@
     [self.navigationController pushViewController:outputTableVC animated:YES];
 }
 
-- (void)cancleLastAction
-{
-    [pipeline removeFilterAtIndex:[arrayTemp count]-1];
-    [arrayTemp removeObjectAtIndex:[arrayTemp count]-1];
-    [staticPicture processImage];
-}
-
-- (void)cancleCurrentFilter
-{
-    [self cancleLastAction];
-}
-
 #pragma mark - Table View Data Source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
