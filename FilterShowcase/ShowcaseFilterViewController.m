@@ -314,6 +314,11 @@
     [filterArr addObject:filterParameterStr];
     
     
+    NSMutableArray *d = [[arrFilterSource objectAtIndex:indexPath.row] mutableCopy];
+    NSString *filterStr = [NSString stringWithFormat:@"%ld",indexPath.row];
+    [d setValue:filterStr forKey:@"filterTypeInt"];
+    [arrFilterSource replaceObjectAtIndex:indexPath.row withObject:d];
+
     
     
     
@@ -352,9 +357,6 @@
     facesSwitch.hidden = YES;
     facesLabel.hidden = YES;
     BOOL needsSecondImage = NO;
-    
-    
-    sourceImageView.image = stillImage;
     
     NSInteger typeNumber = (NSInteger)filterType;
     
@@ -1479,128 +1481,181 @@
 #pragma mark -
 #pragma mark Filter adjustments
 
-- (void)filterSlider:(id)sender
+- (void)filterSliderTag:(NSInteger)tag senderValue:(float)senderValue
 {
     
-    NSUInteger tag = [sender tag];
     if (tag < [arrFilterSource count]) {
         NSMutableArray *d = [[arrFilterSource objectAtIndex:tag] mutableCopy];
-        [d setValue:@([(UISlider *)sender value]) forKey:@"value"];
+        [d setValue:@(senderValue) forKey:@"value"];
         [arrFilterSource replaceObjectAtIndex:tag withObject:d];
     }
     
     NSMutableArray *sourceFilter = [NSMutableArray new];
     for (NSDictionary *d in arrFilterSource) {
-        if ([[d getValueForKey:@"value"] intValue] != [[d getValueForKey:@"defaultvalue"] intValue]) {
+        if ([[d getValueForKey:@"value"] floatValue] != [[d getValueForKey:@"defaultvalue"] floatValue]) {
             [sourceFilter addObject:d];
         }
     }
+    
 
-    [self updateFilterFromSlider:sender];
+    [currFilterDic setValue:sourceFilter forKey:@"filtertype"];
+    [self updateFilterBlend];
 }
-- (IBAction)updateFilterFromSlider:(id)sender witFilter:(GPUImageOutput <GPUImageInput>*)filter;
+
+- (void)updateFilterBlend
+{
+    GPUImagePicture *stillImageSource = [[GPUImagePicture alloc] initWithImage:stillImage];
+    GPUImageOutput *filterOutput = nil;
+    GPUImageOutput *lastfilter = nil;
+    
+    
+    for (NSDictionary *dic in [currFilterDic getValueForKey:@"filtertype"]){
+        //        GPUImageOutput *f = nil;
+        
+        GPUImageOutput <GPUImageInput>* filter = nil;
+        
+        Class filterClass = NSClassFromString([dic getValueForKey:@"filter"]);
+        filter = [[filterClass alloc] init];
+        
+        
+        NSString *filterTypeStr = [dic getValueForKey:@"filterTypeInt"];
+        float sliderValue = [[dic getValueForKey:@"value"] floatValue];
+        
+        
+        
+        [self updateFilterFromSliderwitFilter:filter filterStr:filterTypeStr sliderValue:sliderValue];
+        
+        if (!filter) {
+            continue;
+        }
+        
+        if (!filterOutput) {
+            filterOutput = filter;
+        }
+        if (lastfilter) {
+            [lastfilter addTarget:filter];
+            lastfilter = filter;
+        }
+        else
+        {
+            lastfilter = filter;
+        }
+    }
+    
+    [stillImageSource addTarget:(GPUImageOutput <GPUImageInput>*)filterOutput];
+    [lastfilter useNextFrameForImageCapture];
+    [stillImageSource processImage];
+    sourceImageView.image = [lastfilter imageFromCurrentFramebuffer];
+}
+
+
+
+
+
+- (IBAction)updateFilterFromSliderwitFilter:(GPUImageOutput <GPUImageInput>*)filter filterStr:(NSString*)str sliderValue:(float)slidervalue;
 {
 //    [videoCamera resetBenchmarkAverage];
 
-    switch(filterType)
+    NSInteger type = [str integerValue];
+    switch(type)
     {
-        case GPUIMAGE_SEPIA: [(GPUImageSepiaFilter *)filter setIntensity:[(UISlider *)sender value]]; break;
-        case GPUIMAGE_PIXELLATE: [(GPUImagePixellateFilter *)filter setFractionalWidthOfAPixel:[(UISlider *)sender value]]; break;
-        case GPUIMAGE_POLARPIXELLATE: [(GPUImagePolarPixellateFilter *)filter setPixelSize:CGSizeMake([(UISlider *)sender value], [(UISlider *)sender value])]; break;
-        case GPUIMAGE_PIXELLATE_POSITION: [(GPUImagePixellatePositionFilter *)filter setRadius:[(UISlider *)sender value]]; break;
-        case GPUIMAGE_POLKADOT: [(GPUImagePolkaDotFilter *)filter setFractionalWidthOfAPixel:[(UISlider *)sender value]]; break;
-        case GPUIMAGE_HALFTONE: [(GPUImageHalftoneFilter *)filter setFractionalWidthOfAPixel:[(UISlider *)sender value]]; break;
-        case GPUIMAGE_SATURATION: [(GPUImageSaturationFilter *)filter setSaturation:[(UISlider *)sender value]]; break;
-        case GPUIMAGE_CONTRAST: [(GPUImageContrastFilter *)filter setContrast:[(UISlider *)sender value]]; break;
-        case GPUIMAGE_BRIGHTNESS: [(GPUImageBrightnessFilter *)filter setBrightness:[(UISlider *)sender value]]; break;
+        case GPUIMAGE_SEPIA: [(GPUImageSepiaFilter *)filter setIntensity:slidervalue]; break;
+        case GPUIMAGE_PIXELLATE: [(GPUImagePixellateFilter *)filter setFractionalWidthOfAPixel:slidervalue]; break;
+        case GPUIMAGE_POLARPIXELLATE: [(GPUImagePolarPixellateFilter *)filter setPixelSize:CGSizeMake(slidervalue, slidervalue)]; break;
+        case GPUIMAGE_PIXELLATE_POSITION: [(GPUImagePixellatePositionFilter *)filter setRadius:slidervalue]; break;
+        case GPUIMAGE_POLKADOT: [(GPUImagePolkaDotFilter *)filter setFractionalWidthOfAPixel:slidervalue]; break;
+        case GPUIMAGE_HALFTONE: [(GPUImageHalftoneFilter *)filter setFractionalWidthOfAPixel:slidervalue]; break;
+        case GPUIMAGE_SATURATION: [(GPUImageSaturationFilter *)filter setSaturation:slidervalue]; break;
+        case GPUIMAGE_CONTRAST: [(GPUImageContrastFilter *)filter setContrast:slidervalue]; break;
+        case GPUIMAGE_BRIGHTNESS: [(GPUImageBrightnessFilter *)filter setBrightness:slidervalue]; break;
         case GPUIMAGE_LEVELS: {
-            float value = [(UISlider *)sender value];
+            float value = slidervalue;
             [(GPUImageLevelsFilter *)filter setRedMin:value gamma:1.0 max:1.0 minOut:0.0 maxOut:1.0];
             [(GPUImageLevelsFilter *)filter setGreenMin:value gamma:1.0 max:1.0 minOut:0.0 maxOut:1.0];
             [(GPUImageLevelsFilter *)filter setBlueMin:value gamma:1.0 max:1.0 minOut:0.0 maxOut:1.0];
         }; break;
-        case GPUIMAGE_EXPOSURE: [(GPUImageExposureFilter *)filter setExposure:[(UISlider *)sender value]]; break;
-        case GPUIMAGE_MONOCHROME: [(GPUImageMonochromeFilter *)filter setIntensity:[(UISlider *)sender value]]; break;
-        case GPUIMAGE_RGB: [(GPUImageRGBFilter *)filter setGreen:[(UISlider *)sender value]]; break;
-        case GPUIMAGE_HUE: [(GPUImageHueFilter *)filter setHue:[(UISlider *)sender value]]; break;
-        case GPUIMAGE_WHITEBALANCE: [(GPUImageWhiteBalanceFilter *)filter setTemperature:[(UISlider *)sender value]]; break;
-        case GPUIMAGE_SHARPEN: [(GPUImageSharpenFilter *)filter setSharpness:[(UISlider *)sender value]]; break;
-        case GPUIMAGE_HISTOGRAM: [(GPUImageHistogramFilter *)filter setDownsamplingFactor:round([(UISlider *)sender value])]; break;
-        case GPUIMAGE_HISTOGRAM_EQUALIZATION: [(GPUImageHistogramEqualizationFilter *)filter setDownsamplingFactor:round([(UISlider *)sender value])]; break;
-        case GPUIMAGE_UNSHARPMASK: [(GPUImageUnsharpMaskFilter *)filter setIntensity:[(UISlider *)sender value]]; break;
-//        case GPUIMAGE_UNSHARPMASK: [(GPUImageUnsharpMaskFilter *)filter setBlurSize:[(UISlider *)sender value]]; break;
-        case GPUIMAGE_GAMMA: [(GPUImageGammaFilter *)filter setGamma:[(UISlider *)sender value]]; break;
-        case GPUIMAGE_CROSSHATCH: [(GPUImageCrosshatchFilter *)filter setCrossHatchSpacing:[(UISlider *)sender value]]; break;
-        case GPUIMAGE_POSTERIZE: [(GPUImagePosterizeFilter *)filter setColorLevels:round([(UISlider*)sender value])]; break;
-        case GPUIMAGE_HAZE: [(GPUImageHazeFilter *)filter setDistance:[(UISlider *)sender value]]; break;
-        case GPUIMAGE_SOBELEDGEDETECTION: [(GPUImageSobelEdgeDetectionFilter *)filter setEdgeStrength:[(UISlider *)sender value]]; break;
-        case GPUIMAGE_PREWITTEDGEDETECTION: [(GPUImagePrewittEdgeDetectionFilter *)filter setEdgeStrength:[(UISlider *)sender value]]; break;
-        case GPUIMAGE_SKETCH: [(GPUImageSketchFilter *)filter setEdgeStrength:[(UISlider *)sender value]]; break;
-        case GPUIMAGE_THRESHOLD: [(GPUImageLuminanceThresholdFilter *)filter setThreshold:[(UISlider *)sender value]]; break;
-        case GPUIMAGE_ADAPTIVETHRESHOLD: [(GPUImageAdaptiveThresholdFilter *)filter setBlurRadiusInPixels:[(UISlider*)sender value]]; break;
-        case GPUIMAGE_AVERAGELUMINANCETHRESHOLD: [(GPUImageAverageLuminanceThresholdFilter *)filter setThresholdMultiplier:[(UISlider *)sender value]]; break;
-        case GPUIMAGE_DISSOLVE: [(GPUImageDissolveBlendFilter *)filter setMix:[(UISlider *)sender value]]; break;
-        case GPUIMAGE_POISSONBLEND: [(GPUImagePoissonBlendFilter *)filter setMix:[(UISlider *)sender value]]; break;
-        case GPUIMAGE_LOWPASS: [(GPUImageLowPassFilter *)filter setFilterStrength:[(UISlider *)sender value]]; break;
-        case GPUIMAGE_HIGHPASS: [(GPUImageHighPassFilter *)filter setFilterStrength:[(UISlider *)sender value]]; break;
-        case GPUIMAGE_MOTIONDETECTOR: [(GPUImageMotionDetector *)filter setLowPassFilterStrength:[(UISlider *)sender value]]; break;
-        case GPUIMAGE_CHROMAKEY: [(GPUImageChromaKeyBlendFilter *)filter setThresholdSensitivity:[(UISlider *)sender value]]; break;
-        case GPUIMAGE_CHROMAKEYNONBLEND: [(GPUImageChromaKeyFilter *)filter setThresholdSensitivity:[(UISlider *)sender value]]; break;
-        case GPUIMAGE_KUWAHARA: [(GPUImageKuwaharaFilter *)filter setRadius:round([(UISlider *)sender value])]; break;
-        case GPUIMAGE_SWIRL: [(GPUImageSwirlFilter *)filter setAngle:[(UISlider *)sender value]]; break;
-        case GPUIMAGE_EMBOSS: [(GPUImageEmbossFilter *)filter setIntensity:[(UISlider *)sender value]]; break;
-        case GPUIMAGE_CANNYEDGEDETECTION: [(GPUImageCannyEdgeDetectionFilter *)filter setBlurTexelSpacingMultiplier:[(UISlider*)sender value]]; break;
-//        case GPUIMAGE_CANNYEDGEDETECTION: [(GPUImageCannyEdgeDetectionFilter *)filter setLowerThreshold:[(UISlider*)sender value]]; break;
-        case GPUIMAGE_HARRISCORNERDETECTION: [(GPUImageHarrisCornerDetectionFilter *)filter setThreshold:[(UISlider*)sender value]]; break;
-        case GPUIMAGE_NOBLECORNERDETECTION: [(GPUImageNobleCornerDetectionFilter *)filter setThreshold:[(UISlider*)sender value]]; break;
-        case GPUIMAGE_SHITOMASIFEATUREDETECTION: [(GPUImageShiTomasiFeatureDetectionFilter *)filter setThreshold:[(UISlider*)sender value]]; break;
-        case GPUIMAGE_HOUGHTRANSFORMLINEDETECTOR: [(GPUImageHoughTransformLineDetector *)filter setLineDetectionThreshold:[(UISlider*)sender value]]; break;
-//        case GPUIMAGE_HARRISCORNERDETECTION: [(GPUImageHarrisCornerDetectionFilter *)filter setSensitivity:[(UISlider*)sender value]]; break;
-        case GPUIMAGE_THRESHOLDEDGEDETECTION: [(GPUImageThresholdEdgeDetectionFilter *)filter setThreshold:[(UISlider *)sender value]]; break;
-        case GPUIMAGE_SMOOTHTOON: [(GPUImageSmoothToonFilter *)filter setBlurRadiusInPixels:[(UISlider*)sender value]]; break;
-        case GPUIMAGE_THRESHOLDSKETCH: [(GPUImageThresholdSketchFilter *)filter setThreshold:[(UISlider *)sender value]]; break;
-//        case GPUIMAGE_BULGE: [(GPUImageBulgeDistortionFilter *)filter setRadius:[(UISlider *)sender value]]; break;
-        case GPUIMAGE_BULGE: [(GPUImageBulgeDistortionFilter *)filter setScale:[(UISlider *)sender value]]; break;
-        case GPUIMAGE_SPHEREREFRACTION: [(GPUImageSphereRefractionFilter *)filter setRadius:[(UISlider *)sender value]]; break;
-        case GPUIMAGE_GLASSSPHERE: [(GPUImageGlassSphereFilter *)filter setRadius:[(UISlider *)sender value]]; break;
-        case GPUIMAGE_TONECURVE: [(GPUImageToneCurveFilter *)filter setBlueControlPoints:[NSArray arrayWithObjects:[NSValue valueWithCGPoint:CGPointMake(0.0, 0.0)], [NSValue valueWithCGPoint:CGPointMake(0.5, [(UISlider *)sender value])], [NSValue valueWithCGPoint:CGPointMake(1.0, 0.75)], nil]]; break;
-        case GPUIMAGE_HIGHLIGHTSHADOW: [(GPUImageHighlightShadowFilter *)filter setHighlights:[(UISlider *)sender value]]; break;
-        case GPUIMAGE_PINCH: [(GPUImagePinchDistortionFilter *)filter setScale:[(UISlider *)sender value]]; break;
-        case GPUIMAGE_PERLINNOISE:  [(GPUImagePerlinNoiseFilter *)filter setScale:[(UISlider *)sender value]]; break;
-        case GPUIMAGE_MOSAIC:  [(GPUImageMosaicFilter *)filter setDisplayTileSize:CGSizeMake([(UISlider *)sender value], [(UISlider *)sender value])]; break;
-        case GPUIMAGE_VIGNETTE: [(GPUImageVignetteFilter *)filter setVignetteEnd:[(UISlider *)sender value]]; break;
-        case GPUIMAGE_BOXBLUR: [(GPUImageBoxBlurFilter *)filter setBlurRadiusInPixels:[(UISlider*)sender value]]; break;
-        case GPUIMAGE_GAUSSIAN: [(GPUImageGaussianBlurFilter *)filter setBlurRadiusInPixels:[(UISlider*)sender value]]; break;
-//        case GPUIMAGE_GAUSSIAN: [(GPUImageGaussianBlurFilter *)filter setBlurPasses:round([(UISlider*)sender value])]; break;
-//        case GPUIMAGE_BILATERAL: [(GPUImageBilateralFilter *)filter setBlurSize:[(UISlider*)sender value]]; break;
-        case GPUIMAGE_BILATERAL: [(GPUImageBilateralFilter *)filter setDistanceNormalizationFactor:[(UISlider*)sender value]]; break;
-        case GPUIMAGE_MOTIONBLUR: [(GPUImageMotionBlurFilter *)filter setBlurAngle:[(UISlider*)sender value]]; break;
-        case GPUIMAGE_ZOOMBLUR: [(GPUImageZoomBlurFilter *)filter setBlurSize:[(UISlider*)sender value]]; break;
-        case GPUIMAGE_OPACITY:  [(GPUImageOpacityFilter *)filter setOpacity:[(UISlider *)sender value]]; break;
-        case GPUIMAGE_GAUSSIAN_SELECTIVE: [(GPUImageGaussianSelectiveBlurFilter *)filter setExcludeCircleRadius:[(UISlider*)sender value]]; break;
-        case GPUIMAGE_GAUSSIAN_POSITION: [(GPUImageGaussianBlurPositionFilter *)filter setBlurRadius:[(UISlider *)sender value]]; break;
-        case GPUIMAGE_FILTERGROUP: [(GPUImagePixellateFilter *)[(GPUImageFilterGroup *)filter filterAtIndex:1] setFractionalWidthOfAPixel:[(UISlider *)sender value]]; break;
-        case GPUIMAGE_CROP: [(GPUImageCropFilter *)filter setCropRegion:CGRectMake(0.0, 0.0, 1.0, [(UISlider*)sender value])]; break;
-        case GPUIMAGE_TRANSFORM: [(GPUImageTransformFilter *)filter setAffineTransform:CGAffineTransformMakeRotation([(UISlider*)sender value])]; break;
+        case GPUIMAGE_EXPOSURE: [(GPUImageExposureFilter *)filter setExposure:slidervalue]; break;
+        case GPUIMAGE_MONOCHROME: [(GPUImageMonochromeFilter *)filter setIntensity:slidervalue]; break;
+        case GPUIMAGE_RGB: [(GPUImageRGBFilter *)filter setGreen:slidervalue]; break;
+        case GPUIMAGE_HUE: [(GPUImageHueFilter *)filter setHue:slidervalue]; break;
+        case GPUIMAGE_WHITEBALANCE: [(GPUImageWhiteBalanceFilter *)filter setTemperature:slidervalue]; break;
+        case GPUIMAGE_SHARPEN: [(GPUImageSharpenFilter *)filter setSharpness:slidervalue]; break;
+        case GPUIMAGE_HISTOGRAM: [(GPUImageHistogramFilter *)filter setDownsamplingFactor:round(slidervalue)]; break;
+        case GPUIMAGE_HISTOGRAM_EQUALIZATION: [(GPUImageHistogramEqualizationFilter *)filter setDownsamplingFactor:round(slidervalue)]; break;
+        case GPUIMAGE_UNSHARPMASK: [(GPUImageUnsharpMaskFilter *)filter setIntensity:slidervalue]; break;
+//        case GPUIMAGE_UNSHARPMASK: [(GPUImageUnsharpMaskFilter *)filter setBlurSize:slidervalue]; break;
+        case GPUIMAGE_GAMMA: [(GPUImageGammaFilter *)filter setGamma:slidervalue]; break;
+        case GPUIMAGE_CROSSHATCH: [(GPUImageCrosshatchFilter *)filter setCrossHatchSpacing:slidervalue]; break;
+        case GPUIMAGE_POSTERIZE: [(GPUImagePosterizeFilter *)filter setColorLevels:round(slidervalue)]; break;
+        case GPUIMAGE_HAZE: [(GPUImageHazeFilter *)filter setDistance:slidervalue]; break;
+        case GPUIMAGE_SOBELEDGEDETECTION: [(GPUImageSobelEdgeDetectionFilter *)filter setEdgeStrength:slidervalue]; break;
+        case GPUIMAGE_PREWITTEDGEDETECTION: [(GPUImagePrewittEdgeDetectionFilter *)filter setEdgeStrength:slidervalue]; break;
+        case GPUIMAGE_SKETCH: [(GPUImageSketchFilter *)filter setEdgeStrength:slidervalue]; break;
+        case GPUIMAGE_THRESHOLD: [(GPUImageLuminanceThresholdFilter *)filter setThreshold:slidervalue]; break;
+        case GPUIMAGE_ADAPTIVETHRESHOLD: [(GPUImageAdaptiveThresholdFilter *)filter setBlurRadiusInPixels:slidervalue]; break;
+        case GPUIMAGE_AVERAGELUMINANCETHRESHOLD: [(GPUImageAverageLuminanceThresholdFilter *)filter setThresholdMultiplier:slidervalue]; break;
+        case GPUIMAGE_DISSOLVE: [(GPUImageDissolveBlendFilter *)filter setMix:slidervalue]; break;
+        case GPUIMAGE_POISSONBLEND: [(GPUImagePoissonBlendFilter *)filter setMix:slidervalue]; break;
+        case GPUIMAGE_LOWPASS: [(GPUImageLowPassFilter *)filter setFilterStrength:slidervalue]; break;
+        case GPUIMAGE_HIGHPASS: [(GPUImageHighPassFilter *)filter setFilterStrength:slidervalue]; break;
+        case GPUIMAGE_MOTIONDETECTOR: [(GPUImageMotionDetector *)filter setLowPassFilterStrength:slidervalue]; break;
+        case GPUIMAGE_CHROMAKEY: [(GPUImageChromaKeyBlendFilter *)filter setThresholdSensitivity:slidervalue]; break;
+        case GPUIMAGE_CHROMAKEYNONBLEND: [(GPUImageChromaKeyFilter *)filter setThresholdSensitivity:slidervalue]; break;
+        case GPUIMAGE_KUWAHARA: [(GPUImageKuwaharaFilter *)filter setRadius:round(slidervalue)]; break;
+        case GPUIMAGE_SWIRL: [(GPUImageSwirlFilter *)filter setAngle:slidervalue]; break;
+        case GPUIMAGE_EMBOSS: [(GPUImageEmbossFilter *)filter setIntensity:slidervalue]; break;
+        case GPUIMAGE_CANNYEDGEDETECTION: [(GPUImageCannyEdgeDetectionFilter *)filter setBlurTexelSpacingMultiplier:slidervalue]; break;
+//        case GPUIMAGE_CANNYEDGEDETECTION: [(GPUImageCannyEdgeDetectionFilter *)filter setLowerThreshold:slidervalue]; break;
+        case GPUIMAGE_HARRISCORNERDETECTION: [(GPUImageHarrisCornerDetectionFilter *)filter setThreshold:slidervalue]; break;
+        case GPUIMAGE_NOBLECORNERDETECTION: [(GPUImageNobleCornerDetectionFilter *)filter setThreshold:slidervalue]; break;
+        case GPUIMAGE_SHITOMASIFEATUREDETECTION: [(GPUImageShiTomasiFeatureDetectionFilter *)filter setThreshold:slidervalue]; break;
+        case GPUIMAGE_HOUGHTRANSFORMLINEDETECTOR: [(GPUImageHoughTransformLineDetector *)filter setLineDetectionThreshold:slidervalue]; break;
+//        case GPUIMAGE_HARRISCORNERDETECTION: [(GPUImageHarrisCornerDetectionFilter *)filter setSensitivity:slidervalue]; break;
+        case GPUIMAGE_THRESHOLDEDGEDETECTION: [(GPUImageThresholdEdgeDetectionFilter *)filter setThreshold:slidervalue]; break;
+        case GPUIMAGE_SMOOTHTOON: [(GPUImageSmoothToonFilter *)filter setBlurRadiusInPixels:slidervalue]; break;
+        case GPUIMAGE_THRESHOLDSKETCH: [(GPUImageThresholdSketchFilter *)filter setThreshold:slidervalue]; break;
+//        case GPUIMAGE_BULGE: [(GPUImageBulgeDistortionFilter *)filter setRadius:slidervalue]; break;
+        case GPUIMAGE_BULGE: [(GPUImageBulgeDistortionFilter *)filter setScale:slidervalue]; break;
+        case GPUIMAGE_SPHEREREFRACTION: [(GPUImageSphereRefractionFilter *)filter setRadius:slidervalue]; break;
+        case GPUIMAGE_GLASSSPHERE: [(GPUImageGlassSphereFilter *)filter setRadius:slidervalue]; break;
+        case GPUIMAGE_TONECURVE: [(GPUImageToneCurveFilter *)filter setBlueControlPoints:[NSArray arrayWithObjects:[NSValue valueWithCGPoint:CGPointMake(0.0, 0.0)], [NSValue valueWithCGPoint:CGPointMake(0.5, slidervalue)], [NSValue valueWithCGPoint:CGPointMake(1.0, 0.75)], nil]]; break;
+        case GPUIMAGE_HIGHLIGHTSHADOW: [(GPUImageHighlightShadowFilter *)filter setHighlights:slidervalue]; break;
+        case GPUIMAGE_PINCH: [(GPUImagePinchDistortionFilter *)filter setScale:slidervalue]; break;
+        case GPUIMAGE_PERLINNOISE:  [(GPUImagePerlinNoiseFilter *)filter setScale:slidervalue]; break;
+        case GPUIMAGE_MOSAIC:  [(GPUImageMosaicFilter *)filter setDisplayTileSize:CGSizeMake(slidervalue, slidervalue)]; break;
+        case GPUIMAGE_VIGNETTE: [(GPUImageVignetteFilter *)filter setVignetteEnd:slidervalue]; break;
+        case GPUIMAGE_BOXBLUR: [(GPUImageBoxBlurFilter *)filter setBlurRadiusInPixels:slidervalue]; break;
+        case GPUIMAGE_GAUSSIAN: [(GPUImageGaussianBlurFilter *)filter setBlurRadiusInPixels:slidervalue]; break;
+//        case GPUIMAGE_GAUSSIAN: [(GPUImageGaussianBlurFilter *)filter setBlurPasses:round(slidervalue)]; break;
+//        case GPUIMAGE_BILATERAL: [(GPUImageBilateralFilter *)filter setBlurSize:slidervalue]; break;
+        case GPUIMAGE_BILATERAL: [(GPUImageBilateralFilter *)filter setDistanceNormalizationFactor:slidervalue]; break;
+        case GPUIMAGE_MOTIONBLUR: [(GPUImageMotionBlurFilter *)filter setBlurAngle:slidervalue]; break;
+        case GPUIMAGE_ZOOMBLUR: [(GPUImageZoomBlurFilter *)filter setBlurSize:slidervalue]; break;
+        case GPUIMAGE_OPACITY:  [(GPUImageOpacityFilter *)filter setOpacity:slidervalue]; break;
+        case GPUIMAGE_GAUSSIAN_SELECTIVE: [(GPUImageGaussianSelectiveBlurFilter *)filter setExcludeCircleRadius:slidervalue]; break;
+        case GPUIMAGE_GAUSSIAN_POSITION: [(GPUImageGaussianBlurPositionFilter *)filter setBlurRadius:slidervalue]; break;
+        case GPUIMAGE_FILTERGROUP: [(GPUImagePixellateFilter *)[(GPUImageFilterGroup *)filter filterAtIndex:1] setFractionalWidthOfAPixel:slidervalue]; break;
+        case GPUIMAGE_CROP: [(GPUImageCropFilter *)filter setCropRegion:CGRectMake(0.0, 0.0, 1.0, slidervalue)]; break;
+        case GPUIMAGE_TRANSFORM: [(GPUImageTransformFilter *)filter setAffineTransform:CGAffineTransformMakeRotation(slidervalue)]; break;
         case GPUIMAGE_TRANSFORM3D:
         {
             CATransform3D perspectiveTransform = CATransform3DIdentity;
             perspectiveTransform.m34 = 0.4;
             perspectiveTransform.m33 = 0.4;
             perspectiveTransform = CATransform3DScale(perspectiveTransform, 0.75, 0.75, 0.75);
-            perspectiveTransform = CATransform3DRotate(perspectiveTransform, [(UISlider*)sender value], 0.0, 1.0, 0.0);
+            perspectiveTransform = CATransform3DRotate(perspectiveTransform, slidervalue, 0.0, 1.0, 0.0);
 
             [(GPUImageTransformFilter *)filter setTransform3D:perspectiveTransform];            
         }; break;
         case GPUIMAGE_TILTSHIFT:
         {
-            CGFloat midpoint = [(UISlider *)sender value];
+            CGFloat midpoint = slidervalue;
             [(GPUImageTiltShiftFilter *)filter setTopFocusLevel:midpoint - 0.1];
             [(GPUImageTiltShiftFilter *)filter setBottomFocusLevel:midpoint + 0.1];
         }; break;
         case GPUIMAGE_LOCALBINARYPATTERN:
         {
-            CGFloat multiplier = [(UISlider *)sender value];
+            CGFloat multiplier = slidervalue;
             [(GPUImageLocalBinaryPatternFilter *)filter setTexelWidth:(multiplier / self.view.bounds.size.width)];
             [(GPUImageLocalBinaryPatternFilter *)filter setTexelHeight:(multiplier / self.view.bounds.size.height)];
         }; break;

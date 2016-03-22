@@ -49,7 +49,7 @@
 - (void)setupFilter;
 - (void)willOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer;
 // Filter adjustments
-- (IBAction)updateFilterFromSlider:(id)sender witFilter:(GPUImageOutput <GPUImageInput>*)filter;
+- (IBAction)updateFilterFromSliderwitFilter:(GPUImageOutput <GPUImageInput>*)filter filterStr:(NSString*)str sliderValue:(float)slidervalue;
 - (void)GPUVCWillOutputFeatures:(NSArray*)featureArray forClap:(CGRect)clap
                  andOrientation:(UIDeviceOrientation)curDeviceOrientation;
 -(IBAction)facesSwitched:(id)sender;

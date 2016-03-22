@@ -12,7 +12,7 @@
 
 
 @protocol SRTEditorFilterSliderDelegate <NSObject>
-- (void)filterSlider:(id)sender;
+- (void)filterSliderTag:(NSInteger)tag senderValue:(float)senderValue;
 - (void)cancleCurrentFilter;
 @end
 
@@ -25,6 +25,8 @@
     UILabel *valueLabel;
     
     CGRect mainFrame ;
+    
+    NSInteger senderTag;
 
 }
 @property(readwrite, unsafe_unretained, nonatomic) UISlider *filterSlider;

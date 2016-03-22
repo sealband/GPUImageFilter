@@ -136,6 +136,7 @@
 {
 //    [self.delegate filterSlider:self valueChange:[[myDic getValueForKey:@"value"] intValue]];
 //    [self.delegate cancleCurrentFilter];
+    [self.delegate filterSliderTag:senderTag senderValue:[[myDic getValueForKey:@"value"] floatValue]];
     [self dismiss];
 }
 
@@ -147,13 +148,14 @@
 - (void)setDic:(NSDictionary *)dic tag:(NSInteger)tag
 {
     myDic = dic;
-    filterSlider.maximumValue = [[dic getValueForKey:@"max"] intValue];
-    filterSlider.minimumValue = [[dic getValueForKey:@"min"] intValue];
+    filterSlider.maximumValue = [[dic getValueForKey:@"max"] floatValue];
+    filterSlider.minimumValue = [[dic getValueForKey:@"min"] floatValue];
 //    filterSlider.defaultValue = [[dic getValueForKey:@"defaultvalue"] intValue];
-    filterSlider.value = [[dic getValueForKey:@"defaultvalue"] intValue];
-    filterSlider.tag = tag;
+    filterSlider.value = [[dic getValueForKey:@"value"] floatValue];
+//    filterSlider.tag = tag;
     
-    valueLabel.text = [[dic getValueForKey:@"defaultvalue"] stringValue];
+    senderTag = tag;
+    valueLabel.text = [[dic getValueForKey:@"value"] stringValue];
     
     
 //    if ([[myDic getValueForKey:@"id"] intValue] == 5) {
@@ -205,7 +207,7 @@
 //    {
 //        [self.delegate filterSlider:self valueChange:sliderView.value];
 //    }
-    [self.delegate filterSlider:sender];
+    [self.delegate filterSliderTag:senderTag senderValue:[(UISlider*)sender value]];
 }
 
 #pragma mark - circle delegate
