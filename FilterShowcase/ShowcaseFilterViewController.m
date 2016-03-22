@@ -212,6 +212,8 @@
     outPutBtn.frame = CGRectMake(0, 0, 70, 36);
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:outPutBtn];
     self.navigationItem.rightBarButtonItem = rightButtonItem;
+    
+    currFilterDic = [[NSMutableDictionary alloc] init];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -359,16 +361,6 @@
     NSDictionary *filterDic = [arrFilterSource objectAtIndex:typeNumber];
     self.title = [filterDic getValueForKey:@"name"];
     
-    
-    if ([[filterDic getValueForKey:@"sliderhidden"] isEqualToString:@"YES"]) {
-        self.filterSettingsSlider.hidden = YES;
-    }else
-    {
-        self.filterSettingsSlider.hidden = NO;
-    }
-    [self.filterSettingsSlider setValue:[[filterDic getValueForKey:@"value"] floatValue]];
-    [self.filterSettingsSlider setMinimumValue:[[filterDic getValueForKey:@"min"] floatValue]];
-    [self.filterSettingsSlider setMaximumValue:[[filterDic getValueForKey:@"max"] floatValue]];
     Class filterClass = NSClassFromString([filterDic getValueForKey:@"filter"]);
     filter  = [[filterClass alloc] init];
     
@@ -1254,237 +1246,237 @@
         videoCamera.runBenchmark = YES;
         GPUImageView *filterView = (GPUImageView *)self.view;
         
-        if (needsSecondImage)
-        {
-			UIImage *inputImage;
-			
-			if (filterType == GPUIMAGE_MASK) 
-			{
-				inputImage = [UIImage imageNamed:@"mask"];
-			}
-            /*
-			else if (filterType == GPUIMAGE_VORONOI) {
-                inputImage = [UIImage imageNamed:@"voroni_points.png"];
-            }*/
-            else {
-				// The picture is only used for two-image blend filters
-				inputImage = [UIImage imageNamed:@"WID-small.jpg"];
-			}
-			
-//            sourcePicture = [[GPUImagePicture alloc] initWithImage:inputImage smoothlyScaleOutput:NO];
-            sourcePicture = [[GPUImagePicture alloc] initWithImage:inputImage smoothlyScaleOutput:YES];
-            [sourcePicture processImage];
-            [sourcePicture addTarget:filter];
-        }
-
+//        if (needsSecondImage)
+//        {
+//			UIImage *inputImage;
+//			
+//			if (filterType == GPUIMAGE_MASK) 
+//			{
+//				inputImage = [UIImage imageNamed:@"mask"];
+//			}
+//            /*
+//			else if (filterType == GPUIMAGE_VORONOI) {
+//                inputImage = [UIImage imageNamed:@"voroni_points.png"];
+//            }*/
+//            else {
+//				// The picture is only used for two-image blend filters
+//				inputImage = [UIImage imageNamed:@"WID-small.jpg"];
+//			}
+//			
+////            sourcePicture = [[GPUImagePicture alloc] initWithImage:inputImage smoothlyScaleOutput:NO];
+//            sourcePicture = [[GPUImagePicture alloc] initWithImage:inputImage smoothlyScaleOutput:YES];
+//            [sourcePicture processImage];
+//            [sourcePicture addTarget:filter];
+//        }
+//
         
-        if (filterType == GPUIMAGE_HISTOGRAM)
-        {
-            // I'm adding an intermediary filter because glReadPixels() requires something to be rendered for its glReadPixels() operation to work
-            [videoCamera removeTarget:filter];
-            GPUImageGammaFilter *gammaFilter = [[GPUImageGammaFilter alloc] init];
-            [videoCamera addTarget:gammaFilter];
-            [gammaFilter addTarget:filter];
-
-            GPUImageHistogramGenerator *histogramGraph = [[GPUImageHistogramGenerator alloc] init];
-            
-            [histogramGraph forceProcessingAtSize:CGSizeMake(256.0, 330.0)];
-            [filter addTarget:histogramGraph];
-            
-            GPUImageAlphaBlendFilter *blendFilter = [[GPUImageAlphaBlendFilter alloc] init];
-            blendFilter.mix = 0.75;            
-            [blendFilter forceProcessingAtSize:CGSizeMake(256.0, 330.0)];
-            
-            [videoCamera addTarget:blendFilter];
-            [histogramGraph addTarget:blendFilter];
-
-            [blendFilter addTarget:filterView];
-        }
-        else if ( (filterType == GPUIMAGE_HARRISCORNERDETECTION) || (filterType == GPUIMAGE_NOBLECORNERDETECTION) || (filterType == GPUIMAGE_SHITOMASIFEATUREDETECTION) )
-        {
-            GPUImageCrosshairGenerator *crosshairGenerator = [[GPUImageCrosshairGenerator alloc] init];
-            crosshairGenerator.crosshairWidth = 15.0;
-            [crosshairGenerator forceProcessingAtSize:CGSizeMake(480.0, 640.0)];
-            
-            [(GPUImageHarrisCornerDetectionFilter *)filter setCornersDetectedBlock:^(GLfloat* cornerArray, NSUInteger cornersDetected, CMTime frameTime) {
-                [crosshairGenerator renderCrosshairsFromArray:cornerArray count:cornersDetected frameTime:frameTime];
-            }];
-
-            GPUImageAlphaBlendFilter *blendFilter = [[GPUImageAlphaBlendFilter alloc] init];
-            [blendFilter forceProcessingAtSize:CGSizeMake(480.0, 640.0)];
-            GPUImageGammaFilter *gammaFilter = [[GPUImageGammaFilter alloc] init];
-            [videoCamera addTarget:gammaFilter];
-            [gammaFilter addTarget:blendFilter];
-
-            [crosshairGenerator addTarget:blendFilter];
-
-            [blendFilter addTarget:filterView];
-        }
-        else if (filterType == GPUIMAGE_HOUGHTRANSFORMLINEDETECTOR)
-        {
-            GPUImageLineGenerator *lineGenerator = [[GPUImageLineGenerator alloc] init];
-//            lineGenerator.crosshairWidth = 15.0;
-            [lineGenerator forceProcessingAtSize:CGSizeMake(480.0, 640.0)];
-            [lineGenerator setLineColorRed:1.0 green:0.0 blue:0.0];
-            [(GPUImageHoughTransformLineDetector *)filter setLinesDetectedBlock:^(GLfloat* lineArray, NSUInteger linesDetected, CMTime frameTime){
-                [lineGenerator renderLinesFromArray:lineArray count:linesDetected frameTime:frameTime];
-            }];
-            
-            GPUImageAlphaBlendFilter *blendFilter = [[GPUImageAlphaBlendFilter alloc] init];
-            [blendFilter forceProcessingAtSize:CGSizeMake(480.0, 640.0)];
-            GPUImageGammaFilter *gammaFilter = [[GPUImageGammaFilter alloc] init];
-            [videoCamera addTarget:gammaFilter];
-            [gammaFilter addTarget:blendFilter];
-            
-            [lineGenerator addTarget:blendFilter];
-            
-            [blendFilter addTarget:filterView];
-        }
-        else if (filterType == GPUIMAGE_UIELEMENT)
-        {
-            GPUImageAlphaBlendFilter *blendFilter = [[GPUImageAlphaBlendFilter alloc] init];
-            blendFilter.mix = 1.0;
-            
-            NSDate *startTime = [NSDate date];
-            
-            UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 240.0f, 320.0f)];
-            timeLabel.font = [UIFont systemFontOfSize:17.0f];
-            timeLabel.text = @"Time: 0.0 s";
-            timeLabel.textAlignment = UITextAlignmentCenter;
-            timeLabel.backgroundColor = [UIColor clearColor];
-            timeLabel.textColor = [UIColor whiteColor];
-
-            uiElementInput = [[GPUImageUIElement alloc] initWithView:timeLabel];
-            
-            [filter addTarget:blendFilter];
-            [uiElementInput addTarget:blendFilter];
-            
-            [blendFilter addTarget:filterView];
-
-            __unsafe_unretained GPUImageUIElement *weakUIElementInput = uiElementInput;
-            
-            [filter setFrameProcessingCompletionBlock:^(GPUImageOutput * filter, CMTime frameTime){
-                timeLabel.text = [NSString stringWithFormat:@"Time: %f s", -[startTime timeIntervalSinceNow]];
-                [weakUIElementInput update];
-            }];
-        }
-        else if (filterType == GPUIMAGE_BUFFER)
-        {
-            GPUImageDifferenceBlendFilter *blendFilter = [[GPUImageDifferenceBlendFilter alloc] init];
-
-            [videoCamera removeTarget:filter];
-
-            GPUImageGammaFilter *gammaFilter = [[GPUImageGammaFilter alloc] init];
-            [videoCamera addTarget:gammaFilter];
-            [gammaFilter addTarget:blendFilter];
-            [videoCamera addTarget:filter];
-
-            [filter addTarget:blendFilter];
-            
-            [blendFilter addTarget:filterView];
-        }
-        else if ( (filterType == GPUIMAGE_OPACITY) || (filterType == GPUIMAGE_CHROMAKEYNONBLEND) )
-        {
-            [sourcePicture removeTarget:filter];
-            [videoCamera removeTarget:filter];
-            [videoCamera addTarget:filter];
-            
-            GPUImageAlphaBlendFilter *blendFilter = [[GPUImageAlphaBlendFilter alloc] init];
-            blendFilter.mix = 1.0;
-            [sourcePicture addTarget:blendFilter];
-            [filter addTarget:blendFilter];
-            
-            [blendFilter addTarget:filterView];
-        }
-        else if ( (filterType == GPUIMAGE_SPHEREREFRACTION) || (filterType == GPUIMAGE_GLASSSPHERE) )
-        {
-            // Provide a blurred image for a cool-looking background
-            GPUImageGaussianBlurFilter *gaussianBlur = [[GPUImageGaussianBlurFilter alloc] init];
-            [videoCamera addTarget:gaussianBlur];
-            gaussianBlur.blurRadiusInPixels = 5.0;
-
-            GPUImageAlphaBlendFilter *blendFilter = [[GPUImageAlphaBlendFilter alloc] init];
-            blendFilter.mix = 1.0;
-            [gaussianBlur addTarget:blendFilter];
-            [filter addTarget:blendFilter];
-            
-            [blendFilter addTarget:filterView];
-
-        }
-        else if (filterType == GPUIMAGE_AVERAGECOLOR)
-        {
-            GPUImageSolidColorGenerator *colorGenerator = [[GPUImageSolidColorGenerator alloc] init];
-            [colorGenerator forceProcessingAtSize:[filterView sizeInPixels]];
-            
-            [(GPUImageAverageColor *)filter setColorAverageProcessingFinishedBlock:^(CGFloat redComponent, CGFloat greenComponent, CGFloat blueComponent, CGFloat alphaComponent, CMTime frameTime) {
-                [colorGenerator setColorRed:redComponent green:greenComponent blue:blueComponent alpha:alphaComponent];
-//                NSLog(@"Average color: %f, %f, %f, %f", redComponent, greenComponent, blueComponent, alphaComponent);
-            }];
-            
-            [colorGenerator addTarget:filterView];
-        }
-        else if (filterType == GPUIMAGE_LUMINOSITY)
-        {
-            GPUImageSolidColorGenerator *colorGenerator = [[GPUImageSolidColorGenerator alloc] init];
-            [colorGenerator forceProcessingAtSize:[filterView sizeInPixels]];
-            
-            [(GPUImageLuminosity *)filter setLuminosityProcessingFinishedBlock:^(CGFloat luminosity, CMTime frameTime) {
-                [colorGenerator setColorRed:luminosity green:luminosity blue:luminosity alpha:1.0];
-            }];
-            
-            [colorGenerator addTarget:filterView];
-        }
-        else if (filterType == GPUIMAGE_IOSBLUR)
-        {
-            [videoCamera removeAllTargets];
-            [videoCamera addTarget:filterView];
-            GPUImageCropFilter *cropFilter = [[GPUImageCropFilter alloc] init];
-            cropFilter.cropRegion = CGRectMake(0.0, 0.5, 1.0, 0.5);
-            [videoCamera addTarget:cropFilter];
-            [cropFilter addTarget:filter];
-            
-            CGRect currentViewFrame = filterView.bounds;
-            GPUImageView *blurOverlayView = [[GPUImageView alloc] initWithFrame:CGRectMake(0.0, round(currentViewFrame.size.height / 2.0), currentViewFrame.size.width, currentViewFrame.size.height - round(currentViewFrame.size.height / 2.0))];
-            [filterView addSubview:blurOverlayView];
-            [filter addTarget:blurOverlayView];
-        }
-        else if (filterType == GPUIMAGE_MOTIONDETECTOR)
-        {
-            faceView = [[UIView alloc] initWithFrame:CGRectMake(100.0, 100.0, 100.0, 100.0)];
-            faceView.layer.borderWidth = 1;
-            faceView.layer.borderColor = [[UIColor redColor] CGColor];
-            [self.view addSubview:faceView];
-            faceView.hidden = YES;
-            
-            __unsafe_unretained ShowcaseFilterViewController * weakSelf = self;
-            [(GPUImageMotionDetector *) filter setMotionDetectionBlock:^(CGPoint motionCentroid, CGFloat motionIntensity, CMTime frameTime) {
-                if (motionIntensity > 0.01)
-                {
-                    CGFloat motionBoxWidth = 1500.0 * motionIntensity;
-                    CGSize viewBounds = weakSelf.view.bounds.size;
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        weakSelf->faceView.frame = CGRectMake(round(viewBounds.width * motionCentroid.x - motionBoxWidth / 2.0), round(viewBounds.height * motionCentroid.y - motionBoxWidth / 2.0), motionBoxWidth, motionBoxWidth);
-                        weakSelf->faceView.hidden = NO;
-                    });
-                    
-                }
-                else
-                {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        weakSelf->faceView.hidden = YES;
-                    });
-                }
-                
-            }];
-            
-            [videoCamera addTarget:filterView];
-        }
-        else
-        {
-            [filter addTarget:filterView];
-        }
-    } 
-    [staticPicture processImage];
+//        if (filterType == GPUIMAGE_HISTOGRAM)
+//        {
+//            // I'm adding an intermediary filter because glReadPixels() requires something to be rendered for its glReadPixels() operation to work
+//            [videoCamera removeTarget:filter];
+//            GPUImageGammaFilter *gammaFilter = [[GPUImageGammaFilter alloc] init];
+//            [videoCamera addTarget:gammaFilter];
+//            [gammaFilter addTarget:filter];
+//
+//            GPUImageHistogramGenerator *histogramGraph = [[GPUImageHistogramGenerator alloc] init];
+//            
+//            [histogramGraph forceProcessingAtSize:CGSizeMake(256.0, 330.0)];
+//            [filter addTarget:histogramGraph];
+//            
+//            GPUImageAlphaBlendFilter *blendFilter = [[GPUImageAlphaBlendFilter alloc] init];
+//            blendFilter.mix = 0.75;            
+//            [blendFilter forceProcessingAtSize:CGSizeMake(256.0, 330.0)];
+//            
+//            [videoCamera addTarget:blendFilter];
+//            [histogramGraph addTarget:blendFilter];
+//
+//            [blendFilter addTarget:filterView];
+//        }
+//        else if ( (filterType == GPUIMAGE_HARRISCORNERDETECTION) || (filterType == GPUIMAGE_NOBLECORNERDETECTION) || (filterType == GPUIMAGE_SHITOMASIFEATUREDETECTION) )
+//        {
+//            GPUImageCrosshairGenerator *crosshairGenerator = [[GPUImageCrosshairGenerator alloc] init];
+//            crosshairGenerator.crosshairWidth = 15.0;
+//            [crosshairGenerator forceProcessingAtSize:CGSizeMake(480.0, 640.0)];
+//            
+//            [(GPUImageHarrisCornerDetectionFilter *)filter setCornersDetectedBlock:^(GLfloat* cornerArray, NSUInteger cornersDetected, CMTime frameTime) {
+//                [crosshairGenerator renderCrosshairsFromArray:cornerArray count:cornersDetected frameTime:frameTime];
+//            }];
+//
+//            GPUImageAlphaBlendFilter *blendFilter = [[GPUImageAlphaBlendFilter alloc] init];
+//            [blendFilter forceProcessingAtSize:CGSizeMake(480.0, 640.0)];
+//            GPUImageGammaFilter *gammaFilter = [[GPUImageGammaFilter alloc] init];
+//            [videoCamera addTarget:gammaFilter];
+//            [gammaFilter addTarget:blendFilter];
+//
+//            [crosshairGenerator addTarget:blendFilter];
+//
+//            [blendFilter addTarget:filterView];
+//        }
+//        else if (filterType == GPUIMAGE_HOUGHTRANSFORMLINEDETECTOR)
+//        {
+//            GPUImageLineGenerator *lineGenerator = [[GPUImageLineGenerator alloc] init];
+////            lineGenerator.crosshairWidth = 15.0;
+//            [lineGenerator forceProcessingAtSize:CGSizeMake(480.0, 640.0)];
+//            [lineGenerator setLineColorRed:1.0 green:0.0 blue:0.0];
+//            [(GPUImageHoughTransformLineDetector *)filter setLinesDetectedBlock:^(GLfloat* lineArray, NSUInteger linesDetected, CMTime frameTime){
+//                [lineGenerator renderLinesFromArray:lineArray count:linesDetected frameTime:frameTime];
+//            }];
+//            
+//            GPUImageAlphaBlendFilter *blendFilter = [[GPUImageAlphaBlendFilter alloc] init];
+//            [blendFilter forceProcessingAtSize:CGSizeMake(480.0, 640.0)];
+//            GPUImageGammaFilter *gammaFilter = [[GPUImageGammaFilter alloc] init];
+//            [videoCamera addTarget:gammaFilter];
+//            [gammaFilter addTarget:blendFilter];
+//            
+//            [lineGenerator addTarget:blendFilter];
+//            
+//            [blendFilter addTarget:filterView];
+//        }
+//        else if (filterType == GPUIMAGE_UIELEMENT)
+//        {
+//            GPUImageAlphaBlendFilter *blendFilter = [[GPUImageAlphaBlendFilter alloc] init];
+//            blendFilter.mix = 1.0;
+//            
+//            NSDate *startTime = [NSDate date];
+//            
+//            UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 240.0f, 320.0f)];
+//            timeLabel.font = [UIFont systemFontOfSize:17.0f];
+//            timeLabel.text = @"Time: 0.0 s";
+//            timeLabel.textAlignment = UITextAlignmentCenter;
+//            timeLabel.backgroundColor = [UIColor clearColor];
+//            timeLabel.textColor = [UIColor whiteColor];
+//
+//            uiElementInput = [[GPUImageUIElement alloc] initWithView:timeLabel];
+//            
+//            [filter addTarget:blendFilter];
+//            [uiElementInput addTarget:blendFilter];
+//            
+//            [blendFilter addTarget:filterView];
+//
+//            __unsafe_unretained GPUImageUIElement *weakUIElementInput = uiElementInput;
+//            
+//            [filter setFrameProcessingCompletionBlock:^(GPUImageOutput * filter, CMTime frameTime){
+//                timeLabel.text = [NSString stringWithFormat:@"Time: %f s", -[startTime timeIntervalSinceNow]];
+//                [weakUIElementInput update];
+//            }];
+//        }
+//        else if (filterType == GPUIMAGE_BUFFER)
+//        {
+//            GPUImageDifferenceBlendFilter *blendFilter = [[GPUImageDifferenceBlendFilter alloc] init];
+//
+//            [videoCamera removeTarget:filter];
+//
+//            GPUImageGammaFilter *gammaFilter = [[GPUImageGammaFilter alloc] init];
+//            [videoCamera addTarget:gammaFilter];
+//            [gammaFilter addTarget:blendFilter];
+//            [videoCamera addTarget:filter];
+//
+//            [filter addTarget:blendFilter];
+//            
+//            [blendFilter addTarget:filterView];
+//        }
+//        else if ( (filterType == GPUIMAGE_OPACITY) || (filterType == GPUIMAGE_CHROMAKEYNONBLEND) )
+//        {
+//            [sourcePicture removeTarget:filter];
+//            [videoCamera removeTarget:filter];
+//            [videoCamera addTarget:filter];
+//            
+//            GPUImageAlphaBlendFilter *blendFilter = [[GPUImageAlphaBlendFilter alloc] init];
+//            blendFilter.mix = 1.0;
+//            [sourcePicture addTarget:blendFilter];
+//            [filter addTarget:blendFilter];
+//            
+//            [blendFilter addTarget:filterView];
+//        }
+//        else if ( (filterType == GPUIMAGE_SPHEREREFRACTION) || (filterType == GPUIMAGE_GLASSSPHERE) )
+//        {
+//            // Provide a blurred image for a cool-looking background
+//            GPUImageGaussianBlurFilter *gaussianBlur = [[GPUImageGaussianBlurFilter alloc] init];
+//            [videoCamera addTarget:gaussianBlur];
+//            gaussianBlur.blurRadiusInPixels = 5.0;
+//
+//            GPUImageAlphaBlendFilter *blendFilter = [[GPUImageAlphaBlendFilter alloc] init];
+//            blendFilter.mix = 1.0;
+//            [gaussianBlur addTarget:blendFilter];
+//            [filter addTarget:blendFilter];
+//            
+//            [blendFilter addTarget:filterView];
+//
+//        }
+//        else if (filterType == GPUIMAGE_AVERAGECOLOR)
+//        {
+//            GPUImageSolidColorGenerator *colorGenerator = [[GPUImageSolidColorGenerator alloc] init];
+//            [colorGenerator forceProcessingAtSize:[filterView sizeInPixels]];
+//            
+//            [(GPUImageAverageColor *)filter setColorAverageProcessingFinishedBlock:^(CGFloat redComponent, CGFloat greenComponent, CGFloat blueComponent, CGFloat alphaComponent, CMTime frameTime) {
+//                [colorGenerator setColorRed:redComponent green:greenComponent blue:blueComponent alpha:alphaComponent];
+////                NSLog(@"Average color: %f, %f, %f, %f", redComponent, greenComponent, blueComponent, alphaComponent);
+//            }];
+//            
+//            [colorGenerator addTarget:filterView];
+//        }
+//        else if (filterType == GPUIMAGE_LUMINOSITY)
+//        {
+//            GPUImageSolidColorGenerator *colorGenerator = [[GPUImageSolidColorGenerator alloc] init];
+//            [colorGenerator forceProcessingAtSize:[filterView sizeInPixels]];
+//            
+//            [(GPUImageLuminosity *)filter setLuminosityProcessingFinishedBlock:^(CGFloat luminosity, CMTime frameTime) {
+//                [colorGenerator setColorRed:luminosity green:luminosity blue:luminosity alpha:1.0];
+//            }];
+//            
+//            [colorGenerator addTarget:filterView];
+//        }
+//        else if (filterType == GPUIMAGE_IOSBLUR)
+//        {
+//            [videoCamera removeAllTargets];
+//            [videoCamera addTarget:filterView];
+//            GPUImageCropFilter *cropFilter = [[GPUImageCropFilter alloc] init];
+//            cropFilter.cropRegion = CGRectMake(0.0, 0.5, 1.0, 0.5);
+//            [videoCamera addTarget:cropFilter];
+//            [cropFilter addTarget:filter];
+//            
+//            CGRect currentViewFrame = filterView.bounds;
+//            GPUImageView *blurOverlayView = [[GPUImageView alloc] initWithFrame:CGRectMake(0.0, round(currentViewFrame.size.height / 2.0), currentViewFrame.size.width, currentViewFrame.size.height - round(currentViewFrame.size.height / 2.0))];
+//            [filterView addSubview:blurOverlayView];
+//            [filter addTarget:blurOverlayView];
+//        }
+//        else if (filterType == GPUIMAGE_MOTIONDETECTOR)
+//        {
+//            faceView = [[UIView alloc] initWithFrame:CGRectMake(100.0, 100.0, 100.0, 100.0)];
+//            faceView.layer.borderWidth = 1;
+//            faceView.layer.borderColor = [[UIColor redColor] CGColor];
+//            [self.view addSubview:faceView];
+//            faceView.hidden = YES;
+//            
+//            __unsafe_unretained ShowcaseFilterViewController * weakSelf = self;
+//            [(GPUImageMotionDetector *) filter setMotionDetectionBlock:^(CGPoint motionCentroid, CGFloat motionIntensity, CMTime frameTime) {
+//                if (motionIntensity > 0.01)
+//                {
+//                    CGFloat motionBoxWidth = 1500.0 * motionIntensity;
+//                    CGSize viewBounds = weakSelf.view.bounds.size;
+//                    dispatch_async(dispatch_get_main_queue(), ^{
+//                        weakSelf->faceView.frame = CGRectMake(round(viewBounds.width * motionCentroid.x - motionBoxWidth / 2.0), round(viewBounds.height * motionCentroid.y - motionBoxWidth / 2.0), motionBoxWidth, motionBoxWidth);
+//                        weakSelf->faceView.hidden = NO;
+//                    });
+//                    
+//                }
+//                else
+//                {
+//                    dispatch_async(dispatch_get_main_queue(), ^{
+//                        weakSelf->faceView.hidden = YES;
+//                    });
+//                }
+//                
+//            }];
+//            
+//            [videoCamera addTarget:filterView];
+//        }
+//        else
+//        {
+//            [filter addTarget:filterView];
+//        }
+    }
+//    [staticPicture processImage];
 }
 
 #pragma mark -
