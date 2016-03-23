@@ -207,13 +207,14 @@
     [self.view addSubview:sliderView];
     
     UIButton *outPutBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [outPutBtn setTitle:@"pamaters" forState:UIControlStateNormal];
+    [outPutBtn setTitle:@"parameter" forState:UIControlStateNormal];
     [outPutBtn addTarget:self action:@selector(outputFilterParemeters) forControlEvents:UIControlEventTouchUpInside];
     outPutBtn.frame = CGRectMake(0, 0, 70, 36);
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:outPutBtn];
     self.navigationItem.rightBarButtonItem = rightButtonItem;
     
     currFilterDic = [[NSMutableDictionary alloc] init];
+    filterArr = [[NSMutableArray alloc] init];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -234,17 +235,6 @@
 
 - (void)outputFilterParemeters
 {
-    NSString *filterParameterStr;
-    if (currentValue) {
-        filterParameterStr = [NSString stringWithFormat:@"%@:%@",self.title,currentValue];
-    } else
-    {
-        filterParameterStr = [NSString stringWithFormat:@"%@:%@",self.title,currentValue];
-    }
-    [filterArr addObject:filterParameterStr];
-    
-    
-    
     OutputTableViewController *outputTableVC = [[OutputTableViewController alloc] initWithFilterArr:filterArr];
     [self.navigationController pushViewController:outputTableVC animated:YES];
 }
@@ -298,9 +288,7 @@
 //        currentValue = [NSString stringWithFormat:@"%.2f",self.filterSettingsSlider.value];
         filterParameterStr = [NSString stringWithFormat:@"%@:%@",self.title,currentValue];
     }
-    [filterArr addObject:filterParameterStr];
-    
-    
+        
     NSMutableArray *d = [[arrFilterSource objectAtIndex:indexPath.row] mutableCopy];
     NSString *filterStr = [NSString stringWithFormat:@"%ld",indexPath.row];
     [d setValue:filterStr forKey:@"filterTypeInt"];
@@ -1494,6 +1482,7 @@
 
 - (void)updateFilterBlend
 {
+    [filterArr removeAllObjects];
     GPUImagePicture *stillImageSource = [[GPUImagePicture alloc] initWithImage:stillImage];
     GPUImageOutput *filterOutput = nil;
     GPUImageOutput *lastfilter = nil;
@@ -1536,6 +1525,14 @@
     [lastfilter useNextFrameForImageCapture];
     [stillImageSource processImage];
     sourceImageView.image = [lastfilter imageFromCurrentFramebuffer];
+    
+    
+    for (NSDictionary *filterDic in [currFilterDic getValueForKey:@"filtertype"]){
+        NSString *filterParameterStr = [NSString stringWithFormat:@"%@:%@",[filterDic getValueForKey:@"name"],[filterDic getValueForKey:@"value"]];
+        [filterArr addObject:filterParameterStr];
+        
+    }
+
 }
 
 
