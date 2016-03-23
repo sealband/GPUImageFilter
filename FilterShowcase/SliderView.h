@@ -23,6 +23,7 @@
     UISlider *filterSlider;
     
     UILabel *valueLabel;
+    UILabel *defaultValueLabel;
     
     CGRect mainFrame ;
     

@@ -64,12 +64,22 @@
         [self addSubview:btn];
     }
     
-    valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width/2-25, self.frame.size.height-40, 50, 25)];
+    valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width/2-85, self.frame.size.height-40, 100, 25)];
     valueLabel.backgroundColor = [UIColor clearColor];
     valueLabel.font = [UIFont systemFontOfSize:15];
     valueLabel.textColor = [UIColor blackColor];
+    valueLabel.textAlignment = NSTextAlignmentCenter;
     [valueLabel setTextAlignment:NSTextAlignmentCenter];
     [self addSubview:valueLabel];
+    
+    defaultValueLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width/2+10, self.frame.size.height-40, 60, 25)];
+    defaultValueLabel.backgroundColor = [UIColor clearColor];
+    defaultValueLabel.font = [UIFont systemFontOfSize:15];
+    defaultValueLabel.textColor = [UIColor blackColor];
+    defaultValueLabel.textAlignment = NSTextAlignmentCenter;
+    [defaultValueLabel setTextAlignment:NSTextAlignmentCenter];
+    [self addSubview:defaultValueLabel];
+
 
     float offsety = totalheight-50;
 //    [self addSubview:[CHLine lineWithFrame:CGRectMake(0, 0, DEVICEW, 0.5) color:[UIColor colorWithRed:193/255.0 green:193/255.0 blue:193/255.0 alpha:1]]];
@@ -125,7 +135,7 @@
 //        [blurView removeFromSuperview];
 //        blurView = nil;
 //    }
-    [UIView animateWithDuration:0.1 animations:^{
+    [UIView animateWithDuration:0.2 animations:^{
         self.frame = CGRectMake(0, mainFrame.size.height, self.frame.size.width, self.frame.size.height);
     } completion:^(BOOL finished) {
         
@@ -155,7 +165,8 @@
 //    filterSlider.tag = tag;
     
     senderTag = tag;
-    valueLabel.text = [[dic getValueForKey:@"value"] stringValue];
+    valueLabel.text = [NSString stringWithFormat:@"now:%@",[[dic getValueForKey:@"value"] stringValue]];
+    defaultValueLabel.text = [NSString stringWithFormat:@"def:%@",[[dic getValueForKey:@"defaultvalue"] stringValue]];
     
     
 //    if ([[myDic getValueForKey:@"id"] intValue] == 5) {
@@ -181,7 +192,7 @@
 - (void)updateLabValue
 {
     NSString *currentValue = [NSString stringWithFormat:@"%.2f",filterSlider.value];
-    valueLabel.text = currentValue;
+    valueLabel.text = [NSString stringWithFormat:@"now:%@",currentValue];
 }
 
 -(void)sliderValueChanged:(id)sender
