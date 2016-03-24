@@ -2,6 +2,7 @@
 #import "GPUImage.h"
 #import "FilterTypeDefination.h"
 #import "SliderView.h"
+#import "CHLine.h"
 
 @interface ShowcaseFilterViewController : UIViewController <GPUImageVideoCameraDelegate,UITableViewDelegate,UITableViewDataSource,SRTEditorFilterSliderDelegate>
 {

@@ -203,10 +203,13 @@
     frame =  [[UIScreen mainScreen] bounds];
     horizontalTableView = [[UITableView alloc] init];
     horizontalTableView.transform = CGAffineTransformMakeRotation(-M_PI * 0.5);
-    horizontalTableView.frame = CGRectMake(0, frame.size.height-80, 320, 100);
+    horizontalTableView.frame = CGRectMake(0, frame.size.height-90, 320, 100);
     horizontalTableView.delegate = self;
     horizontalTableView.dataSource = self;
     [self.view addSubview:horizontalTableView];
+    
+    CHLine *line = [CHLine lineWithFrame:CGRectMake(0, frame.size.height-90, frame.size.width, 1) color:[UIColor colorWithRed:193/255.0 green:193/255.0 blue:193/255.0 alpha:1]];
+    [self.view addSubview:line];
     
     valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width-50, frame.size.height-125, 50, 25)];
     valueLabel.backgroundColor = [UIColor clearColor];
