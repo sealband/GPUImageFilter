@@ -27,9 +27,12 @@
     
     self.frame = CGRectMake(CGRectGetMinX(self.frame), CGRectGetMinY(self.frame), CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
     float totalheight = CGRectGetHeight(self.frame);
+    CHLine *line = [CHLine lineWithFrame:CGRectMake(0, self.frame.size.height-totalheight, self.frame.size.width, 0.5) color:[UIColor colorWithRed:193/255.0 green:193/255.0 blue:193/255.0 alpha:1]];
+    [self addSubview:line];
+    
     {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = CGRectMake(0, totalheight-47, 60, 44);
+        btn.frame = CGRectMake(5, totalheight-42, 40, 40);
         btn.imageView.contentMode = UIViewContentModeScaleAspectFit;
         [btn setImage:[UIImage imageNamed:@"btn_close"] forState:UIControlStateNormal];
 
@@ -38,31 +41,32 @@
     }
     {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = CGRectMake(self.frame.size.width-60, totalheight-47, 60, 44);
+        btn.frame = CGRectMake(self.frame.size.width-45, totalheight-42, 40, 40);
         btn.imageView.contentMode = UIViewContentModeScaleAspectFit;
         [btn setImage:[UIImage imageNamed:@"btn_confirm"] forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(nextDidClick:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:btn];
     }
-    valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width/2-85, self.frame.size.height-40, 100, 25)];
+    valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width/2-85, self.frame.size.height-34, 100, 25)];
     valueLabel.backgroundColor = [UIColor clearColor];
-    valueLabel.font = [UIFont systemFontOfSize:15];
-    valueLabel.textColor = [UIColor blackColor];
+    valueLabel.font = [UIFont systemFontOfSize:14];
+    valueLabel.textColor = [UIColor grayColor];
     valueLabel.textAlignment = NSTextAlignmentCenter;
     [valueLabel setTextAlignment:NSTextAlignmentCenter];
     [self addSubview:valueLabel];
     
-    defaultValueLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width/2+10, self.frame.size.height-40, 60, 25)];
+    defaultValueLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width/2+10, self.frame.size.height-34, 60, 25)];
     defaultValueLabel.backgroundColor = [UIColor clearColor];
-    defaultValueLabel.font = [UIFont systemFontOfSize:15];
-    defaultValueLabel.textColor = [UIColor blackColor];
+    defaultValueLabel.font = [UIFont systemFontOfSize:14];
+    defaultValueLabel.textColor = [UIColor grayColor];
     defaultValueLabel.textAlignment = NSTextAlignmentCenter;
     [defaultValueLabel setTextAlignment:NSTextAlignmentCenter];
     [self addSubview:defaultValueLabel];
 
     float offsety = totalheight-50;
     
-    filterSlider = [[UISlider alloc] initWithFrame:CGRectMake(0, 10, self.frame.size.width, 30)];
+    filterSlider = [[UISlider alloc] initWithFrame:CGRectMake(10, 15, self.frame.size.width-20, 30)];
+    [filterSlider setMinimumTrackTintColor:[UIColor darkGrayColor]];
     [filterSlider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
     [filterSlider addTarget:self action:@selector(sliderDidCancel:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:filterSlider];

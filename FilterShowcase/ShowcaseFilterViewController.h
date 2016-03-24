@@ -3,6 +3,7 @@
 #import "FilterTypeDefination.h"
 #import "SliderView.h"
 #import "CHLine.h"
+#import "UIViewController+NavbarItemCategory.h"
 
 @interface ShowcaseFilterViewController : UIViewController <GPUImageVideoCameraDelegate,UITableViewDelegate,UITableViewDataSource,SRTEditorFilterSliderDelegate>
 {

@@ -223,13 +223,9 @@
     sliderView.delegate = self;
     [self.view addSubview:sliderView];
     
-    UIButton *outPutBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [outPutBtn setTitle:@"para" forState:UIControlStateNormal];
-    [outPutBtn addTarget:self action:@selector(outputFilterParemeters) forControlEvents:UIControlEventTouchUpInside];
-    outPutBtn.frame = CGRectMake(0, 0, 50, 36);
-    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:outPutBtn];
-    self.navigationItem.rightBarButtonItem = rightButtonItem;
-    
+    [self setBackSel:@selector(back)];
+    [self setRight:@selector(outputFilterParemeters) image:@"edit_obj_menu_typesetting" highlight:nil];
+
     currFilterDic = [[NSMutableDictionary alloc] init];
     filterArr = [[NSMutableArray alloc] init];
 }
@@ -248,6 +244,11 @@
     
     // Note: I needed to start camera capture after the view went on the screen, when a partially transition of navigation view controller stopped capturing via viewWilDisappear.
 //    [videoCamera startCameraCapture];
+}
+
+- (void)back
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)outputFilterParemeters
