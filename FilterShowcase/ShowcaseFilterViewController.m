@@ -343,7 +343,7 @@
     
     facesSwitch.hidden = YES;
     facesLabel.hidden = YES;
-    BOOL needsSecondImage = NO;
+//    BOOL needsSecondImage = NO;
     
     NSInteger typeNumber = (NSInteger)filterType;
     
@@ -365,7 +365,6 @@
         }
         
         videoCamera.runBenchmark = YES;
-        GPUImageView *filterView = (GPUImageView *)self.view;
     }
 
 }

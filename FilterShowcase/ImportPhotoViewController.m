@@ -45,7 +45,7 @@
 
 - (void)choosePhoto
 {
-    [self presentModalViewController:imagePicker animated:YES];
+    [self presentViewController:imagePicker animated:YES completion:nil];
 }
 
 - (void)showEditVC
@@ -60,7 +60,7 @@
 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
@@ -70,7 +70,7 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
     UIImage *imageselect= [info valueForKey:UIImagePickerControllerOriginalImage];
     stillImage = imageselect ;
     
