@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "BC982B0114F046AC0001FF6F"
-               BuildableName = "FilterShowcase.app"
-               BlueprintName = "FilterShowcase"
-               ReferencedContainer = "container:FilterShowcase.xcodeproj">
+               BuildableName = "filtershow.app"
+               BlueprintName = "filtershow"
+               ReferencedContainer = "container:filtershow.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BC982B0114F046AC0001FF6F"
-            BuildableName = "FilterShowcase.app"
-            BlueprintName = "FilterShowcase"
-            ReferencedContainer = "container:FilterShowcase.xcodeproj">
+            BuildableName = "filtershow.app"
+            BlueprintName = "filtershow"
+            ReferencedContainer = "container:filtershow.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -56,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BC982B0114F046AC0001FF6F"
-            BuildableName = "FilterShowcase.app"
-            BlueprintName = "FilterShowcase"
-            ReferencedContainer = "container:FilterShowcase.xcodeproj">
+            BuildableName = "filtershow.app"
+            BlueprintName = "filtershow"
+            ReferencedContainer = "container:filtershow.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -75,9 +75,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BC982B0114F046AC0001FF6F"
-            BuildableName = "FilterShowcase.app"
-            BlueprintName = "FilterShowcase"
-            ReferencedContainer = "container:FilterShowcase.xcodeproj">
+            BuildableName = "filtershow.app"
+            BlueprintName = "filtershow"
+            ReferencedContainer = "container:filtershow.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

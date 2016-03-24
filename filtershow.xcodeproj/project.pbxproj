@@ -97,14 +97,14 @@
 		17D1C6C91C8C7963007E7956 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
 		6BF3ED5615B5C2BF002F9E9E /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		83AE9FD31540F3CC00F7FC13 /* mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mask.png; sourceTree = "<group>"; };
-		BC982B0214F046AC0001FF6F /* FilterShowcase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FilterShowcase.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC982B0214F046AC0001FF6F /* filtershow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = filtershow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC982B0614F046AC0001FF6F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		BC982B0814F046AC0001FF6F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		BC982B0A14F046AC0001FF6F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		BC982B0E14F046AC0001FF6F /* FilterShowcase-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FilterShowcase-Info.plist"; sourceTree = "<group>"; };
+		BC982B0E14F046AC0001FF6F /* filtershow-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "filtershow-Info.plist"; sourceTree = "<group>"; };
 		BC982B1014F046AC0001FF6F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BC982B1214F046AC0001FF6F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		BC982B1414F046AC0001FF6F /* FilterShowcase-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FilterShowcase-Prefix.pch"; sourceTree = "<group>"; };
+		BC982B1414F046AC0001FF6F /* filtershow-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "filtershow-Prefix.pch"; sourceTree = "<group>"; };
 		BC982B1514F046AC0001FF6F /* ShowcaseAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowcaseAppDelegate.h; sourceTree = "<group>"; };
 		BC982B1614F046AC0001FF6F /* ShowcaseAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowcaseAppDelegate.m; sourceTree = "<group>"; };
 		BC982B1D14F048160001FF6F /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -177,7 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				E5530A35180FD1D500597F98 /* Default-568h@2x.png */,
-				BC982B0C14F046AC0001FF6F /* FilterShowcase */,
+				BC982B0C14F046AC0001FF6F /* filtershow */,
 				BC982B0514F046AC0001FF6F /* Frameworks */,
 				BC982B0314F046AC0001FF6F /* Products */,
 			);
@@ -186,7 +186,7 @@
 		BC982B0314F046AC0001FF6F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BC982B0214F046AC0001FF6F /* FilterShowcase.app */,
+				BC982B0214F046AC0001FF6F /* filtershow.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -208,7 +208,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		BC982B0C14F046AC0001FF6F /* FilterShowcase */ = {
+		BC982B0C14F046AC0001FF6F /* filtershow */ = {
 			isa = PBXGroup;
 			children = (
 				173CCFDC1CA2A0D2008E363A /* line */,
@@ -228,6 +228,7 @@
 				BC982C4014F1F6C80001FF6F /* CustomFilter.fsh */,
 				BC982B0D14F046AC0001FF6F /* Supporting Files */,
 			);
+			name = filtershow;
 			path = FilterShowcase;
 			sourceTree = "<group>";
 		};
@@ -250,10 +251,10 @@
 				F2F3361D156585C400B0FBB8 /* voroni_points2.png */,
 				174345031C896939006978D7 /* sample1.jpg */,
 				83AE9FD31540F3CC00F7FC13 /* mask.png */,
-				BC982B0E14F046AC0001FF6F /* FilterShowcase-Info.plist */,
+				BC982B0E14F046AC0001FF6F /* filtershow-Info.plist */,
 				BC982B0F14F046AC0001FF6F /* InfoPlist.strings */,
 				BC982B1214F046AC0001FF6F /* main.m */,
-				BC982B1414F046AC0001FF6F /* FilterShowcase-Prefix.pch */,
+				BC982B1414F046AC0001FF6F /* filtershow-Prefix.pch */,
 				0D69488D1501F71900206FF8 /* SampleConfiguration.plist */,
 				178BC27A1CA3C25300E33A76 /* pdf.xcassets */,
 			);
@@ -263,9 +264,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		BC982B0114F046AC0001FF6F /* FilterShowcase */ = {
+		BC982B0114F046AC0001FF6F /* filtershow */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BC982B1A14F046AC0001FF6F /* Build configuration list for PBXNativeTarget "FilterShowcase" */;
+			buildConfigurationList = BC982B1A14F046AC0001FF6F /* Build configuration list for PBXNativeTarget "filtershow" */;
 			buildPhases = (
 				BC982AFE14F046AC0001FF6F /* Sources */,
 				BC982AFF14F046AC0001FF6F /* Frameworks */,
@@ -275,9 +276,9 @@
 			);
 			dependencies = (
 			);
-			name = FilterShowcase;
+			name = filtershow;
 			productName = FilterShowcase;
-			productReference = BC982B0214F046AC0001FF6F /* FilterShowcase.app */;
+			productReference = BC982B0214F046AC0001FF6F /* filtershow.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -295,7 +296,7 @@
 					};
 				};
 			};
-			buildConfigurationList = BC982AFC14F046AC0001FF6F /* Build configuration list for PBXProject "FilterShowcase" */;
+			buildConfigurationList = BC982AFC14F046AC0001FF6F /* Build configuration list for PBXProject "filtershow" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -313,7 +314,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				BC982B0114F046AC0001FF6F /* FilterShowcase */,
+				BC982B0114F046AC0001FF6F /* filtershow */,
 			);
 		};
 /* End PBXProject section */
@@ -435,7 +436,7 @@
 					../../../framework/Source,
 					../../../framework/Source/iOS,
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
@@ -472,7 +473,7 @@
 					../../../framework/Source,
 					../../../framework/Source/iOS,
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
@@ -487,14 +488,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "FilterShowcase/FilterShowcase-Prefix.pch";
+				GCC_PREFIX_HEADER = "FilterShowcase/filtershow-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					framework/Source,
 					framework/Source/iOS,
 				);
-				INFOPLIST_FILE = "FilterShowcase/FilterShowcase-Info.plist";
+				INFOPLIST_FILE = "FilterShowcase/filtershow-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sunsetlakesoftware.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = filtershow;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -506,14 +507,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "FilterShowcase/FilterShowcase-Prefix.pch";
+				GCC_PREFIX_HEADER = "FilterShowcase/filtershow-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					framework/Source,
 					framework/Source/iOS,
 				);
-				INFOPLIST_FILE = "FilterShowcase/FilterShowcase-Info.plist";
+				INFOPLIST_FILE = "FilterShowcase/filtershow-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sunsetlakesoftware.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = filtershow;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -522,7 +523,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		BC982AFC14F046AC0001FF6F /* Build configuration list for PBXProject "FilterShowcase" */ = {
+		BC982AFC14F046AC0001FF6F /* Build configuration list for PBXProject "filtershow" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BC982B1814F046AC0001FF6F /* Debug */,
@@ -531,7 +532,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BC982B1A14F046AC0001FF6F /* Build configuration list for PBXNativeTarget "FilterShowcase" */ = {
+		BC982B1A14F046AC0001FF6F /* Build configuration list for PBXNativeTarget "filtershow" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BC982B1B14F046AC0001FF6F /* Debug */,
