@@ -225,6 +225,7 @@
     
     [self setBackSel:@selector(back)];
     [self setRight:@selector(outputFilterParemeters) image:@"edit_obj_menu_typesetting" highlight:nil];
+    [self setTitle:@"Default"];
 
     currFilterDic = [[NSMutableDictionary alloc] init];
     filterArr = [[NSMutableArray alloc] init];

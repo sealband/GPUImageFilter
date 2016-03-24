@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIViewController+NavbarItemCategory.h"
 
 @interface OutputTableViewController : UITableViewController<UITableViewDelegate,UITableViewDataSource>
 {
