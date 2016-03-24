@@ -6,10 +6,6 @@
 //  Copyright © 2016 Cell Phone. All rights reserved.
 //
 
-#import "NSDictionary+GetValue.h"
-#import "CHLine.h"
-
-
 @protocol SRTEditorFilterSliderDelegate <NSObject>
 - (void)filterSliderTag:(NSInteger)tag senderValue:(float)senderValue;
 - (void)cancleCurrentFilter;

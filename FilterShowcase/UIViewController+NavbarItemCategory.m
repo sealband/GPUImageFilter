@@ -10,11 +10,6 @@
 
 @implementation UIViewController (NavbarItemCategory)
 
-#define IMG(_name) [UIImage imageNamed:_name]
-#define TITLECOLOR [UIColor colorWithRed:78/255.0 green:78/255.0 blue:78/255.0 alpha:1]
-#define F(_size) [UIFont fontWithName:@"FZLanTingHei-EL-GBK" size:_size]
-#define FB(_size) [UIFont fontWithName:@"FZLanTingHeiS-R-GB" size:_size]
-
 - (void)setRight:(SEL)action title:(NSString *)_t
 {
     UIButton *btnBack = [UIButton buttonWithType:UIButtonTypeCustom];

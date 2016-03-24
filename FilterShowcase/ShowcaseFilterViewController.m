@@ -1,8 +1,6 @@
 #import "ShowcaseFilterViewController.h"
 #import <CoreImage/CoreImage.h>
 #import "OutputTableViewController.h"
-#import "NSDictionary+GetValue.h"
-
 
 
 #define kCellWidth                                  140

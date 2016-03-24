@@ -84,6 +84,7 @@
 		178BC26F1CA3BEC000E33A76 /* UIViewController+NavbarItemCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+NavbarItemCategory.h"; sourceTree = "<group>"; };
 		178BC2701CA3BEC000E33A76 /* UIViewController+NavbarItemCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+NavbarItemCategory.m"; sourceTree = "<group>"; };
 		178BC27A1CA3C25300E33A76 /* pdf.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = pdf.xcassets; sourceTree = "<group>"; };
+		178BC2821CA3F0CD00E33A76 /* FSConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSConfig.h; sourceTree = "<group>"; };
 		17D1C6AF1C8C758C007E7956 /* GPUImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GPUImage.xcodeproj; path = framework/GPUImage.xcodeproj; sourceTree = "<group>"; };
 		17D1C6BB1C8C78AE007E7956 /* WID-small.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "WID-small.jpg"; sourceTree = "<group>"; };
 		17D1C6BD1C8C78FB007E7956 /* lookup_soft_elegance_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lookup_soft_elegance_1.png; sourceTree = "<group>"; };
@@ -164,6 +165,14 @@
 			name = category;
 			sourceTree = "<group>";
 		};
+		178BC2811CA3F0A400E33A76 /* control */ = {
+			isa = PBXGroup;
+			children = (
+				178BC2821CA3F0CD00E33A76 /* FSConfig.h */,
+			);
+			name = control;
+			sourceTree = "<group>";
+		};
 		17D1C6B01C8C758C007E7956 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -211,6 +220,7 @@
 		BC982B0C14F046AC0001FF6F /* filtershow */ = {
 			isa = PBXGroup;
 			children = (
+				178BC2811CA3F0A400E33A76 /* control */,
 				173CCFDC1CA2A0D2008E363A /* line */,
 				1748043F1C99485B00F7552E /* category */,
 				BC982B1514F046AC0001FF6F /* ShowcaseAppDelegate.h */,
