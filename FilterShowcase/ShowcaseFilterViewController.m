@@ -203,12 +203,13 @@
     frame =  [[UIScreen mainScreen] bounds];
     horizontalTableView = [[UITableView alloc] init];
     horizontalTableView.transform = CGAffineTransformMakeRotation(-M_PI * 0.5);
-    horizontalTableView.frame = CGRectMake(0, frame.size.height-90, 320, 100);
+    horizontalTableView.frame = CGRectMake(0, frame.size.height-100, frame.size.width, 100);
     horizontalTableView.delegate = self;
     horizontalTableView.dataSource = self;
+    horizontalTableView.separatorStyle = UITableViewStylePlain;
     [self.view addSubview:horizontalTableView];
     
-    CHLine *line = [CHLine lineWithFrame:CGRectMake(0, frame.size.height-90, frame.size.width, 1) color:[UIColor colorWithRed:193/255.0 green:193/255.0 blue:193/255.0 alpha:1]];
+    CHLine *line = [CHLine lineWithFrame:CGRectMake(0, frame.size.height-100, frame.size.width, 0.5) color:[UIColor colorWithRed:193/255.0 green:193/255.0 blue:193/255.0 alpha:1]];
     [self.view addSubview:line];
     
     valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width-50, frame.size.height-125, 50, 25)];
@@ -269,7 +270,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 60;
+    return 70;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -281,15 +282,13 @@
     
     if (cell == nil)
     {
-        cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(kArticleCellHorizontalInnerPadding, 0, kCellWidth, kCellHeight)];
+        cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, 60, 70)];
     }
     cell.transform = CGAffineTransformMakeRotation(M_PI * 0.5);
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     cell.textLabel.font = [UIFont systemFontOfSize:8];
     cell.textLabel.numberOfLines = 0;
-    NSLog(@"%@",[arrFilterSource objectAtIndex:index]);
-//    cell.textLabel.text = [[arrFilterSource objectAtIndex:index] getValueForKey:@"name"];
     cell.textLabel.text = [NSString stringWithFormat:@"%ld\n%@",index,[[arrFilterSource objectAtIndex:index] getValueForKey:@"name"]];
     
     return cell;
@@ -304,7 +303,6 @@
         filterParameterStr = [NSString stringWithFormat:@"%@:%@",self.title,currentValue];
     } else
     {
-//        currentValue = [NSString stringWithFormat:@"%.2f",self.filterSettingsSlider.value];
         filterParameterStr = [NSString stringWithFormat:@"%@:%@",self.title,currentValue];
     }
     
@@ -312,17 +310,12 @@
     NSString *filterStr = [NSString stringWithFormat:@"%ld",indexPath.row];
     [d setValue:filterStr forKey:@"filterTypeInt"];
     [arrFilterSource replaceObjectAtIndex:indexPath.row withObject:d];
-
-    
-    
     
     [sliderView setDic:arrFilterSource[indexPath.row] tag:[indexPath row]];
     [UIView animateWithDuration:0.2 animations:^{
         sliderView.frame = CGRectMake(0, frame.size.height-100, frame.size.width, 100);
     } completion:^(BOOL finished) {
-        
     }];
-    
     
     [self setupFilter];
 }
