@@ -6,7 +6,6 @@
 //  Copyright © 2016 Cell Phone. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 
 @interface ImportPhotoViewController : UIViewController<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 {

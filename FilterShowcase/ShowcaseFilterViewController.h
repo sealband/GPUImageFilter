@@ -1,4 +1,3 @@
-#import <UIKit/UIKit.h>
 #import "GPUImage.h"
 #import "FilterTypeDefination.h"
 #import "SliderView.h"
