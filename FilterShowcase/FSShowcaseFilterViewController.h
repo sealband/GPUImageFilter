@@ -21,7 +21,6 @@
     
     GPUImagePicture *staticPicture;
     BOOL isStatic;
-    NSMutableArray *arrayTemp;
     NSMutableArray *filterArr;
     
     UITableView *horizontalTableView;
@@ -37,7 +36,7 @@
     UIImageView *sourceImageView;
 }
 
-@property(nonatomic,retain) NSMutableArray *checkedArray,*checkedIndexArray,*arrayTemp,*allCellArray;
+@property(nonatomic,retain) NSMutableArray *checkedArray,*checkedIndexArray,*allCellArray;
 @property(nonatomic,retain)UIImage * stillImage;
 @property(nonatomic,assign) BOOL isStatic;
 

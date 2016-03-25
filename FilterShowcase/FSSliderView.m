@@ -62,8 +62,6 @@
     defaultValueLabel.textAlignment = NSTextAlignmentCenter;
     [defaultValueLabel setTextAlignment:NSTextAlignmentCenter];
     [self addSubview:defaultValueLabel];
-
-    float offsety = totalheight-50;
     
     filterSlider = [[UISlider alloc] initWithFrame:CGRectMake(10, 15, self.frame.size.width-20, 30)];
     [filterSlider setMinimumTrackTintColor:[UIColor darkGrayColor]];

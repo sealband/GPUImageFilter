@@ -8,7 +8,6 @@
 
 @protocol SRTEditorFilterSliderDelegate <NSObject>
 - (void)filterSliderTag:(NSInteger)tag senderValue:(float)senderValue;
-- (void)cancleCurrentFilter;
 @end
 
 @interface FSSliderView : UIView
