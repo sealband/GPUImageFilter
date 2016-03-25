@@ -1,10 +1,10 @@
 #import <UIKit/UIKit.h>
 
-#import "ShowcaseAppDelegate.h"
+#import "FSShowcaseAppDelegate.h"
 
 int main(int argc, char *argv[])
 {
     @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([ShowcaseAppDelegate class]));
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([FSShowcaseAppDelegate class]));
     }
 }

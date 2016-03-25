@@ -7,7 +7,7 @@
 //
 
 
-@interface OutputTableViewController : UITableViewController<UITableViewDelegate,UITableViewDataSource>
+@interface FSOutputTableViewController : UITableViewController<UITableViewDelegate,UITableViewDataSource>
 {
     NSMutableArray *parametersArr;
 }

@@ -6,15 +6,15 @@
 //  Copyright © 2016 Cell Phone. All rights reserved.
 //
 
-#import "OutputTableViewController.h"
+#import "FSOutputTableViewController.h"
 
-@interface OutputTableViewController ()
+@interface FSOutputTableViewController ()
 
 @end
 
 
 
-@implementation OutputTableViewController
+@implementation FSOutputTableViewController
 
 - (id)initWithFilterArr:(NSMutableArray*)arr;
 {

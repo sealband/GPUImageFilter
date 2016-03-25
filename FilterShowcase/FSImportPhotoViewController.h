@@ -7,7 +7,7 @@
 //
 
 
-@interface ImportPhotoViewController : UIViewController<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+@interface FSImportPhotoViewController : UIViewController<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 {
     UIImagePickerController * imagePicker;
     UIPopoverController *accountBookPopSelectViewController;

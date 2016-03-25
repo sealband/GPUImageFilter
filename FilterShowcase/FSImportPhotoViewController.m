@@ -6,14 +6,14 @@
 //  Copyright © 2016 Cell Phone. All rights reserved.
 //
 
-#import "ImportPhotoViewController.h"
-#import "ShowcaseFilterViewController.h"
+#import "FSImportPhotoViewController.h"
+#import "FSShowcaseFilterViewController.h"
 
-@interface ImportPhotoViewController ()
+@interface FSImportPhotoViewController ()
 
 @end
 
-@implementation ImportPhotoViewController
+@implementation FSImportPhotoViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -50,7 +50,7 @@
 
 - (void)showEditVC
 {
-    ShowcaseFilterViewController *filterViewController = [[ShowcaseFilterViewController alloc] initWithFilterType:GPUIMAGE_SATURATION];
+    FSShowcaseFilterViewController *filterViewController = [[FSShowcaseFilterViewController alloc] initWithFilterType:GPUIMAGE_SATURATION];
     filterViewController.isStatic = YES;
     filterViewController.stillImage = stillImage;
     [self.navigationController pushViewController:filterViewController animated:YES];

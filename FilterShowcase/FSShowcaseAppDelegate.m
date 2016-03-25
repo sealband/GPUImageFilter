@@ -1,7 +1,7 @@
-#import "ShowcaseAppDelegate.h"
-#import "ImportPhotoViewController.h"
+#import "FSShowcaseAppDelegate.h"
+#import "FSImportPhotoViewController.h"
 
-@implementation ShowcaseAppDelegate
+@implementation FSShowcaseAppDelegate
 
 @synthesize window = _window;
 
@@ -14,7 +14,7 @@
     [[UINavigationBar appearance] setBackgroundColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setTranslucent:YES];
 
-    importPhotoVC = [[ImportPhotoViewController alloc] initWithNibName:nil bundle:nil];
+    importPhotoVC = [[FSImportPhotoViewController alloc] initWithNibName:nil bundle:nil];
     [importPhotofilterNavigationController pushViewController:importPhotoVC animated:NO];
     [self.window setRootViewController:importPhotofilterNavigationController];
     

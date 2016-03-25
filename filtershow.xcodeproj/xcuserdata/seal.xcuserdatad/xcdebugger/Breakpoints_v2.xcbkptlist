@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FilterShowcase/ShowcaseFilterViewController.m"
-            timestampString = "480500097.101128"
+            timestampString = "480509640.204159"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "530"
-            endingLineNumber = "530"
+            startingLineNumber = "529"
+            endingLineNumber = "529"
             landmarkName = "-updateFilterFromSliderwitFilter:filterStr:sliderValue:"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FilterShowcase/ShowcaseFilterViewController.m"
-            timestampString = "480500097.101128"
+            timestampString = "480509640.204159"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "492"
-            endingLineNumber = "492"
+            startingLineNumber = "491"
+            endingLineNumber = "491"
             landmarkName = "-updateFilterFromSliderwitFilter:filterStr:sliderValue:"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FilterShowcase/ShowcaseFilterViewController.m"
-            timestampString = "480500097.101128"
+            timestampString = "480509640.204159"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "499"
-            endingLineNumber = "499"
+            startingLineNumber = "498"
+            endingLineNumber = "498"
             landmarkName = "-updateFilterFromSliderwitFilter:filterStr:sliderValue:"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FilterShowcase/ShowcaseFilterViewController.m"
-            timestampString = "480500097.101128"
+            timestampString = "480509640.204159"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "501"
-            endingLineNumber = "501"
+            startingLineNumber = "500"
+            endingLineNumber = "500"
             landmarkName = "-updateFilterFromSliderwitFilter:filterStr:sliderValue:"
             landmarkType = "5">
          </BreakpointContent>

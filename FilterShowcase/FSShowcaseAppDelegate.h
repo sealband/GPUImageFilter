@@ -2,7 +2,7 @@
 //@class ShowcaseFilterListController;
 @class ImportPhotoViewController;
 
-@interface ShowcaseAppDelegate : UIResponder <UIApplicationDelegate>
+@interface FSShowcaseAppDelegate : UIResponder <UIApplicationDelegate>
 {
     UINavigationController *importPhotofilterNavigationController;
     ImportPhotoViewController *importPhotoVC;

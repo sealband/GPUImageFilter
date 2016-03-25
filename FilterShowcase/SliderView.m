@@ -6,9 +6,9 @@
 //  Copyright © 2016 Cell Phone. All rights reserved.
 //
 
-#import "SliderView.h"
+#import "FSSliderView.h"
 
-@implementation SliderView
+@implementation FSSliderView
 
 - (id)initWithFrame:(CGRect)frame
 {

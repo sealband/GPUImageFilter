@@ -1,7 +1,7 @@
 #import "GPUImage.h"
-#import "SliderView.h"
+#import "FSSliderView.h"
 
-@interface ShowcaseFilterViewController : UIViewController <GPUImageVideoCameraDelegate,UITableViewDelegate,UITableViewDataSource,SRTEditorFilterSliderDelegate>
+@interface FSShowcaseFilterViewController : UIViewController <GPUImageVideoCameraDelegate,UITableViewDelegate,UITableViewDataSource,SRTEditorFilterSliderDelegate>
 {
     GPUImageVideoCamera *videoCamera;
     GPUImagePicture *sourcePicture;
@@ -15,7 +15,7 @@
     
     IBOutlet UISwitch *facesSwitch;
     IBOutlet UILabel *facesLabel;
-    SliderView *sliderView;
+    FSSliderView *sliderView;
     BOOL faceThinking;
     
     

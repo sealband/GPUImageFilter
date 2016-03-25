@@ -1,6 +1,6 @@
-#import "ShowcaseFilterViewController.h"
+#import "FSShowcaseFilterViewController.h"
 #import <CoreImage/CoreImage.h>
-#import "OutputTableViewController.h"
+#import "FSOutputTableViewController.h"
 
 
 #define kCellWidth                                  140
@@ -11,7 +11,7 @@
 #define kRowVerticalPadding                         0
 #define kRowHorizontalPadding                       0
 
-@implementation ShowcaseFilterViewController
+@implementation FSShowcaseFilterViewController
 @synthesize faceDetector,stillImage;
 @synthesize isStatic;
 ;
@@ -21,7 +21,7 @@
 
 - (id)initWithFilterType:(GPUImageShowcaseFilterType)newFilterType;
 {
-    self = [super initWithNibName:@"ShowcaseFilterViewController" bundle:nil];
+    self = [super initWithNibName:@"FSShowcaseFilterViewController" bundle:nil];
     if (self)
     {
         filterType = newFilterType;
@@ -217,7 +217,7 @@
     [valueLabel setTextAlignment:NSTextAlignmentCenter];
     [self.view addSubview:valueLabel];
     
-    sliderView = [[SliderView alloc] initWithFrame:CGRectMake(0, frame.size.height, frame.size.width, 100)];
+    sliderView = [[FSSliderView alloc] initWithFrame:CGRectMake(0, frame.size.height, frame.size.width, 100)];
     sliderView.delegate = self;
     [self.view addSubview:sliderView];
     
@@ -252,7 +252,7 @@
 
 - (void)outputFilterParemeters
 {
-    OutputTableViewController *outputTableVC = [[OutputTableViewController alloc] initWithFilterArr:filterArr];
+    FSOutputTableViewController *outputTableVC = [[FSOutputTableViewController alloc] initWithFilterArr:filterArr];
     [self.navigationController pushViewController:outputTableVC animated:YES];
 }
 

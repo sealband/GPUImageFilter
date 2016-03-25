@@ -11,7 +11,7 @@
 - (void)cancleCurrentFilter;
 @end
 
-@interface SliderView : UIView
+@interface FSSliderView : UIView
 {
     NSDictionary *myDic;
 
