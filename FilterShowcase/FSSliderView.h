@@ -24,7 +24,6 @@
     NSInteger senderTag;
 
 }
-@property(readwrite, unsafe_unretained, nonatomic) UISlider *filterSlider;
 - (void)setDic:(NSDictionary *)dic tag:(NSInteger)tag;
 @property (nonatomic) id <SRTEditorFilterSliderDelegate> delegate;
 
