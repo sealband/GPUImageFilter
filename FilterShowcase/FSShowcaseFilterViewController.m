@@ -221,12 +221,18 @@
     sliderView.delegate = self;
     [self.view addSubview:sliderView];
     
-    [self setBackSel:@selector(back)];
-    [self setRight:@selector(outputFilterParemeters) image:@"edit_obj_menu_typesetting" highlight:nil];
-    [self setTitle:@"Default"];
+//    [self setBackSel:@selector(back)];
+//    [self setRight:@selector(outputFilterParemeters) image:@"edit_obj_menu_typesetting" highlight:nil];
+//    [self setTitle:@"Default"];
 
     currFilterDic = [[NSMutableDictionary alloc] init];
     filterArr = [[NSMutableArray alloc] init];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

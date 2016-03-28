@@ -50,6 +50,8 @@
 
 - (void)showEditVC
 {
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
+
     FSShowcaseFilterViewController *filterViewController = [[FSShowcaseFilterViewController alloc] initWithFilterType:GPUIMAGE_SATURATION];
     filterViewController.isStatic = YES;
     filterViewController.stillImage = stillImage;
