@@ -41,7 +41,6 @@
 		BC982B2414F0481C0001FF6F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC982B2314F0481C0001FF6F /* AVFoundation.framework */; };
 		BC982B2614F048230001FF6F /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC982B2514F048230001FF6F /* OpenGLES.framework */; };
 		BC982B3614F04B3A0001FF6F /* FSShowcaseFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC982B3414F04B3A0001FF6F /* FSShowcaseFilterViewController.m */; };
-		BC982B3714F04B3A0001FF6F /* FSShowcaseFilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC982B3514F04B3A0001FF6F /* FSShowcaseFilterViewController.xib */; };
 		BC982C4114F1F6C80001FF6F /* CustomFilter.fsh in Resources */ = {isa = PBXBuildFile; fileRef = BC982C4014F1F6C80001FF6F /* CustomFilter.fsh */; };
 		E5530A36180FD1D500597F98 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5530A35180FD1D500597F98 /* Default-568h@2x.png */; };
 		F2F3361E156585C400B0FBB8 /* voroni_points2.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F3361D156585C400B0FBB8 /* voroni_points2.png */; };
@@ -115,7 +114,6 @@
 		BC982B2514F048230001FF6F /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BC982B3314F04B3A0001FF6F /* FSShowcaseFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSShowcaseFilterViewController.h; sourceTree = "<group>"; };
 		BC982B3414F04B3A0001FF6F /* FSShowcaseFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSShowcaseFilterViewController.m; sourceTree = "<group>"; };
-		BC982B3514F04B3A0001FF6F /* FSShowcaseFilterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FSShowcaseFilterViewController.xib; sourceTree = "<group>"; };
 		BC982C4014F1F6C80001FF6F /* CustomFilter.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = CustomFilter.fsh; sourceTree = "<group>"; };
 		E5530A35180FD1D500597F98 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		F2F3361D156585C400B0FBB8 /* voroni_points2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = voroni_points2.png; sourceTree = "<group>"; };
@@ -229,7 +227,6 @@
 				171C34E11C96701A00799CCA /* FSImportPhotoViewController.m */,
 				BC982B3314F04B3A0001FF6F /* FSShowcaseFilterViewController.h */,
 				BC982B3414F04B3A0001FF6F /* FSShowcaseFilterViewController.m */,
-				BC982B3514F04B3A0001FF6F /* FSShowcaseFilterViewController.xib */,
 				173EF3F11C9B2B9100EC5D33 /* FSSliderView.h */,
 				173EF3F21C9B2B9100EC5D33 /* FSSliderView.m */,
 				171C34E61C9675F800799CCA /* FSOutputTableViewController.h */,
@@ -356,7 +353,6 @@
 				BC982B1114F046AC0001FF6F /* InfoPlist.strings in Resources */,
 				17D1C6CB1C8C7963007E7956 /* Icon-72@2x.png in Resources */,
 				17D1C6CE1C8C7963007E7956 /* iTunesArtwork.png in Resources */,
-				BC982B3714F04B3A0001FF6F /* FSShowcaseFilterViewController.xib in Resources */,
 				0D69488E1501F71900206FF8 /* SampleConfiguration.plist in Resources */,
 				83AE9FD41540F3CC00F7FC13 /* mask.png in Resources */,
 				F2F3361E156585C400B0FBB8 /* voroni_points2.png in Resources */,

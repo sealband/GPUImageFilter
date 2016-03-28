@@ -21,7 +21,7 @@
 
 - (id)initWithFilterType:(GPUImageShowcaseFilterType)newFilterType;
 {
-    self = [super initWithNibName:@"FSShowcaseFilterViewController" bundle:nil];
+    self = [super init];
     if (self)
     {
         filterType = newFilterType;
@@ -182,11 +182,16 @@
 {
     [super viewDidLoad];
     
+    self.view.clipsToBounds = YES;
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.autoresizingMask = UIViewAutoresizingNone;
+    
     [self resetFilterArray];
     
     sourceImageView = [[UIImageView alloc] init];
-    CGRect sourceFrame = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height);
+    CGRect sourceFrame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-100);
     sourceImageView.frame = sourceFrame;
+    sourceImageView.backgroundColor = [UIColor colorWithRed:0.23 green:0.23 blue:0.23 alpha:1];
     sourceImageView.contentMode = UIViewContentModeScaleAspectFit;
     sourceImageView.image = stillImage;
     [self.view addSubview:sourceImageView];
