@@ -182,6 +182,8 @@
 {
     [super viewDidLoad];
     
+    currStep = 0;
+    
     self.view.clipsToBounds = YES;
     self.view.backgroundColor = [UIColor whiteColor];
     self.view.autoresizingMask = UIViewAutoresizingNone;
@@ -304,12 +306,23 @@
 
 - (void)nextDidClick:(id)sender
 {
-    [toolContentView setContentOffset:CGPointMake(DEVICEW, 0) animated:YES];
+    if (currStep == 0)
+    {
+        currStep = 1;
+        [toolContentView setContentOffset:CGPointMake(DEVICEW, 0) animated:YES];
+    }
 }
 
 - (void)backDidClick:(id)sender
 {
-    [toolContentView setContentOffset:CGPointMake(0, 0) animated:YES];
+    if (currStep == 0)
+    {
+        [self.navigationController popViewControllerAnimated:YES];
+    } else if (currStep == 1)
+    {
+        currStep = 0;
+        [toolContentView setContentOffset:CGPointMake(0, 0) animated:YES];
+    }
 }
 
 

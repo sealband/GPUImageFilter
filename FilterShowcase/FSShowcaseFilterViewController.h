@@ -38,6 +38,9 @@
     NSMutableDictionary *currFilterDic;
 
     UIImageView *sourceImageView;
+    
+    NSInteger currStep;
+
 }
 
 @property(nonatomic,retain) NSMutableArray *checkedArray,*checkedIndexArray,*allCellArray;
