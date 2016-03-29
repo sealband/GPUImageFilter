@@ -10,6 +10,7 @@
 		0D69488E1501F71900206FF8 /* SampleConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D69488D1501F71900206FF8 /* SampleConfiguration.plist */; };
 		171C34E21C96701A00799CCA /* FSImportPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 171C34E11C96701A00799CCA /* FSImportPhotoViewController.m */; };
 		171C34E81C9675F800799CCA /* FSOutputTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 171C34E71C9675F800799CCA /* FSOutputTableViewController.m */; };
+		17389A5A1CA946DF00AFF32C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17389A591CA946DF00AFF32C /* Images.xcassets */; };
 		173CCFE21CA2A0DF008E363A /* CHLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 173CCFE11CA2A0DF008E363A /* CHLine.m */; };
 		173EF3F31C9B2B9100EC5D33 /* FSSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 173EF3F21C9B2B9100EC5D33 /* FSSliderView.m */; };
 		174345041C896939006978D7 /* sample1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 174345031C896939006978D7 /* sample1.jpg */; };
@@ -72,6 +73,7 @@
 		171C34E11C96701A00799CCA /* FSImportPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSImportPhotoViewController.m; sourceTree = "<group>"; };
 		171C34E61C9675F800799CCA /* FSOutputTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSOutputTableViewController.h; sourceTree = "<group>"; };
 		171C34E71C9675F800799CCA /* FSOutputTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSOutputTableViewController.m; sourceTree = "<group>"; };
+		17389A591CA946DF00AFF32C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		173CCFE01CA2A0DF008E363A /* CHLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHLine.h; sourceTree = "<group>"; };
 		173CCFE11CA2A0DF008E363A /* CHLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHLine.m; sourceTree = "<group>"; };
 		173EF3F11C9B2B9100EC5D33 /* FSSliderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSliderView.h; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 				BC982B1414F046AC0001FF6F /* filtershow-Prefix.pch */,
 				0D69488D1501F71900206FF8 /* SampleConfiguration.plist */,
 				178BC27A1CA3C25300E33A76 /* pdf.xcassets */,
+				17389A591CA946DF00AFF32C /* Images.xcassets */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				17D1C6CC1C8C7963007E7956 /* Icon.png in Resources */,
 				E5530A36180FD1D500597F98 /* Default-568h@2x.png in Resources */,
 				174345041C896939006978D7 /* sample1.jpg in Resources */,
+				17389A5A1CA946DF00AFF32C /* Images.xcassets in Resources */,
 				17D1C6BC1C8C78AE007E7956 /* WID-small.jpg in Resources */,
 				17D1C6C31C8C790C007E7956 /* lookup_amatorka.png in Resources */,
 				17D1C6C01C8C78FB007E7956 /* lookup_soft_elegance_2.png in Resources */,
@@ -493,6 +497,8 @@
 		BC982B1B14F046AC0001FF6F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -512,6 +518,8 @@
 		BC982B1C14F046AC0001FF6F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
