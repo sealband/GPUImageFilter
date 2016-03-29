@@ -19,6 +19,14 @@ static  FSConsole*_console;
     return _console;
 }
 
+- (CGFloat)scale
+{
+    if ([[UIScreen mainScreen] scale] >= 3) {
+        return 3.0;
+    }
+    return 2.0;
+}
+
 - (BOOL)isiP4
 {
     static int isip4 = -1;

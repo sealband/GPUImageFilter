@@ -10,6 +10,7 @@
 
 @interface FSConsole : NSObject
 + (FSConsole *)mainConsole;
+- (CGFloat)scale;
 - (BOOL)isiP5;
 - (BOOL)isiP6;
 - (BOOL)isiP6Plus;

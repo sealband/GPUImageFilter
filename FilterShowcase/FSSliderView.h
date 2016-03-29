@@ -14,13 +14,12 @@
 {
     NSDictionary *myDic;
 
-    UISlider *filterSlider;
+//     FSFilterSliderView*sliderView;
+    UISlider *sliderView;
     
     UILabel *valueLabel;
     UILabel *defaultValueLabel;
-    
-    CGRect mainFrame ;
-    
+        
     NSInteger senderTag;
 
 }

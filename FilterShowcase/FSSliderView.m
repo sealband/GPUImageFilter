@@ -19,34 +19,64 @@
     return self;
 }
 
+//- (void)gestureRecognizer:(UIPanGestureRecognizer *)gesture
+//{
+//    CGPoint p = [gesture locationInView:self];
+//    float offset = (DEVICEW-320)/2;
+//    float x = MIN(MAX(offset, p.x),DEVICEW-offset);
+//    x = x-offset;
+//    float s = x/320.0;
+//    [sliderView setValue:(int)(sliderView.minimumValue+(sliderView.maximumValue-sliderView.minimumValue)*s)];
+//    
+//    if (gesture.state == UIGestureRecognizerStateEnded) {
+//        //        [self.delegate filterSlider:self valueChange:sliderView.value];
+//        [self sliderDidCancel:nil];
+//    }
+//}
+
 - (void)initUI
 {
-    mainFrame =  [[UIScreen mainScreen] bounds];
-    
     self.backgroundColor = [UIColor whiteColor];
     
     self.frame = CGRectMake(CGRectGetMinX(self.frame), CGRectGetMinY(self.frame), CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
     float totalheight = CGRectGetHeight(self.frame);
-    CHLine *line = [CHLine lineWithFrame:CGRectMake(0, self.frame.size.height-totalheight, self.frame.size.width, 0.5) color:[UIColor colorWithRed:193/255.0 green:193/255.0 blue:193/255.0 alpha:1]];
-    [self addSubview:line];
     
     {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = CGRectMake(5, totalheight-42, 40, 40);
-        btn.imageView.contentMode = UIViewContentModeScaleAspectFit;
-        [btn setImage:[UIImage imageNamed:@"btn_close"] forState:UIControlStateNormal];
-
+        btn.frame = CGRectMake(0, totalheight-47, 60, 44);
+        [btn setImage:IMG(@"btn_close") forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(backDidClick:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:btn];
     }
     {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = CGRectMake(self.frame.size.width-45, totalheight-42, 40, 40);
-        btn.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        btn.frame = CGRectMake(DEVICEW-60, totalheight-47, 60, 40);
         [btn setImage:[UIImage imageNamed:@"btn_confirm"] forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(nextDidClick:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:btn];
     }
+    float offsety = totalheight-50;
+    [self addSubview:[CHLine lineWithFrame:CGRectMake(0, 0, DEVICEW, 0.5) color:[UIColor colorWithRed:193/255.0 green:193/255.0 blue:193/255.0 alpha:1]]];
+    [self addSubview:[CHLine lineWithFrame:CGRectMake(0, offsety, DEVICEW, 0.5) color:LINECOLOR]];
+
+    sliderView = [[UISlider alloc] initWithFrame:CGRectMake(10, 15, self.frame.size.width-20, 30)];
+    [sliderView setMinimumTrackTintColor:[UIColor darkGrayColor]];
+    [sliderView addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
+    [sliderView addTarget:self action:@selector(sliderDidCancel:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:sliderView];
+//    sliderView = [[FSFilterSliderView alloc] initWithFrame:CGRectMake(35, (totalheight-44)/2.0-17.5, DEVICEW-70, 35)];
+//    [sliderView addTarget:self action:@selector(sliderValueDidChange:) forControlEvents:UIControlEventValueChanged];
+//    [sliderView addTarget:self action:@selector(sliderDidCancel:) forControlEvents:UIControlEventTouchDragExit];
+//    [self addSubview:sliderView];
+
+//    CHLine *l = [[CHLine alloc] initWithFrame:CGRectMake(0,0,DEVICEW,totalheight-49)];
+//    l.backgroundColor = [UIColor clearColor];
+//    l.userInteractionEnabled = YES;
+//    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(gestureRecognizer:)];
+//    [l addGestureRecognizer:pan];
+//    [self addSubview:l];
+
+    
     valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width/2-85, self.frame.size.height-34, 100, 25)];
     valueLabel.backgroundColor = [UIColor clearColor];
     valueLabel.font = [UIFont systemFontOfSize:14];
@@ -63,17 +93,12 @@
     [defaultValueLabel setTextAlignment:NSTextAlignmentCenter];
     [self addSubview:defaultValueLabel];
     
-    filterSlider = [[UISlider alloc] initWithFrame:CGRectMake(10, 15, self.frame.size.width-20, 30)];
-    [filterSlider setMinimumTrackTintColor:[UIColor darkGrayColor]];
-    [filterSlider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
-    [filterSlider addTarget:self action:@selector(sliderDidCancel:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:filterSlider];
 }
 
 - (void)dismiss
 {
     [UIView animateWithDuration:0.2 animations:^{
-        self.frame = CGRectMake(0, mainFrame.size.height, self.frame.size.width, self.frame.size.height);
+        self.frame = CGRectMake(0, DEVICEH, self.frame.size.width, self.frame.size.height);
     } completion:^(BOOL finished) {
         
     }];
@@ -93,10 +118,10 @@
 - (void)setDic:(NSDictionary *)dic tag:(NSInteger)tag
 {
     myDic = dic;
-    filterSlider.maximumValue = [[dic getValueForKey:@"max"] floatValue];
-    filterSlider.minimumValue = [[dic getValueForKey:@"min"] floatValue];
+    sliderView.maximumValue = [[dic getValueForKey:@"max"] floatValue];
+    sliderView.minimumValue = [[dic getValueForKey:@"min"] floatValue];
 //    filterSlider.defaultValue = [[dic getValueForKey:@"defaultvalue"] intValue];
-    filterSlider.value = [[dic getValueForKey:@"value"] floatValue];
+    sliderView.value = [[dic getValueForKey:@"value"] floatValue];
 //    filterSlider.tag = tag;
     
     senderTag = tag;
@@ -126,7 +151,7 @@
 
 - (void)updateLabValue
 {
-    NSString *currentValue = [NSString stringWithFormat:@"%.2f",filterSlider.value];
+    NSString *currentValue = [NSString stringWithFormat:@"%.2f",sliderView.value];
     valueLabel.text = [NSString stringWithFormat:@"now:%@",currentValue];
 }
 
