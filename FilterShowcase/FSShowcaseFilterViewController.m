@@ -189,7 +189,7 @@
     [self resetFilterArray];
     
     sourceImageView = [[UIImageView alloc] init];
-    CGRect sourceFrame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-100);
+    CGRect sourceFrame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-167);
     sourceImageView.frame = sourceFrame;
     sourceImageView.backgroundColor = [UIColor colorWithRed:0.23 green:0.23 blue:0.23 alpha:1];
     sourceImageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -203,26 +203,55 @@
         faceThinking = NO;
     }
     
-    frame =  [[UIScreen mainScreen] bounds];
+    toolContentView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, DEVICEH-167, DEVICEW, 167)];
+    toolContentView.showsHorizontalScrollIndicator = NO;
+    toolContentView.scrollEnabled = NO;
+    [toolContentView setContentSize:CGSizeMake(DEVICEW*2, 167)];
+    [self.view addSubview:toolContentView];
+
     horizontalTableView = [[UITableView alloc] init];
     horizontalTableView.transform = CGAffineTransformMakeRotation(-M_PI * 0.5);
-    horizontalTableView.frame = CGRectMake(0, frame.size.height-100, frame.size.width, 100);
+    horizontalTableView.frame = CGRectMake(0, 0, DEVICEW, 117);
     horizontalTableView.delegate = self;
     horizontalTableView.dataSource = self;
     horizontalTableView.separatorStyle = UITableViewStylePlain;
-    [self.view addSubview:horizontalTableView];
+    [toolContentView addSubview:horizontalTableView];
     
-    CHLine *line = [CHLine lineWithFrame:CGRectMake(0, frame.size.height-100, frame.size.width, 0.5) color:[UIColor colorWithRed:193/255.0 green:193/255.0 blue:193/255.0 alpha:1]];
+    UIButton *savebtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    savebtn.frame = CGRectMake(DEVICEW, toolContentView.frame.size.height-47, 60, 44);
+    [savebtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [savebtn setTitle:@"save" forState:UIControlStateNormal];
+    [savebtn addTarget:self action:@selector(backDidClick:) forControlEvents:UIControlEventTouchUpInside];
+    [toolContentView addSubview:savebtn];
+    
+    {
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.frame = CGRectMake(0, DEVICEH-47, 60, 44);
+        [btn setImage:IMG(@"edit_btn_back") forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(backDidClick:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:btn];
+        btnPre = btn;
+    }
+    {
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.frame = CGRectMake(DEVICEW-60, DEVICEH-47, 60, 44);
+        [btn setImage:IMG(@"edit_btn_next") forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(nextDidClick:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:btn];
+        btnNext = btn;
+    }
+    
+    CHLine *line = [CHLine lineWithFrame:CGRectMake(0, DEVICEH-167, DEVICEW, 0.5) color:[UIColor colorWithRed:193/255.0 green:193/255.0 blue:193/255.0 alpha:1]];
     [self.view addSubview:line];
     
-    valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width-50, frame.size.height-125, 50, 25)];
+    valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(DEVICEW-50, DEVICEH-125, 50, 25)];
     valueLabel.backgroundColor = [UIColor clearColor];
     valueLabel.font = [UIFont systemFontOfSize:10];
     valueLabel.textColor = [UIColor whiteColor];
     [valueLabel setTextAlignment:NSTextAlignmentCenter];
     [self.view addSubview:valueLabel];
     
-    sliderView = [[FSSliderView alloc] initWithFrame:CGRectMake(0, frame.size.height, frame.size.width, 100)];
+    sliderView = [[FSSliderView alloc] initWithFrame:CGRectMake(0, DEVICEH, DEVICEW, 100)];
     sliderView.delegate = self;
     [self.view addSubview:sliderView];
     
@@ -324,7 +353,7 @@
     
     [sliderView setDic:arrFilterSource[indexPath.row] tag:[indexPath row]];
     [UIView animateWithDuration:0.2 animations:^{
-        sliderView.frame = CGRectMake(0, frame.size.height-100, frame.size.width, 100);
+        sliderView.frame = CGRectMake(0, DEVICEH-100, DEVICEW, 100);
     } completion:^(BOOL finished) {
     }];
     

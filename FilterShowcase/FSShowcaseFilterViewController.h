@@ -27,12 +27,13 @@
     UILabel *valueLabel;
     NSString *currentValue;
     
-    
+    UIScrollView *toolContentView;
+    UIButton *btnNext;
+    UIButton *btnPre;
     
     NSMutableArray *arrFilterSource;
     NSMutableDictionary *currFilterDic;
 
-    CGRect frame ;
     UIImageView *sourceImageView;
 }
 
