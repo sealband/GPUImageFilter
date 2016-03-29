@@ -268,7 +268,7 @@
     [valueLabel setTextAlignment:NSTextAlignmentCenter];
     [self.view addSubview:valueLabel];
     
-    sliderView = [[FSSliderView alloc] initWithFrame:CGRectMake(0, DEVICEH, DEVICEW, 100)];
+    sliderView = [[FSSliderView alloc] initWithFrame:CGRectMake(0, DEVICEH, DEVICEW, 167)];
     sliderView.delegate = self;
     [self.view addSubview:sliderView];
     
@@ -338,7 +338,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 70;
+    return 88;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -350,12 +350,13 @@
     
     if (cell == nil)
     {
-        cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, 60, 70)];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     cell.transform = CGAffineTransformMakeRotation(M_PI * 0.5);
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
-    cell.textLabel.font = [UIFont systemFontOfSize:8];
+    cell.textLabel.frame = cell.frame;
+    cell.textLabel.font = [UIFont systemFontOfSize:10];
+    cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     cell.textLabel.numberOfLines = 0;
     cell.textLabel.text = [NSString stringWithFormat:@"%ld\n%@",index,[[arrFilterSource objectAtIndex:index] getValueForKey:@"name"]];
     
@@ -381,7 +382,7 @@
     
     [sliderView setDic:arrFilterSource[indexPath.row] tag:[indexPath row]];
     [UIView animateWithDuration:0.2 animations:^{
-        sliderView.frame = CGRectMake(0, DEVICEH-100, DEVICEW, 100);
+        sliderView.frame = CGRectMake(0, DEVICEH-167, DEVICEW, 167);
     } completion:^(BOOL finished) {
     }];
     
