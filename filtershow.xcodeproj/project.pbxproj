@@ -77,6 +77,8 @@
 		17389A591CA946DF00AFF32C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		173944391CAA70E3002B5776 /* FSConsole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSConsole.h; sourceTree = "<group>"; };
 		1739443A1CAA70E3002B5776 /* FSConsole.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSConsole.m; sourceTree = "<group>"; };
+		1739443D1CAA8D05002B5776 /* FZLTHJW.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = FZLTHJW.TTF; sourceTree = "<group>"; };
+		1739443E1CAA8D05002B5776 /* fzltxh.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fzltxh.ttf; sourceTree = "<group>"; };
 		173CCFE01CA2A0DF008E363A /* CHLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHLine.h; sourceTree = "<group>"; };
 		173CCFE11CA2A0DF008E363A /* CHLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHLine.m; sourceTree = "<group>"; };
 		173EF3F11C9B2B9100EC5D33 /* FSSliderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSliderView.h; sourceTree = "<group>"; };
@@ -148,6 +150,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1739443C1CAA8CF8002B5776 /* font */ = {
+			isa = PBXGroup;
+			children = (
+				1739443D1CAA8D05002B5776 /* FZLTHJW.TTF */,
+				1739443E1CAA8D05002B5776 /* fzltxh.ttf */,
+			);
+			name = font;
+			sourceTree = "<group>";
+		};
 		173CCFDC1CA2A0D2008E363A /* line */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,6 +236,7 @@
 		BC982B0C14F046AC0001FF6F /* filtershow */ = {
 			isa = PBXGroup;
 			children = (
+				1739443C1CAA8CF8002B5776 /* font */,
 				178BC2811CA3F0A400E33A76 /* control */,
 				173CCFDC1CA2A0D2008E363A /* line */,
 				1748043F1C99485B00F7552E /* category */,

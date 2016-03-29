@@ -16,6 +16,8 @@
 #import "UIViewController+NavbarItemCategory.h"
 #define IMG(_name) [UIImage imageNamed:_name]
 #define TITLECOLOR [UIColor colorWithRed:78/255.0 green:78/255.0 blue:78/255.0 alpha:1]
+#define LINECOLOR [UIColor colorWithRed:227/255.0 green:227/255.0 blue:227/255.0 alpha:1]
+#define EDITORTEXTCOLOR [UIColor colorWithRed:48/255.0 green:48/255.0 blue:48/255.0 alpha:1]
 #define F(_size) [UIFont fontWithName:@"FZLanTingHei-EL-GBK" size:_size]
 #define FB(_size) [UIFont fontWithName:@"FZLanTingHeiS-R-GB" size:_size]
 

@@ -30,6 +30,9 @@
     UIScrollView *toolContentView;
     UIButton *btnNext;
     UIButton *btnPre;
+    UILabel *titleLabel;
+    UILabel *secondTitleLabel;
+
     
     NSMutableArray *arrFilterSource;
     NSMutableDictionary *currFilterDic;

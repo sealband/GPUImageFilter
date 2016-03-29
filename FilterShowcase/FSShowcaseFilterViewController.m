@@ -217,12 +217,26 @@
     horizontalTableView.separatorStyle = UITableViewStylePlain;
     [toolContentView addSubview:horizontalTableView];
     
-    UIButton *savebtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    savebtn.frame = CGRectMake(DEVICEW, toolContentView.frame.size.height-47, 60, 44);
-    [savebtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [savebtn setTitle:@"save" forState:UIControlStateNormal];
-    [savebtn addTarget:self action:@selector(backDidClick:) forControlEvents:UIControlEventTouchUpInside];
-    [toolContentView addSubview:savebtn];
+    titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(DEVICEW/2-100, toolContentView.frame.size.height-48, 200 , 44)];
+    titleLabel.font = F(18);
+    titleLabel.textColor = EDITORTEXTCOLOR;
+    titleLabel.text = @"调整";
+    [titleLabel setTextAlignment:NSTextAlignmentCenter];
+    [toolContentView addSubview:titleLabel];
+    
+    secondTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(DEVICEW+DEVICEW/2-100, toolContentView.frame.size.height-48, 200 , 44)];
+    secondTitleLabel.font = F(18);
+    secondTitleLabel.textColor = EDITORTEXTCOLOR;
+    secondTitleLabel.text = @"参数及保存";
+    [secondTitleLabel setTextAlignment:NSTextAlignmentCenter];
+    [toolContentView addSubview:secondTitleLabel];
+    
+//    UIButton *savebtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    savebtn.frame = CGRectMake(DEVICEW, toolContentView.frame.size.height-47, 60, 44);
+//    [savebtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    [savebtn setTitle:@"save" forState:UIControlStateNormal];
+//    [savebtn addTarget:self action:@selector(backDidClick:) forControlEvents:UIControlEventTouchUpInside];
+//    [toolContentView addSubview:savebtn];
     
     {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -243,6 +257,9 @@
     
     CHLine *line = [CHLine lineWithFrame:CGRectMake(0, DEVICEH-167, DEVICEW, 0.5) color:[UIColor colorWithRed:193/255.0 green:193/255.0 blue:193/255.0 alpha:1]];
     [self.view addSubview:line];
+    
+    [self.view addSubview:[CHLine lineWithFrame:CGRectMake(0, DEVICEH-50, DEVICEW, 0.5) color:LINECOLOR]];
+
     
     valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(DEVICEW-50, DEVICEH-125, 50, 25)];
     valueLabel.backgroundColor = [UIColor clearColor];
@@ -284,6 +301,17 @@
     // Note: I needed to start camera capture after the view went on the screen, when a partially transition of navigation view controller stopped capturing via viewWilDisappear.
 //    [videoCamera startCameraCapture];
 }
+
+- (void)nextDidClick:(id)sender
+{
+    [toolContentView setContentOffset:CGPointMake(DEVICEW, 0) animated:YES];
+}
+
+- (void)backDidClick:(id)sender
+{
+    [toolContentView setContentOffset:CGPointMake(0, 0) animated:YES];
+}
+
 
 - (void)back
 {
