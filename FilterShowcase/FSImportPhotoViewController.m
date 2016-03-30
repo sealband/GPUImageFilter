@@ -22,18 +22,11 @@
     self.title = @"Import";
    
     CGRect frame = self.view.frame;
-    UIButton *choosePhotoBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [choosePhotoBtn setTitle:@"选择照片" forState:UIControlStateNormal];
+    UIButton *choosePhotoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [choosePhotoBtn setImage:IMG(@"menu_camera") forState:UIControlStateNormal];
     [choosePhotoBtn addTarget:self action:@selector(choosePhoto) forControlEvents:UIControlEventTouchUpInside];
     choosePhotoBtn.frame = CGRectMake(frame.size.width/2-35, frame.size.height/2-20, 70, 36);
     [self.view addSubview:choosePhotoBtn];
-    
-    UIButton *resetBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [resetBtn setTitle:@"重新编辑" forState:UIControlStateNormal];
-    [resetBtn addTarget:self action:@selector(showEditVC) forControlEvents:UIControlEventTouchUpInside];
-    resetBtn.frame = CGRectMake(frame.size.width/2-35, frame.size.height/2+20, 70, 36);
-    [self.view addSubview:resetBtn];
-
     
     imagePicker = [[UIImagePickerController alloc] init];
     UIImagePickerControllerSourceType sourceType;
@@ -41,6 +34,13 @@
     imagePicker.delegate = self;
     imagePicker.allowsEditing = NO;
     imagePicker.sourceType = sourceType;
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:NO];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
 }
 
 - (void)choosePhoto

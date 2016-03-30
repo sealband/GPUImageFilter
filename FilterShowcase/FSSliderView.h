@@ -17,8 +17,9 @@
 //     FSFilterSliderView*sliderView;
     UISlider *sliderView;
     
-    UILabel *valueLabel;
+    UILabel *labValue;
     UILabel *defaultValueLabel;
+    UILabel *titleLabel;
         
     NSInteger senderTag;
 

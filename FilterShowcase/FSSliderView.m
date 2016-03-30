@@ -59,7 +59,7 @@
     [self addSubview:[CHLine lineWithFrame:CGRectMake(0, 0, DEVICEW, 0.5) color:[UIColor colorWithRed:193/255.0 green:193/255.0 blue:193/255.0 alpha:1]]];
     [self addSubview:[CHLine lineWithFrame:CGRectMake(0, offsety, DEVICEW, 0.5) color:LINECOLOR]];
 
-    sliderView = [[UISlider alloc] initWithFrame:CGRectMake(10, 15, self.frame.size.width-20, 30)];
+    sliderView = [[UISlider alloc] initWithFrame:CGRectMake(35, (totalheight-44)/2.0-17.5, DEVICEW-70, 35)];
     [sliderView setMinimumTrackTintColor:[UIColor darkGrayColor]];
     [sliderView addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
     [sliderView addTarget:self action:@selector(sliderDidCancel:) forControlEvents:UIControlEventTouchUpInside];
@@ -75,23 +75,32 @@
 //    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(gestureRecognizer:)];
 //    [l addGestureRecognizer:pan];
 //    [self addSubview:l];
-
+    {
+        UILabel *lab = [[UILabel alloc] init];
+        lab.textColor = [UIColor colorWithRed:118/255.0 green:118/255.0 blue:118/255.0 alpha:1];
+        lab.font = F(13);
+        lab.textAlignment = NSTextAlignmentCenter;
+        lab.backgroundColor = [UIColor clearColor];
+        [self addSubview:lab];
+        labValue = lab;
+    }
     
-    valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width/2-85, self.frame.size.height-34, 100, 25)];
-    valueLabel.backgroundColor = [UIColor clearColor];
-    valueLabel.font = [UIFont systemFontOfSize:14];
-    valueLabel.textColor = [UIColor grayColor];
-    valueLabel.textAlignment = NSTextAlignmentCenter;
-    [valueLabel setTextAlignment:NSTextAlignmentCenter];
-    [self addSubview:valueLabel];
     
-    defaultValueLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width/2+10, self.frame.size.height-34, 60, 25)];
+    defaultValueLabel = [[UILabel alloc] initWithFrame:CGRectMake(DEVICEW/2-30, offsety-20, 60, 20)];
     defaultValueLabel.backgroundColor = [UIColor clearColor];
-    defaultValueLabel.font = [UIFont systemFontOfSize:14];
+    defaultValueLabel.font = F(13);
     defaultValueLabel.textColor = [UIColor grayColor];
     defaultValueLabel.textAlignment = NSTextAlignmentCenter;
     [defaultValueLabel setTextAlignment:NSTextAlignmentCenter];
     [self addSubview:defaultValueLabel];
+    
+    titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(DEVICEW/2-100, self.frame.size.height-48, 200 , 44)];
+    titleLabel.font = F(18);
+    titleLabel.textColor = EDITORTEXTCOLOR;
+//    titleLabel.text = @"调整";
+    [titleLabel setTextAlignment:NSTextAlignmentCenter];
+    [self addSubview:titleLabel];
+
     
 }
 
@@ -124,8 +133,12 @@
     sliderView.value = [[dic getValueForKey:@"value"] floatValue];
 //    filterSlider.tag = tag;
     
+    titleLabel.text = [dic getValueForKey:@"name"];
+
+    
     senderTag = tag;
-    valueLabel.text = [NSString stringWithFormat:@"now:%@",[[dic getValueForKey:@"value"] stringValue]];
+    
+    [self updateLabValue];
     defaultValueLabel.text = [NSString stringWithFormat:@"def:%@",[[dic getValueForKey:@"defaultvalue"] stringValue]];
     
     
@@ -152,7 +165,10 @@
 - (void)updateLabValue
 {
     NSString *currentValue = [NSString stringWithFormat:@"%.2f",sliderView.value];
-    valueLabel.text = [NSString stringWithFormat:@"now:%@",currentValue];
+    labValue.text = [NSString stringWithFormat:@"%@",currentValue];
+    
+    [labValue sizeToFit];
+    labValue.center = CGPointMake(SLIDEROFFSET+1.0*(sliderView.value-sliderView.minimumValue)/(sliderView.maximumValue-sliderView.minimumValue)*(sliderView.frame.size.width-SLIDEROFFSET*2)+sliderView.frame.origin.x, sliderView.frame.origin.y-5);
 }
 
 -(void)sliderValueChanged:(id)sender

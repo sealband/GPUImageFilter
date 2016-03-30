@@ -221,24 +221,31 @@
     
     titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(DEVICEW/2-100, toolContentView.frame.size.height-48, 200 , 44)];
     titleLabel.font = F(18);
-    titleLabel.textColor = EDITORTEXTCOLOR;
     titleLabel.text = @"调整";
     [titleLabel setTextAlignment:NSTextAlignmentCenter];
+    titleLabel.textColor = TITLECOLOR;
     [toolContentView addSubview:titleLabel];
     
     secondTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(DEVICEW+DEVICEW/2-100, toolContentView.frame.size.height-48, 200 , 44)];
     secondTitleLabel.font = F(18);
-    secondTitleLabel.textColor = EDITORTEXTCOLOR;
+    secondTitleLabel.textColor = TITLECOLOR;
     secondTitleLabel.text = @"参数及保存";
     [secondTitleLabel setTextAlignment:NSTextAlignmentCenter];
     [toolContentView addSubview:secondTitleLabel];
     
-//    UIButton *savebtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    savebtn.frame = CGRectMake(DEVICEW, toolContentView.frame.size.height-47, 60, 44);
-//    [savebtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//    [savebtn setTitle:@"save" forState:UIControlStateNormal];
-//    [savebtn addTarget:self action:@selector(backDidClick:) forControlEvents:UIControlEventTouchUpInside];
-//    [toolContentView addSubview:savebtn];
+    UIButton *savebtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    savebtn.frame = CGRectMake(DEVICEW+DEVICEW/4, toolContentView.frame.size.height-130, 60, 44);
+    [savebtn setTitleColor:TITLECOLOR forState:UIControlStateNormal];
+    [savebtn setTitle:@"save" forState:UIControlStateNormal];
+    [savebtn addTarget:self action:@selector(saveImage) forControlEvents:UIControlEventTouchUpInside];
+    [toolContentView addSubview:savebtn];
+    
+    UIButton *parabtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    parabtn.frame = CGRectMake(DEVICEW+DEVICEW/2, toolContentView.frame.size.height-130, 60, 44);
+    [parabtn setTitleColor:TITLECOLOR forState:UIControlStateNormal];
+    [parabtn setTitle:@"para" forState:UIControlStateNormal];
+    [parabtn addTarget:self action:@selector(outputFilterParemeters) forControlEvents:UIControlEventTouchUpInside];
+    [toolContentView addSubview:parabtn];
     
     {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -284,6 +291,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:NO];
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
 }
@@ -336,6 +344,31 @@
     FSOutputTableViewController *outputTableVC = [[FSOutputTableViewController alloc] initWithFilterArr:filterArr];
     [self.navigationController pushViewController:outputTableVC animated:YES];
 }
+
+- (void)saveImage
+{
+    UIImageWriteToSavedPhotosAlbum(sourceImageView.image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+}
+
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
+{
+//    if (error) {
+//        saveSuccess = NO;
+//    }
+//    else
+//    {
+//        saveSuccess = YES;
+//    }
+//    
+//    
+//    NSMutableArray *arr = [[NSMutableArray alloc] init];
+//    for (SRTBaseEditorElements *vv in [textview subviews]) {
+//        if ([vv isKindOfClass:[SRTMutliLineLabel class]] || [vv isKindOfClass:[SRTTextBoxView class]] || [vv isKindOfClass:[SRTShapeView class]]) {
+//            [arr addObject:[vv dicInfo]];
+//        }
+//    }
+}
+
 
 #pragma mark - Table View Data Source
 
