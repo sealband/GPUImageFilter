@@ -9,6 +9,7 @@
 #ifndef FSConfig_h
 #define FSConfig_h
 
+#import "FSParameterView.h"
 #import "FSFilterSliderView.h"
 #import "FSConsole.h"
 #import "NSDictionary+GetValue.h"

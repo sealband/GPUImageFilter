@@ -234,7 +234,7 @@
     [toolContentView addSubview:secondTitleLabel];
     
     UIButton *savebtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    savebtn.frame = CGRectMake(DEVICEW+DEVICEW/4, toolContentView.frame.size.height-130, 60, 44);
+    savebtn.frame = CGRectMake(DEVICEW+DEVICEW/2-60, toolContentView.frame.size.height-130, 60, 44);
     [savebtn setTitleColor:TITLECOLOR forState:UIControlStateNormal];
     [savebtn setTitle:@"save" forState:UIControlStateNormal];
     [savebtn addTarget:self action:@selector(saveImage) forControlEvents:UIControlEventTouchUpInside];
@@ -244,7 +244,7 @@
     parabtn.frame = CGRectMake(DEVICEW+DEVICEW/2, toolContentView.frame.size.height-130, 60, 44);
     [parabtn setTitleColor:TITLECOLOR forState:UIControlStateNormal];
     [parabtn setTitle:@"para" forState:UIControlStateNormal];
-    [parabtn addTarget:self action:@selector(outputFilterParemeters) forControlEvents:UIControlEventTouchUpInside];
+    [parabtn addTarget:self action:@selector(showParameterView) forControlEvents:UIControlEventTouchUpInside];
     [toolContentView addSubview:parabtn];
     
     {
@@ -280,10 +280,6 @@
     sliderView = [[FSSliderView alloc] initWithFrame:CGRectMake(0, DEVICEH, DEVICEW, 167)];
     sliderView.delegate = self;
     [self.view addSubview:sliderView];
-    
-//    [self setBackSel:@selector(back)];
-//    [self setRight:@selector(outputFilterParemeters) image:@"edit_obj_menu_typesetting" highlight:nil];
-//    [self setTitle:@"Default"];
 
     currFilterDic = [[NSMutableDictionary alloc] init];
     filterArr = [[NSMutableArray alloc] init];
@@ -318,6 +314,7 @@
     {
         currStep = 1;
         [toolContentView setContentOffset:CGPointMake(DEVICEW, 0) animated:YES];
+        btnNext.hidden = YES;
     }
 }
 
@@ -330,6 +327,7 @@
     {
         currStep = 0;
         [toolContentView setContentOffset:CGPointMake(0, 0) animated:YES];
+        btnNext.hidden = NO;
     }
 }
 
@@ -339,10 +337,26 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)outputFilterParemeters
+- (void)showParameterView
 {
-    FSOutputTableViewController *outputTableVC = [[FSOutputTableViewController alloc] initWithFilterArr:filterArr];
-    [self.navigationController pushViewController:outputTableVC animated:YES];
+    parameterView = [[FSParameterView alloc] initWithFrame:self.view.frame btnArray:filterArr];
+    parameterView.delegate = self;
+    [self.view addSubview:parameterView];
+    parameterView.alpha = 0;
+    parameterView.hidden = NO;
+    [UIView animateWithDuration:0.2 animations:^{
+        parameterView.alpha = 1;
+    }];
+}
+
+- (void)hideParameterView
+{
+    [UIView animateWithDuration:0.2 animations:^{
+        parameterView.alpha = 0;
+    } completion:^(BOOL finished) {
+        parameterView.hidden = YES;
+    }];
+
 }
 
 - (void)saveImage
@@ -352,14 +366,13 @@
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
 {
-//    if (error) {
-//        saveSuccess = NO;
-//    }
-//    else
-//    {
-//        saveSuccess = YES;
-//    }
-//    
+    if (error) {
+    }
+    else
+    {
+        [self showSaveTips];
+    }
+//
 //    
 //    NSMutableArray *arr = [[NSMutableArray alloc] init];
 //    for (SRTBaseEditorElements *vv in [textview subviews]) {
@@ -369,7 +382,44 @@
 //    }
 }
 
+- (void)showSaveTips
+{
+    CGFloat loadingOffsetY = DEVICEW/3*4/2-57.5;
+    alertView = [[UIView alloc] initWithFrame:CGRectMake(DEVICEW/2-78.5, loadingOffsetY, 157, 115)];
+    alertView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.7];
+    alertView.layer.cornerRadius = 10;
+    alertView.clipsToBounds = YES;
+    alertView.userInteractionEnabled = NO;
+    [self.view addSubview:alertView];
+    alertView.alpha = 0;
+    
+    UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(26, 8, 106, 63)];
+    img.image = IMG(@"complete_and_save");
+    img.contentMode = UIViewContentModeCenter;
+    [alertView addSubview:img];
+    
+    UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake(11, 73, 137, 21)];
+    lab.backgroundColor = [UIColor clearColor];
+    lab.textAlignment = NSTextAlignmentCenter;
+    lab.textColor = [UIColor whiteColor];
+    lab.font = F(14);
+    lab.text = @"已保存到手机相册";
+    [alertView addSubview:lab];
+    
+    
+    [UIView animateWithDuration:0.3 delay:0.2 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        alertView.alpha = 1;
+    } completion:^(BOOL finished) {
+        [self performSelector:@selector(dismiss) withObject:nil afterDelay:2];
+    }];
+}
 
+- (void)dismiss
+{
+    [UIView animateWithDuration:0.3 animations:^{
+        alertView.alpha = 0;
+    }];
+}
 #pragma mark - Table View Data Source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

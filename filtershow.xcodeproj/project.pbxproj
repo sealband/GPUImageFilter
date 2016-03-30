@@ -15,6 +15,7 @@
 		173CCFE21CA2A0DF008E363A /* CHLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 173CCFE11CA2A0DF008E363A /* CHLine.m */; };
 		173EF3F31C9B2B9100EC5D33 /* FSSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 173EF3F21C9B2B9100EC5D33 /* FSSliderView.m */; };
 		174345041C896939006978D7 /* sample1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 174345031C896939006978D7 /* sample1.jpg */; };
+		174355251CABC7E80041EE71 /* FSParameterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 174355241CABC7E80041EE71 /* FSParameterView.m */; };
 		174804421C99486D00F7552E /* NSDictionary+GetValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 174804411C99486D00F7552E /* NSDictionary+GetValue.m */; };
 		174EE0291CAAEB2600026A94 /* FSFilterSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 174EE0281CAAEB2600026A94 /* FSFilterSliderView.m */; };
 		178BC2711CA3BEC000E33A76 /* UIViewController+NavbarItemCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 178BC2701CA3BEC000E33A76 /* UIViewController+NavbarItemCategory.m */; };
@@ -85,6 +86,8 @@
 		173EF3F11C9B2B9100EC5D33 /* FSSliderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSliderView.h; sourceTree = "<group>"; };
 		173EF3F21C9B2B9100EC5D33 /* FSSliderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSSliderView.m; sourceTree = "<group>"; };
 		174345031C896939006978D7 /* sample1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sample1.jpg; sourceTree = "<group>"; };
+		174355231CABC7E80041EE71 /* FSParameterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSParameterView.h; sourceTree = "<group>"; };
+		174355241CABC7E80041EE71 /* FSParameterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSParameterView.m; sourceTree = "<group>"; };
 		1748043A1C9908EE00F7552E /* FilterTypeDefination.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterTypeDefination.h; sourceTree = "<group>"; };
 		174804401C99486D00F7552E /* NSDictionary+GetValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+GetValue.h"; sourceTree = "<group>"; };
 		174804411C99486D00F7552E /* NSDictionary+GetValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+GetValue.m"; sourceTree = "<group>"; };
@@ -255,6 +258,8 @@
 				171C34E71C9675F800799CCA /* FSOutputTableViewController.m */,
 				174EE0271CAAEB2600026A94 /* FSFilterSliderView.h */,
 				174EE0281CAAEB2600026A94 /* FSFilterSliderView.m */,
+				174355231CABC7E80041EE71 /* FSParameterView.h */,
+				174355241CABC7E80041EE71 /* FSParameterView.m */,
 				1748043A1C9908EE00F7552E /* FilterTypeDefination.h */,
 				BC982C4014F1F6C80001FF6F /* CustomFilter.fsh */,
 				BC982B0D14F046AC0001FF6F /* Supporting Files */,
@@ -406,6 +411,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC982B1314F046AC0001FF6F /* main.m in Sources */,
+				174355251CABC7E80041EE71 /* FSParameterView.m in Sources */,
 				174804421C99486D00F7552E /* NSDictionary+GetValue.m in Sources */,
 				174EE0291CAAEB2600026A94 /* FSFilterSliderView.m in Sources */,
 				1739443B1CAA70E3002B5776 /* FSConsole.m in Sources */,

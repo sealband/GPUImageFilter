@@ -1,7 +1,7 @@
 #import "GPUImage.h"
 #import "FSSliderView.h"
 
-@interface FSShowcaseFilterViewController : UIViewController <GPUImageVideoCameraDelegate,UITableViewDelegate,UITableViewDataSource,SRTEditorFilterSliderDelegate>
+@interface FSShowcaseFilterViewController : UIViewController <GPUImageVideoCameraDelegate,UITableViewDelegate,UITableViewDataSource,SRTEditorFilterSliderDelegate,FSParameterViewDelegate>
 {
     GPUImageVideoCamera *videoCamera;
     GPUImagePicture *sourcePicture;
@@ -40,7 +40,9 @@
     UIImageView *sourceImageView;
     
     NSInteger currStep;
-
+    UIView *alertView;
+    
+    FSParameterView *parameterView;
 }
 
 @property(nonatomic,retain) NSMutableArray *checkedArray,*checkedIndexArray,*allCellArray;
