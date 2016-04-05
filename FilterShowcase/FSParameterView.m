@@ -57,6 +57,22 @@
         [guideScrollView addSubview:btn];
     }
     
+    saveBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    saveBtn.tag = 0;
+    saveBtn.frame = CGRectMake(DEVICEW/2-40, DEVICEH-120, 80, 80);
+    [saveBtn setImage:IMG(@"shop_detail_btn_dl") forState:UIControlStateNormal];
+    [saveBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    saveBtn.titleLabel.font = [UIFont systemFontOfSize:10];
+    [saveBtn setTitle:@"Save" forState:UIControlStateNormal];
+    saveBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -saveBtn.imageView.frame.size.width,-saveBtn.imageView.frame.size.height+23, 0);
+    saveBtn.imageEdgeInsets = UIEdgeInsetsMake(-saveBtn.titleLabel.intrinsicContentSize.height+23, 0, 0, -saveBtn.titleLabel.intrinsicContentSize.width);
+    [saveBtn addTarget:self action:@selector(paraSaveBtnDidClick) forControlEvents:UIControlEventTouchUpInside];
+    [guideScrollView addSubview:saveBtn];
+    
+    if ([paraArr count]==0) {
+        saveBtn.hidden = YES;
+    }
+    
     for (int i = 0; i < [paraArr count]; i++) {
         UILabel *lbl = [[UILabel alloc] init];
         lbl.frame = CGRectMake(DEVICEW/2-100, 120+i*45, 200, 30);
@@ -71,6 +87,27 @@
         [guideScrollView addSubview:lbl];
     }
     return self;
+}
+
+- (void)paraSaveBtnDidClick
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"命名滤镜" message:@" " delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"保存",nil];
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    alert.delegate = self;
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        UITextField *textFiled=[alertView textFieldAtIndex:0];
+        NSString *name = textFiled.text;
+        
+        if (self.delegate && [self.delegate respondsToSelector:@selector(saveParametersWithName:)]) {
+            [self.delegate saveParametersWithName:name];
+            saveBtn.hidden = YES;
+        }
+    }
 }
 
 - (void)hideGuideView

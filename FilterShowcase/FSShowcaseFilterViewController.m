@@ -210,10 +210,28 @@
     toolContentView.scrollEnabled = NO;
     [toolContentView setContentSize:CGSizeMake(DEVICEW*2, 167)];
     [self.view addSubview:toolContentView];
+    
+    {
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.tag = 0;
+        btn.frame = CGRectMake(0, 2, 70, 117);
+        [btn setImageEdgeInsets:UIEdgeInsetsMake(-10, 0, 0, 0)];
+        [btn setImage:IMG(@"edit_filter_more") forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(presetBtnDidClick) forControlEvents:UIControlEventTouchUpInside];
+        [toolContentView addSubview:btn];
+        
+        UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMinX(btn.frame), CGRectGetMidY(btn.frame)+10, CGRectGetWidth(btn.frame), 15)];
+        lab.backgroundColor = [UIColor clearColor];
+        lab.font = [UIFont systemFontOfSize:10];
+        lab.textAlignment = NSTextAlignmentCenter;
+        lab.textColor = [UIColor colorWithRed:78/255.0 green:78/255.0 blue:78/255.0 alpha:1];
+        lab.text = @"预设";
+        [toolContentView addSubview:lab];
+    }
 
     horizontalTableView = [[UITableView alloc] init];
     horizontalTableView.transform = CGAffineTransformMakeRotation(-M_PI * 0.5);
-    horizontalTableView.frame = CGRectMake(0, 0, DEVICEW, 117);
+    horizontalTableView.frame = CGRectMake(70, 0, DEVICEW-70, 117);
     horizontalTableView.delegate = self;
     horizontalTableView.dataSource = self;
     horizontalTableView.separatorStyle = UITableViewStylePlain;
@@ -280,9 +298,10 @@
     sliderView = [[FSSliderView alloc] initWithFrame:CGRectMake(0, DEVICEH, DEVICEW, 167)];
     sliderView.delegate = self;
     [self.view addSubview:sliderView];
-
+    
     currFilterDic = [[NSMutableDictionary alloc] init];
     filterArr = [[NSMutableArray alloc] init];
+    presetFilterArr = [[NSMutableArray alloc] init];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -337,6 +356,21 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)presetBtnDidClick
+{
+    presetVC = [[FSPresetViewController alloc] init];
+    presetVC.view.frame = CGRectMake(0, DEVICEH, DEVICEW, 167);
+    presetFilterArr = [[NSUserDefaults standardUserDefaults] valueForKey:@"preset"];
+    
+    presetVC.arrFilterSource = presetFilterArr;
+    presetVC.delegate = self;
+    [self.view addSubview:presetVC.view];
+
+    [UIView animateWithDuration:0.2 animations:^{
+        presetVC.view.frame = CGRectMake(0, DEVICEH-167, DEVICEW, 167);
+    }];
+}
+
 - (void)showParameterView
 {
     parameterView = [[FSParameterView alloc] initWithFrame:self.view.frame btnArray:filterArr];
@@ -357,6 +391,17 @@
         parameterView.hidden = YES;
     }];
 
+}
+
+- (void)saveParametersWithName:(NSString *)str
+{
+//    [presetFilterArr addObject:sourceFilter];
+    NSDictionary *dic = @{@"name":str,@"filter":sourceFilter};
+    [presetFilterArr addObject:dic];
+    
+
+    [[NSUserDefaults standardUserDefaults ] setObject:presetFilterArr forKey:@"preset"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)saveImage
@@ -534,6 +579,21 @@
 
 }
 
+#pragma mark Preset Filter Delegate
+- (void)adaptPresetFiltersWithArr:(NSMutableArray *)arr
+{
+    sourceFilter = [[NSMutableArray alloc] initWithArray:arr];
+    if ([sourceFilter count]!=0) {
+        [currFilterDic setValue:sourceFilter forKey:@"filtertype"];
+        [self updateFilterBlend];
+    }
+}
+
+- (void)notAdaptPresetFilters
+{
+    sourceImageView.image = stillImage;
+}
+
 #pragma mark -
 #pragma mark Filter adjustments
 
@@ -546,7 +606,7 @@
         [arrFilterSource replaceObjectAtIndex:tag withObject:d];
     }
     
-    NSMutableArray *sourceFilter = [NSMutableArray new];
+    sourceFilter = [NSMutableArray new];
     for (NSDictionary *d in arrFilterSource) {
         if ([[d getValueForKey:@"value"] floatValue] != [[d getValueForKey:@"defaultvalue"] floatValue]) {
             [sourceFilter addObject:d];

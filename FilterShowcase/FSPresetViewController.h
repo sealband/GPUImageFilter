@@ -7,7 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+@protocol FSPresetViewDelegate <NSObject>
+@required
+- (void)adaptPresetFiltersWithArr:(NSMutableArray*)arr;
+- (void)notAdaptPresetFilters;
+@end
 
-@interface FSPresetViewController : UIViewController
-
+@interface FSPresetViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+{
+    UIButton *btnNext;
+    UIButton *btnPre;
+    
+    UITableView *horizontalTableView;
+    NSMutableArray *arrFilterSource;
+}
+@property (nonatomic)NSMutableArray *arrFilterSource;
+@property (assign,nonatomic) id<FSPresetViewDelegate> delegate;
 @end

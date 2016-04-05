@@ -7,15 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
-@protocol FSParameterViewDelegate <NSObject>
+@protocol FSParameterViewDelegate <NSObject,UIAlertViewDelegate>
 @required
 - (void)hideParameterView;
+- (void)saveParametersWithName:(NSString*)str;
 @end
 @interface FSParameterView : UIView
 {
     UIVisualEffectView *guideBlurView;
     NSArray *paraArr;
     NSString *imageType;
+    
+    UIButton *saveBtn;
 }
 - (id)initWithFrame:(CGRect)frame btnArray:(NSArray*)arr;
 @property (assign,nonatomic) id<FSParameterViewDelegate> delegate;
