@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0D69488E1501F71900206FF8 /* SampleConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D69488D1501F71900206FF8 /* SampleConfiguration.plist */; };
 		171C34E21C96701A00799CCA /* FSImportPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 171C34E11C96701A00799CCA /* FSImportPhotoViewController.m */; };
-		171C34E81C9675F800799CCA /* FSOutputTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 171C34E71C9675F800799CCA /* FSOutputTableViewController.m */; };
 		17389A5A1CA946DF00AFF32C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17389A591CA946DF00AFF32C /* Images.xcassets */; };
 		1739443B1CAA70E3002B5776 /* FSConsole.m in Sources */ = {isa = PBXBuildFile; fileRef = 1739443A1CAA70E3002B5776 /* FSConsole.m */; };
 		173CCFE21CA2A0DF008E363A /* CHLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 173CCFE11CA2A0DF008E363A /* CHLine.m */; };
@@ -75,8 +74,6 @@
 		0D69488D1501F71900206FF8 /* SampleConfiguration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SampleConfiguration.plist; sourceTree = "<group>"; };
 		171C34E01C96701A00799CCA /* FSImportPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSImportPhotoViewController.h; sourceTree = "<group>"; };
 		171C34E11C96701A00799CCA /* FSImportPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSImportPhotoViewController.m; sourceTree = "<group>"; };
-		171C34E61C9675F800799CCA /* FSOutputTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSOutputTableViewController.h; sourceTree = "<group>"; };
-		171C34E71C9675F800799CCA /* FSOutputTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSOutputTableViewController.m; sourceTree = "<group>"; };
 		17389A591CA946DF00AFF32C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		173944391CAA70E3002B5776 /* FSConsole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSConsole.h; sourceTree = "<group>"; };
 		1739443A1CAA70E3002B5776 /* FSConsole.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSConsole.m; sourceTree = "<group>"; };
@@ -259,8 +256,6 @@
 				174E8D741CAE49FA00FD3ABF /* FSPresetViewController.m */,
 				173EF3F11C9B2B9100EC5D33 /* FSSliderView.h */,
 				173EF3F21C9B2B9100EC5D33 /* FSSliderView.m */,
-				171C34E61C9675F800799CCA /* FSOutputTableViewController.h */,
-				171C34E71C9675F800799CCA /* FSOutputTableViewController.m */,
 				174EE0271CAAEB2600026A94 /* FSFilterSliderView.h */,
 				174EE0281CAAEB2600026A94 /* FSFilterSliderView.m */,
 				174355231CABC7E80041EE71 /* FSParameterView.h */,
@@ -425,7 +420,6 @@
 				173EF3F31C9B2B9100EC5D33 /* FSSliderView.m in Sources */,
 				178BC2711CA3BEC000E33A76 /* UIViewController+NavbarItemCategory.m in Sources */,
 				BC982B3614F04B3A0001FF6F /* FSShowcaseFilterViewController.m in Sources */,
-				171C34E81C9675F800799CCA /* FSOutputTableViewController.m in Sources */,
 				173CCFE21CA2A0DF008E363A /* CHLine.m in Sources */,
 				171C34E21C96701A00799CCA /* FSImportPhotoViewController.m in Sources */,
 			);

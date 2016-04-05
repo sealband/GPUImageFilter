@@ -1,7 +1,5 @@
 #import "FSShowcaseFilterViewController.h"
 #import <CoreImage/CoreImage.h>
-#import "FSOutputTableViewController.h"
-
 
 #define kCellWidth                                  140
 #define kCellHeight                                 60
