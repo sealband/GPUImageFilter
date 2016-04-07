@@ -1,28 +1,22 @@
 #import "FSShowcaseFilterViewController.h"
 #import <CoreImage/CoreImage.h>
 
-#define kCellWidth                                  140
-#define kCellHeight                                 60
-#define kArticleCellVerticalInnerPadding            3
-#define kArticleCellHorizontalInnerPadding          6
-#define kArticleTitleLabelPadding                   4
-#define kRowVerticalPadding                         0
-#define kRowHorizontalPadding                       0
-
 @implementation FSShowcaseFilterViewController
-@synthesize faceDetector,stillImage;
+@synthesize stillImage;
 @synthesize isStatic;
 ;
 
 #pragma mark -
 #pragma mark Initialization and teardown
 
-- (id)initWithFilterType:(GPUImageShowcaseFilterType)newFilterType;
+- (id)initWithFilterType:(GPUImageShowcaseFilterType)newFilterType isStatic:(BOOL)isStaticImage stillImage:(UIImage*)image;
 {
     self = [super init];
     if (self)
     {
         filterType = newFilterType;
+        isStatic = isStaticImage;
+        stillImage = image;
     }
     return self;
 }
@@ -195,7 +189,7 @@
     sourceImageView.contentMode = UIViewContentModeScaleAspectFit;
     sourceImageView.image = stillImage;
     [self.view addSubview:sourceImageView];
-        
+    
     toolContentView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, DEVICEH-167, DEVICEW, 167)];
     toolContentView.showsHorizontalScrollIndicator = NO;
     toolContentView.scrollEnabled = NO;
@@ -304,7 +298,6 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    // Note: I needed to stop camera capture before the view went off the screen in order to prevent a crash from the camera still sending frames
     [videoCamera stopCameraCapture];
     
 	[super viewWillDisappear:animated];
@@ -313,10 +306,9 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    // Note: I needed to start camera capture after the view went on the screen, when a partially transition of navigation view controller stopped capturing via viewWilDisappear.
-//    [videoCamera startCameraCapture];
 }
+
+#pragma mark - Step Action
 
 - (void)nextDidClick:(id)sender
 {
@@ -341,11 +333,12 @@
     }
 }
 
-
 - (void)back
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+#pragma mark - Custom Action
 
 - (void)presetBtnDidClick
 {
@@ -374,27 +367,6 @@
     }];
 }
 
-- (void)hideParameterView
-{
-    [UIView animateWithDuration:0.2 animations:^{
-        parameterView.alpha = 0;
-    } completion:^(BOOL finished) {
-        parameterView.hidden = YES;
-    }];
-
-}
-
-- (void)saveParametersWithName:(NSString *)str
-{
-//    [presetFilterArr addObject:sourceFilter];
-    NSDictionary *dic = @{@"name":str,@"filter":sourceFilter};
-    [presetFilterArr addObject:dic];
-    
-
-    [[NSUserDefaults standardUserDefaults ] setObject:presetFilterArr forKey:@"preset"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
 - (void)saveImage
 {
     UIImageWriteToSavedPhotosAlbum(sourceImageView.image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
@@ -408,14 +380,6 @@
     {
         [self showSaveTips];
     }
-//
-//    
-//    NSMutableArray *arr = [[NSMutableArray alloc] init];
-//    for (SRTBaseEditorElements *vv in [textview subviews]) {
-//        if ([vv isKindOfClass:[SRTMutliLineLabel class]] || [vv isKindOfClass:[SRTTextBoxView class]] || [vv isKindOfClass:[SRTShapeView class]]) {
-//            [arr addObject:[vv dicInfo]];
-//        }
-//    }
 }
 
 - (void)showSaveTips
@@ -456,6 +420,27 @@
         alertView.alpha = 0;
     }];
 }
+
+#pragma mark -FSParameterViewDelegate
+- (void)hideParameterView
+{
+    [UIView animateWithDuration:0.2 animations:^{
+        parameterView.alpha = 0;
+    } completion:^(BOOL finished) {
+        parameterView.hidden = YES;
+    }];
+
+}
+
+- (void)saveParametersWithName:(NSString *)str
+{
+    NSDictionary *dic = @{@"name":str,@"filter":sourceFilter};
+    [presetFilterArr addObject:dic];
+
+    [[NSUserDefaults standardUserDefaults ] setObject:presetFilterArr forKey:@"preset"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 #pragma mark - Table View Data Source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -526,48 +511,6 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (void)setupFilter;
-{
-    if (isStatic) {
-        if (stillImage) {
-            staticPicture = [[GPUImagePicture alloc] initWithImage:stillImage smoothlyScaleOutput:YES];
-        } else
-        {
-            UIImage *inputImage = [UIImage imageNamed:@"sample1.jpg"];
-            staticPicture = [[GPUImagePicture alloc] initWithImage:inputImage smoothlyScaleOutput:YES];
-        }
-    } else
-    {
-        videoCamera = [[GPUImageVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPreset640x480 cameraPosition:AVCaptureDevicePositionBack];
-        videoCamera.outputImageOrientation = UIInterfaceOrientationPortrait;
-    }
-    
-//    BOOL needsSecondImage = NO;
-    
-    NSInteger typeNumber = (NSInteger)filterType;
-    
-    NSDictionary *filterDic = [arrFilterSource objectAtIndex:typeNumber];
-    self.title = [filterDic getValueForKey:@"name"];
-
-    if (filterType == GPUIMAGE_FILECONFIG)
-    {
-        self.title = @"File Configuration";
-        
-        pipeline = [[GPUImageFilterPipeline alloc] initWithConfigurationFile:[[NSBundle mainBundle] URLForResource:@"SampleConfiguration" withExtension:@"plist"]
-                                                                                               input:videoCamera output:(GPUImageView*)self.view];
-    }
-    else 
-    {
-        if (filterType != GPUIMAGE_VORONOI)
-        {
-//            [videoCamera addTarget:filter];
-        }
-        
-        videoCamera.runBenchmark = YES;
-    }
-
-}
-
 #pragma mark Preset Filter Delegate
 - (void)adaptPresetFiltersWithArr:(NSMutableArray *)arr
 {
@@ -585,6 +528,48 @@
 
 #pragma mark -
 #pragma mark Filter adjustments
+
+- (void)setupFilter;
+{
+    if (isStatic) {
+        if (stillImage) {
+            staticPicture = [[GPUImagePicture alloc] initWithImage:stillImage smoothlyScaleOutput:YES];
+        } else
+        {
+            UIImage *inputImage = [UIImage imageNamed:@"sample1.jpg"];
+            staticPicture = [[GPUImagePicture alloc] initWithImage:inputImage smoothlyScaleOutput:YES];
+        }
+    } else
+    {
+        videoCamera = [[GPUImageVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPreset640x480 cameraPosition:AVCaptureDevicePositionBack];
+        videoCamera.outputImageOrientation = UIInterfaceOrientationPortrait;
+    }
+    
+    //    BOOL needsSecondImage = NO;
+    
+    NSInteger typeNumber = (NSInteger)filterType;
+    
+    NSDictionary *filterDic = [arrFilterSource objectAtIndex:typeNumber];
+    self.title = [filterDic getValueForKey:@"name"];
+    
+    if (filterType == GPUIMAGE_FILECONFIG)
+    {
+        self.title = @"File Configuration";
+        
+        pipeline = [[GPUImageFilterPipeline alloc] initWithConfigurationFile:[[NSBundle mainBundle] URLForResource:@"SampleConfiguration" withExtension:@"plist"]
+                                                                       input:videoCamera output:(GPUImageView*)self.view];
+    }
+    else
+    {
+        if (filterType != GPUIMAGE_VORONOI)
+        {
+            //            [videoCamera addTarget:filter];
+        }
+        
+        videoCamera.runBenchmark = YES;
+    }
+    
+}
 
 - (void)filterSliderTag:(NSInteger)tag senderValue:(float)senderValue
 {
@@ -664,7 +649,7 @@
     }
 }
 
-- (IBAction)updateFilterFromSliderwitFilter:(GPUImageOutput <GPUImageInput>*)filter filterStr:(NSString*)str sliderValue:(float)slidervalue;
+- (void)updateFilterFromSliderwitFilter:(GPUImageOutput <GPUImageInput>*)filter filterStr:(NSString*)str sliderValue:(float)slidervalue;
 {
 //    [videoCamera resetBenchmarkAverage];
 

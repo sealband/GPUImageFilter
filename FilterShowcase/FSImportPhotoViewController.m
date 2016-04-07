@@ -52,9 +52,7 @@
 {
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
 
-    FSShowcaseFilterViewController *filterViewController = [[FSShowcaseFilterViewController alloc] initWithFilterType:GPUIMAGE_SATURATION];
-    filterViewController.isStatic = YES;
-    filterViewController.stillImage = stillImage;
+    FSShowcaseFilterViewController *filterViewController = [[FSShowcaseFilterViewController alloc] initWithFilterType:GPUIMAGE_SATURATION isStatic:YES stillImage:stillImage];
     [self.navigationController pushViewController:filterViewController animated:YES];
 }
 

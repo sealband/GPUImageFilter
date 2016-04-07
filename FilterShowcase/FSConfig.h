@@ -33,4 +33,13 @@
 #define DEVICEW (ISIP6?375.0:(ISIP6PLUS?414.0:320.0))
 #define DEVICEH (ISIP6?667.0:(ISIP6PLUS?736.0:(ISIP4?480.0:568.0)))
 
+#define kCellWidth                                  140
+#define kCellHeight                                 60
+#define kArticleCellVerticalInnerPadding            3
+#define kArticleCellHorizontalInnerPadding          6
+#define kArticleTitleLabelPadding                   4
+#define kRowVerticalPadding                         0
+#define kRowHorizontalPadding                       0
+
+
 #endif /* FSConfig_h */

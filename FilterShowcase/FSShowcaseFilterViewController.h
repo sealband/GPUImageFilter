@@ -43,17 +43,13 @@
     FSParameterView *parameterView;
 }
 
-@property(nonatomic,retain) NSMutableArray *checkedArray,*checkedIndexArray,*allCellArray;
 @property(nonatomic,retain)UIImage * stillImage;
 @property(nonatomic,assign) BOOL isStatic;
 
-@property(nonatomic,retain) CIDetector*faceDetector;
 // Initialization and teardown
-- (id)initWithFilterType:(GPUImageShowcaseFilterType)newFilterType;
+- (id)initWithFilterType:(GPUImageShowcaseFilterType)newFilterType isStatic:(BOOL)isStaticImage stillImage:(UIImage*)image;
 - (void)setupFilter;
-- (void)willOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer;
 // Filter adjustments
-- (IBAction)updateFilterFromSliderwitFilter:(GPUImageOutput <GPUImageInput>*)filter filterStr:(NSString*)str sliderValue:(float)slidervalue;
 - (void)GPUVCWillOutputFeatures:(NSArray*)featureArray forClap:(CGRect)clap
                  andOrientation:(UIDeviceOrientation)curDeviceOrientation;
 @end
