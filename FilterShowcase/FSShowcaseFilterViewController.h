@@ -9,17 +9,10 @@
     GPUImageUIElement *uiElementInput;
     
     GPUImageFilterPipeline *pipeline;
-    UIView *faceView;
     
-    CIDetector *faceDetector;
-    
-    IBOutlet UISwitch *facesSwitch;
-    IBOutlet UILabel *facesLabel;
     FSSliderView *sliderView;
-    BOOL faceThinking;
     
     FSPresetViewController *presetVC;
-    
     
     GPUImagePicture *staticPicture;
     BOOL isStatic;
@@ -63,5 +56,4 @@
 - (IBAction)updateFilterFromSliderwitFilter:(GPUImageOutput <GPUImageInput>*)filter filterStr:(NSString*)str sliderValue:(float)slidervalue;
 - (void)GPUVCWillOutputFeatures:(NSArray*)featureArray forClap:(CGRect)clap
                  andOrientation:(UIDeviceOrientation)curDeviceOrientation;
--(IBAction)facesSwitched:(id)sender;
 @end
