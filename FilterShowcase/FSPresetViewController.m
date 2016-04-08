@@ -57,6 +57,7 @@
 
 - (void)nextDidClick:(id)sender
 {
+    [self.delegate saveAdaptedFilters];
     [self dismiss];
 }
 

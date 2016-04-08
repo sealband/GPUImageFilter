@@ -511,6 +511,19 @@
 {
     sourceFilter = [[NSMutableArray alloc] initWithArray:arr];
     
+    if ([sourceFilter count]!=0) {
+        [currFilterDic setValue:sourceFilter forKey:@"filtertype"];
+        [self updateFilterBlend];
+    }
+}
+
+- (void)notAdaptPresetFilters
+{
+    sourceImageView.image = stillImage;
+}
+
+- (void)saveAdaptedFilters
+{
     for (NSDictionary *presetDic in sourceFilter) {
         NSString *classStr = [presetDic getValueForKey:@"name"];
         
@@ -527,16 +540,6 @@
             }
         }
     }
-    
-    if ([sourceFilter count]!=0) {
-        [currFilterDic setValue:sourceFilter forKey:@"filtertype"];
-        [self updateFilterBlend];
-    }
-}
-
-- (void)notAdaptPresetFilters
-{
-    sourceImageView.image = stillImage;
 }
 
 #pragma mark -

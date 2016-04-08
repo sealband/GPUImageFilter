@@ -11,6 +11,7 @@
 @required
 - (void)adaptPresetFiltersWithArr:(NSMutableArray*)arr;
 - (void)notAdaptPresetFilters;
+- (void)saveAdaptedFilters;
 @end
 
 @interface FSPresetViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
